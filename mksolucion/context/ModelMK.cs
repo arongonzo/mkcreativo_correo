@@ -19,6 +19,7 @@ namespace mksolucion.Models
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<cam01_campana> cam01_campana { get; set; }
         public virtual DbSet<cam02_tipocampana> cam02_tipocampana { get; set; }
         public virtual DbSet<cam03_detallecampana> cam03_detallecampana { get; set; }
@@ -59,11 +60,6 @@ namespace mksolucion.Models
 
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-            modelBuilder.Entity<AspNetRoles>()
-                .HasMany(e => e.AspNetUsers)
-                .WithMany(e => e.AspNetRoles)
-                .Map(m => m.ToTable("AspNetUserRoles").MapLeftKey("RoleId").MapRightKey("UserId"));
-
             modelBuilder.Entity<AspNetUsers>()
                 .HasMany(e => e.AspNetUserClaims)
                 .WithRequired(e => e.AspNetUsers)
@@ -73,6 +69,19 @@ namespace mksolucion.Models
                 .HasMany(e => e.AspNetUserLogins)
                 .WithRequired(e => e.AspNetUsers)
                 .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<AspNetRoles>()
+              .HasMany(e => e.AspNetUserRoles)
+              .WithRequired(e => e.AspNetRoles)
+              .HasForeignKey(e => e.RoleId)
+              .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.AspNetUserRoles)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
+
 
             modelBuilder.Entity<cam01_campana>()
                 .Property(e => e.cam01_id)

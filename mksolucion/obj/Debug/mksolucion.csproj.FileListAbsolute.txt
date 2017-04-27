@@ -86,3 +86,4 @@ D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mk
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations.creacionareasegmento.resources
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations.ActualizacionCuentaUsuario.resources
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.csprojResolveAssemblyReference.cache
+D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations.ActualizarUsuariorol.resources

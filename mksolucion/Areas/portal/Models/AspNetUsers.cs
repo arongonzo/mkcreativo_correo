@@ -13,7 +13,7 @@ namespace mksolucion.Models
         {
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
-            AspNetRoles = new HashSet<AspNetRoles>();
+            AspNetUserRoles = new HashSet<AspNetUserRoles>();
             cnt03_cuenta_usuario = new HashSet<cnt03_cuenta_usuario>();
         }
 
@@ -51,7 +51,7 @@ namespace mksolucion.Models
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+        public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cnt03_cuenta_usuario> cnt03_cuenta_usuario { get; set; }

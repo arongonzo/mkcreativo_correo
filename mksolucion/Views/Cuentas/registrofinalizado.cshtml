@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Confirmar correo electrónico";
+﻿
+@{
+    ViewBag.Title = "registrofinalizado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <section class="mbr-section article mbr-parallax-background mbr-after-navbar" id="msg-box8-c" style="background-image: url(../Content/images/desert.jpg); padding-top: 120px; padding-bottom: 120px;">
@@ -10,7 +12,6 @@
             <div class="col-md-8 col-md-offset-2 text-xs-center">
                 <h3 class="mbr-section-title display-2">ARTICLE HEADER</h3>
                 <div class="lead"><p>Article header with background image and parallax effect.</p></div>
-
             </div>
         </div>
     </div>
@@ -21,12 +22,11 @@
             <div class="col-md-8 col-md-offset-2 text-xs-center">
                 <div>
                     <p>
-                        Gracias por confirmar su correo electrónico. @Html.ActionLink("Haga clic aquí para iniciar sesión", "Iniciar sesión", "Cuenta", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                        Te hemos enviado un E-mail para verificar tu cuenta. 
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
