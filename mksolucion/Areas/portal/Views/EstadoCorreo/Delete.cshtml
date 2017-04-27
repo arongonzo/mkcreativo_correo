@@ -1,0 +1,49 @@
+﻿@model mksolucion.Models.crr08_estadoCorreo
+
+@{
+    ViewBag.Title = "Eliminar estados de correo";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Eliminar estados de correo</h2>
+
+<h3>¿Esta segurio de eliminar este registro?</h3>
+<div>
+    <h4>crr08_estadoCorreo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr08_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr08_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr08_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr08_descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

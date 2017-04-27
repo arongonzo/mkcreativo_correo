@@ -1,0 +1,34 @@
+﻿@model mksolucion.Models.pln02_tipoplan
+
+@{
+    ViewBag.Title = "Detalle Tipo de Plan";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Detalle de Tipo de Plan </h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pln02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pln02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pln02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pln02_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.pln02_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

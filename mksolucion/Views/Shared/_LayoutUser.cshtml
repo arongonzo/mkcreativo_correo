@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - My Telerik MVC Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+    <link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.dataviz.bootstrap.min.css" rel="stylesheet" type="text/css" />
+   
+	<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
+
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+
+
+</head>
+<body>
+    <header>
+        <div class="mbr-table">
+   
+                <nav id='cssmenu' class="navigation-left float-left">
+                    <div class="logo" style="padding:10px; display:block; width:150px"><a href="index.html">Responsive </a></div>
+                    <div id="head-mobile"></div>
+                    <div class="button"></div>
+                    <ul class="linear-list selfclear mbr-table-cell">
+
+                        <li class='active'><a href='#'>HOME</a></li>
+                        <li><a href='#'>Campañas</a></li>
+                        <li><a href='#'>Plantillas</a></li>
+                        <li><a href='#'>Listas</a></li>
+                        <li><a href='#'>Reportes</a></li>
+                        <li>
+                            @Html.ActionLink("Configuración", "Index", "Configuraciones", new { area = "" }, new { @class = "nav-link link dropdown-toggle", data_toggle = "dropdown-submenu", aria_expanded = "true" })
+                            <ul>
+                                <li>
+                                    @Html.ActionLink("Campaña", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>
+                                            @Html.ActionLink("Tipos De campaña", "Index", "TipoCampana", new { area = "portal" }, new { @class = "dropdown-item" })
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("configuracion adicional", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Clientes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>@Html.ActionLink("Cuentas Clientes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Tipos de Cuenta", "Index", "tipocuenta", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Correos", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>@Html.ActionLink("Listas de Correo", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Clasificaciones de Correo", "Index", "clasificacioncorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Area o Segmento", "Index", "areasegmentocorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Intereses", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Organizaciones", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Estados de correo", "Index", "estadocorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Listas de correo", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>@Html.ActionLink("Clasificación Listas de Correo", "Index", "ClasificacionListaCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("reportes de listas", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Planes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>@Html.ActionLink("Planes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Tipos de planes", "Index", "tipoplanes", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("configuracion de planes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>@Html.ActionLink("Tipos de servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Usuarios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>@Html.ActionLink("Usuarios", "Index", "usuarios", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        <li>@Html.ActionLink("Roles", "Index", "roles", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Sistema", "Index", "sistema", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                    <ul>
+                                        <li>@Html.ActionLink("Estados de Activacón", "Index", "EstadosActivacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                   
+                </nav>
+           
+            
+                
+          
+        </div>
+</header>
+    <section class="section" style="padding-top:10px; min-height:450px;">
+        <div class="container">
+            <div class="row" style="padding-bottom:30px;">
+
+                @RenderBody()
+                
+            </div>
+        </div>
+    </section>
+
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-18 col-md-12">
+                        <div id="grid"></div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p class="text-muted">Copyright © 2002-2015 Telerik. All rights reserved.</p>
+                </div>
+            </footer>
+
+            <script>
+                $(document).ready(function () {
+                    $("#responsive-panel").kendoResponsivePanel({
+                        breakpoint: 768,
+                        autoClose: false,
+                        orientation: "top"
+                    });
+                });
+                function onclick(e) {
+                    $("#responsive-panel").getKendoResponsivePanel().toggle();
+                }
+                
+
+
+                (function ($) {
+                    $.fn.menumaker = function (options) {
+                        var cssmenu = $(this), settings = $.extend({
+                            format: "dropdown",
+                            sticky: false
+                        }, options);
+                        return this.each(function () {
+                            $(this).find(".button").on('click', function () {
+                                $(this).toggleClass('menu-opened');
+                                var mainmenu = $(this).next('ul');
+                                if (mainmenu.hasClass('open')) {
+                                    mainmenu.slideToggle().removeClass('open');
+                                }
+                                else {
+                                    mainmenu.slideToggle().addClass('open');
+                                    if (settings.format === "dropdown") {
+                                        mainmenu.find('ul').show();
+                                    }
+                                }
+                            });
+                            cssmenu.find('li ul').parent().addClass('has-sub');
+                            multiTg = function () {
+                                cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
+                                cssmenu.find('.submenu-button').on('click', function () {
+                                    $(this).toggleClass('submenu-opened');
+                                    if ($(this).siblings('ul').hasClass('open')) {
+                                        $(this).siblings('ul').removeClass('open').slideToggle();
+                                    }
+                                    else {
+                                        $(this).siblings('ul').addClass('open').slideToggle();
+                                    }
+                                });
+                            };
+                            if (settings.format === 'multitoggle') multiTg();
+                            else cssmenu.addClass('dropdown');
+                            if (settings.sticky === true) cssmenu.css('position', 'fixed');
+                            resizeFix = function () {
+                                var mediasize = 700;
+                                if ($(window).width() > mediasize) {
+                                    cssmenu.find('ul').show();
+                                }
+                                if ($(window).width() <= mediasize) {
+                                    cssmenu.find('ul').hide().removeClass('open');
+                                }
+                            };
+                            resizeFix();
+                            return $(window).on('resize', resizeFix);
+                        });
+                    };
+                })(jQuery);
+
+                (function ($) {
+                    $(document).ready(function () {
+                        $("#cssmenu").menumaker({
+                            format: "multitoggle"
+                        });
+                    });
+                })(jQuery);
+
+
+            </script>
+</body>
+</html>

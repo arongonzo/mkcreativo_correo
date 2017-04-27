@@ -1,0 +1,43 @@
+﻿@model mksolucion.Models.lis02_clasificacion
+
+@{
+    ViewBag.Title = "Detalles de tipos de Clasificación de correo";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Detalles de tipos de Clasificación de correo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lis02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lis02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lis02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lis02_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.lis02_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

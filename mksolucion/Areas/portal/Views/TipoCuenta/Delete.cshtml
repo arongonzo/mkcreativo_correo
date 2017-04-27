@@ -1,0 +1,48 @@
+﻿@model mksolucion.Models.cnt02_tipocuenta
+
+@{
+    ViewBag.Title = "Eliminar Tipos de Cuentas de clientes";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Eliminar Tipos de Cuentas de clientes</h2>
+
+<h3>¿Esta segurio de eliminar este registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cnt02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnt02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cnt02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnt02_descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

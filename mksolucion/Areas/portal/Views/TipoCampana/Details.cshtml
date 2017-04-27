@@ -1,0 +1,42 @@
+﻿@model mksolucion.Models.cam02_tipocampana
+
+@{
+    ViewBag.Title = "Detalle de Tipo de Campaña";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>Detalle tipo de Campaña</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cam02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cam02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cam02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cam02_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.cam02_id }) |
+    @Html.ActionLink("Volver Al Listado", "Index")
+</p>

@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+    <meta name="description" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <title>@ViewBag.Title - Herramienta de Marketing</title>
+    @Styles.Render("~/Content/assets")
+
+
+
+	<link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.dataviz.bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/jszip.min.js"></script>
+</head>
+<body>
+    <section id="menu-0">
+        <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
+            <div class="containerfull">
+                <div class="mbr-table">
+                    <div class="mbr-table-cell">
+                        <div class="navbar-brand">
+                            <a href="https://mobirise.com" class="navbar-logo"><img src="assets/images/logo.png" alt="Mobirise"></a>
+                            <a class="navbar-caption" href="https://mobirise.com">MOBIRISE</a>
+                            @Html.ActionLink("MailKreativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        </div>
+                    </div>
+                    <div class="mbr-table-cell">
+                        <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                            <div class="hamburger-icon"></div>
+                        </button>
+                        <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                            <li class="nav-item">
+                                @Html.ActionLink("HOME", "Index", "Home", null, new { @class = "nav-link link" })
+                                <!--<a class="nav-link link" href="https://mobirise.com/">OVERVIEW</a>-->
+                            </li>
+                            <!--<li class="nav-item dropdown">
+                                <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="https://mobirise.com/">FEATURES</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="https://mobirise.com/">Mobile friendly</a>
+                                    <a class="dropdown-item" href="https://mobirise.com/">Based on Bootstrap</a>
+                                    <div class="dropdown">
+                                        <a class="dropdown-item dropdown-toggle" data-toggle="dropdown-submenu" href="https://mobirise.com/">Trendy blocks</a>
+                                        <div class="dropdown-menu dropdown-submenu">
+                                            <a class="dropdown-item" href="https://mobirise.com/">Image/content slider</a>
+                                            <a class="dropdown-item" href="https://mobirise.com/">Contact forms</a>
+                                            <a class="dropdown-item" href="https://mobirise.com/">Image gallery</a>
+                                            <a class="dropdown-item" href="https://mobirise.com/">Mobile menu</a>
+                                            <a class="dropdown-item" href="https://mobirise.com/">Google maps</a>
+                                            <a class="dropdown-item" href="https://mobirise.com/">Social buttons</a>
+                                            <a class="dropdown-item" href="https://mobirise.com/">Google fonts</a>
+                                            <a class="dropdown-item" href="https://mobirise.com/">Video background</a>
+                                        </div>
+                                    </div>
+                                    <a class="dropdown-item" href="https://mobirise.com/">Host anywhere</a>
+                                </div>
+                            </li>-->
+                            <li class="nav-item">
+                                @Html.ActionLink("CARACTERISTICAS", "About", "Home", null, new { @class = "nav-link link" })
+                                <!--<a class="nav-link link" href="https://mobirise.com/">OVERVIEW</a>-->
+                            </li>
+                            <!--<li class="nav-item dropdown">
+                                <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="https://mobirise.com/">HELP</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="http://forums.mobirise.com/">Forum</a>
+                                    <a class="dropdown-item" href="https://mobirise.com/">Tutorials</a>
+                                    <a class="dropdown-item" href="https://mobirise.com/">Contact us</a>
+                                </div>
+                            </li>
+                            ---->
+
+
+                            <li class="nav-item">
+                                @Html.ActionLink("PRECIO", "price", "Home", null, new { @class = "nav-link link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("CONTACTO", "Contact", "Home", null, new { @class = "nav-link link" })
+                            </li>
+
+                            <li class="nav-item nav-btn">
+                                @Html.ActionLink("REGíSTRATE GRATIS", "Register", "cuentas", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link btn btn-color" })
+                                <!--<a class="nav-link btn btn-white btn-white-outline" href="https://mobirise.com/">DOWNLOAD</a>-->
+                            </li>
+
+                            <li class="nav-item">
+                                @Html.ActionLink("INGRESAR", "Login", "Cuentas", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link link" })
+                            </li>
+
+
+
+                            <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                                <div class="close-icon"></div>
+                            </button>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    @RenderBody()
+
+    <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-2" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+
+        <div class="container">
+            <p class="text-xs-center">Copyright (c) 2016 Mobirise.</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/assets")
+
+    @RenderSection("scripts", required: false)
+
+    <input name="animation" type="hidden">
+</body>
+</html>
