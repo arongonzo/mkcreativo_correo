@@ -1,4 +1,10 @@
-﻿<h2>Estados de Correo</h2>
+﻿
+@{
+    ViewBag.Title = "Estados de Correo";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Estados de Correo</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")

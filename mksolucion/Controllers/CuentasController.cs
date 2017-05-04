@@ -85,19 +85,44 @@ namespace mksolucion.Controllers
                 case SignInStatus.Success:
                     if (string.IsNullOrEmpty(returnUrl))
                     {
+
                         ModelMK db = new ModelMK();
                         var query = from usr in db.AspNetUsers
-                                      where usr.UserName == model.Email
-                                      select usr;
+                                    join usrrl in db.AspNetUserRoles on usr.Id equals usrrl.UserId
+                                    join rol in db.AspNetRoles on usrrl.RoleId equals rol.Id
+                                    where usr.UserName == model.Email
+                                    select new 
+                                    { 
+                                        UserId = usr.Id,
+                                        Rolname = rol.Name
+                                    };
+                        string urlretorno = string.Empty;
                         if (query.Count()>0){
                             var datos = query.ToList();
                             foreach (var Row in datos) {
-                                Session["UserId"] = Row.Id.ToString();
-
-
+                                Session["UserId"] = Row.UserId.ToString();
+                                Session["Rolname"] = Row.Rolname.ToString();
+                                switch (Row.Rolname.ToString().ToLower()) { 
+                                    case "admin":
+                                        urlretorno = "~/portal/admin/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
+                                        break;
+                                    case "manager":
+                                        urlretorno = "~/portal/manager/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
+                                        break;
+                                    case "user":
+                                        urlretorno = "~/portal/default/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                        break;
+                                    default:
+                                        urlretorno = "~/portal/default/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                        break;
+                                }
                             }
                         }
-                        return RedirectToLocal("~/portal/default/index");
+                        return RedirectToLocal(urlretorno);
                     }
                     else
                     {

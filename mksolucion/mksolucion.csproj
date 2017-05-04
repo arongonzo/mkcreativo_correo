@@ -178,12 +178,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\portal\Controllers\AdminController.cs" />
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacionlistacorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\DefaultController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadosActivacionController.cs" />
+    <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCuentaController.cs" />
@@ -302,6 +304,8 @@
     <Content Include="Content\assets\images\btn\btn_edit.png" />
     <Content Include="Content\assets\images\landscape3.jpg" />
     <Content Include="Content\assets\images\logo.png" />
+    <Content Include="Content\assets\images\logomailcreativo.jpg" />
+    <Content Include="Content\assets\images\logomailcreativo.png" />
     <Content Include="Content\assets\images\man-back.jpg" />
     <Content Include="Content\assets\images\sparklers.jpg" />
     <Content Include="Content\assets\images\yourlogohere.png" />
@@ -386,6 +390,8 @@
     <Content Include="Areas\portal\Views\AreaSegmentoCorreo\Create.cshtml" />
     <Content Include="Areas\portal\Views\AreaSegmentoCorreo\Edit.cshtml" />
     <Content Include="Areas\portal\Views\AreaSegmentoCorreo\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Manager\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -433,6 +439,8 @@
     <Content Include="Views\Cuentas\View.cshtml" />
     <Content Include="Views\Cuentas\ConfirmEmail.cshtml" />
     <Content Include="Views\Cuentas\registrofinalizado.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />

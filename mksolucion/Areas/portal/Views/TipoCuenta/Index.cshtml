@@ -1,4 +1,9 @@
-﻿<h2>Tipos de Cuenta Cliente</h2>
+﻿@{
+    ViewBag.Title = "Tipos de Cuenta Cliente";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Tipos de Cuenta Cliente</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")

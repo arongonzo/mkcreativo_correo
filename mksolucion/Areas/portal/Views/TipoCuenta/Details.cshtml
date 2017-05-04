@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    Layout = Session["layout"].ToString();
 }
 
 <h2>Detalle Tipos de Cuentas de Clientes</h2>

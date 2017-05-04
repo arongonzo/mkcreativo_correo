@@ -1,4 +1,9 @@
-﻿<h2>Estados de Activación</h2>
+﻿@{
+    ViewBag.Title = "Estados de Activación";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Estados de Activación</h2>
 
 @(Html.Kendo().Grid<mksolucion.Models._gen01_estados>()
       .Name("grid")
