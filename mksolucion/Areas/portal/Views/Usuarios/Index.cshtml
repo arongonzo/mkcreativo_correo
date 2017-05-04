@@ -1,4 +1,9 @@
-﻿<h2>Usuarios</h2>
+﻿@{
+    ViewBag.Title = "Usuarios";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Usuarios</h2>
 
 @(Html.Kendo().Grid<mksolucion.Models._AspNetUsers>()
       .Name("grid")

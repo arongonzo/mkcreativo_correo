@@ -25,7 +25,7 @@ a {
     }
 
     a:hover {
-        background-color: #c7d1d6;
+        /*c7d1d6*/background-color: #c7d1d6;
     }
 
 header, footer, hgroup,
@@ -770,9 +770,9 @@ tr.pager td {
   position: relative;
   vertical-align: middle; }
 
-header{position:relative;width:100%;background:#f2f2f2; display:table;}
-.logo{position:relative;z-index:9999;padding:10px;font:18px verdana;color:#6DDB07;float:left;width:15%}
-.logo a{color:#6DDB07;}
+header{position:relative;width:100%;background:#fff; display:table;    border-bottom: 1px solid #eee;}
+.logo{position:relative;z-index:9999;font:18px verdana;float:left; padding:5px;}
+.logo a{color:#c20f1a;}
 nav{}
 
 #cssmenu,#cssmenu ul,#cssmenu ul li,#cssmenu ul li a,#cssmenu #head-mobile{border:0;list-style:none;line-height:1;display:block;position:relative;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;    margin-bottom: 0px;}
@@ -781,10 +781,10 @@ nav{}
 #cssmenu{font-family:sans-serif; width:100%;}
 #cssmenu > ul > li{float:left; }
 
-#cssmenu > ul > li > a{padding:17px;font-size:12px;letter-spacing:1px;text-decoration:none;color:#484848;font-weight:700;}
+#cssmenu > ul > li > a{padding:21px;font-size:12px;letter-spacing:1px;text-decoration:none;color:#484848;font-weight:700;}
 #cssmenu > ul > li:hover > a,#cssmenu ul li.active a{color:#484848}
 
-#cssmenu > ul > li:hover,#cssmenu ul li.active:hover,#cssmenu ul li.active,#cssmenu ul li.has-sub.active:hover{background:#e5e5e5!important;-webkit-transition:background .3s ease;-ms-transition:background .3s ease;transition:background .3s ease;}
+#cssmenu > ul > li:hover,#cssmenu ul li.active:hover,#cssmenu ul li.active,#cssmenu ul li.has-sub.active:hover{background:#eee!important;-webkit-transition:background .3s ease;-ms-transition:background .3s ease;transition:background .3s ease;}
 #cssmenu > ul > li.has-sub > a{padding-right:20px}
 #cssmenu > ul > li.has-sub > a:after{position:absolute;top:22px;right:11px;width:8px;height:2px;display:block;background:#e5e5e5;content:''}
 

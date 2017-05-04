@@ -1,4 +1,9 @@
-﻿<h2>Clasificacion de correos</h2>
+﻿@{
+    ViewBag.Title = "Clasificacion de correos";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Clasificacion de correos</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")

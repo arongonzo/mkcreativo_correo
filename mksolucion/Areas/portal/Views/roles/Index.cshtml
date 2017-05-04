@@ -1,4 +1,9 @@
-﻿<h2>Roles de Usuario</h2>
+﻿@{
+    ViewBag.Title = "Roles de Usuario";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Roles de Usuario</h2>
 
 @(Html.Kendo().Grid<mksolucion.Models._AspNetRoles>()
       .Name("grid")

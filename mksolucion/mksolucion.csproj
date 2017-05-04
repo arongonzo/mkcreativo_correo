@@ -178,17 +178,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\portal\Controllers\AdminController.cs" />
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacionlistacorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\DefaultController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadosActivacionController.cs" />
+    <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCuentaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoPlanesController.cs" />
     <Compile Include="Areas\portal\Controllers\UsuariosController.cs" />
+    <Compile Include="Areas\portal\Models\AspNetUserRoles.cs" />
     <Compile Include="Areas\portal\Models\crr03_areasegmento.cs" />
     <Compile Include="Areas\portal\Models\gen01_estados.cs" />
     <Compile Include="Areas\portal\portalAreaRegistration.cs" />
@@ -272,6 +275,10 @@
     <Compile Include="Migrations\201704251503245_ActualizacionCuentaUsuario.Designer.cs">
       <DependentUpon>201704251503245_ActualizacionCuentaUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704271715307_ActualizarUsuariorol.cs" />
+    <Compile Include="Migrations\201704271715307_ActualizarUsuariorol.Designer.cs">
+      <DependentUpon>201704271715307_ActualizarUsuariorol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -297,6 +304,8 @@
     <Content Include="Content\assets\images\btn\btn_edit.png" />
     <Content Include="Content\assets\images\landscape3.jpg" />
     <Content Include="Content\assets\images\logo.png" />
+    <Content Include="Content\assets\images\logomailcreativo.jpg" />
+    <Content Include="Content\assets\images\logomailcreativo.png" />
     <Content Include="Content\assets\images\man-back.jpg" />
     <Content Include="Content\assets\images\sparklers.jpg" />
     <Content Include="Content\assets\images\yourlogohere.png" />
@@ -381,6 +390,8 @@
     <Content Include="Areas\portal\Views\AreaSegmentoCorreo\Create.cshtml" />
     <Content Include="Areas\portal\Views\AreaSegmentoCorreo\Edit.cshtml" />
     <Content Include="Areas\portal\Views\AreaSegmentoCorreo\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Manager\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -427,6 +438,9 @@
     <Content Include="Views\Cuentas\Register.cshtml" />
     <Content Include="Views\Cuentas\View.cshtml" />
     <Content Include="Views\Cuentas\ConfirmEmail.cshtml" />
+    <Content Include="Views\Cuentas\registrofinalizado.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -438,10 +452,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\portal\Views\Shared\" />
-    <Folder Include="Views\AreaSegmentoCorreo\" />
-    <Folder Include="Views\EstadoCorreo\" />
-    <Folder Include="Views\TipoCuenta\" />
-    <Folder Include="Views\Usuarios\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704211418296_Primeraconfiguracion.resx">
@@ -461,6 +471,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704251503245_ActualizacionCuentaUsuario.resx">
       <DependentUpon>201704251503245_ActualizacionCuentaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704271715307_ActualizarUsuariorol.resx">
+      <DependentUpon>201704271715307_ActualizarUsuariorol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

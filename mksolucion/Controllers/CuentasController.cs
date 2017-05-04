@@ -79,23 +79,50 @@ namespace mksolucion.Controllers
 
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
                     if (string.IsNullOrEmpty(returnUrl))
                     {
+
                         ModelMK db = new ModelMK();
                         var query = from usr in db.AspNetUsers
-                                      where usr.UserName == model.Email
-                                      select usr;
+                                    join usrrl in db.AspNetUserRoles on usr.Id equals usrrl.UserId
+                                    join rol in db.AspNetRoles on usrrl.RoleId equals rol.Id
+                                    where usr.UserName == model.Email
+                                    select new 
+                                    { 
+                                        UserId = usr.Id,
+                                        Rolname = rol.Name
+                                    };
+                        string urlretorno = string.Empty;
                         if (query.Count()>0){
                             var datos = query.ToList();
                             foreach (var Row in datos) {
-                                Session["UserId"] = Row.Id.ToString();
+                                Session["UserId"] = Row.UserId.ToString();
+                                Session["Rolname"] = Row.Rolname.ToString();
+                                switch (Row.Rolname.ToString().ToLower()) { 
+                                    case "admin":
+                                        urlretorno = "~/portal/admin/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
+                                        break;
+                                    case "manager":
+                                        urlretorno = "~/portal/manager/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
+                                        break;
+                                    case "user":
+                                        urlretorno = "~/portal/default/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                        break;
+                                    default:
+                                        urlretorno = "~/portal/default/index";
+                                        Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                        break;
+                                }
                             }
                         }
-                        return RedirectToLocal("~/portal/default/index");
+                        return RedirectToLocal(urlretorno);
                     }
                     else
                     {
@@ -203,7 +230,7 @@ namespace mksolucion.Controllers
                     // Para obtener más información sobre cómo habilitar la confirmación de cuenta y el restablecimiento de contraseña, visite http://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     
-                    return RedirectToAction("registrofinalizado", "cuenta");
+                    return RedirectToAction("registrofinalizado", "cuentas");
                 }
                 AddErrors(result);
             }
@@ -211,48 +238,17 @@ namespace mksolucion.Controllers
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }
-        public MailAddress to { get; set; }
-        
 
-        private Task SendAsync(MailMessage message)
+        //
+        // GET: /Users/Register
+        [AllowAnonymous]
+        public ActionResult registrofinalizado()
         {
-
-            string feedback = String.Empty;
-            to = new MailAddress("s.gonzalez@atomos.cl", "Servicio al cliente mailcreativo");
-            message.To.Add(to);
-            message.From = new MailAddress("s.gonzalez@atomos.cl");
-            message.Sender = to;
-
-            var smtp = new System.Net.Mail.SmtpClient
-            {
-                Host = "atomos.cl",
-                Port = 25,
-                Credentials = new System.Net.NetworkCredential("s.gonzalez@atomos.cl", "gonzalezs2006"),
-                EnableSsl = false
-            };
-
-            var mail = new System.Net.Mail.MailMessage();
-
-            mail.IsBodyHtml = true;
-            mail.From = new System.Net.Mail.MailAddress("s.gonalez@atomos.cl", "Servicio al Cliente Mailcreativo");
-            mail.To.Add("s.gonzalez@atomos.cl");
-            mail.Subject = message.Subject;
-            mail.Body = message.Body;
-
-            smtp.Timeout = 1000;
-            
-            try
-            {
-                var t = Task.Run(() => smtp.SendAsync(mail, null));
-                feedback = "Message sent to insurance";
-            }
-            catch (Exception e)
-            {
-                feedback = "Message not sent retry" + e.Message;
-            }
-            return Task.FromResult(0);
+            return View();
         }
 
+
+        
         //
         // GET: /Users/ConfirmEmail
         [AllowAnonymous]

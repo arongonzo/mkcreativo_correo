@@ -1,4 +1,9 @@
-﻿<h2>Area o Segmento en correos</h2>
+﻿@{
+    ViewBag.Title = "Area o Segmento de Correo";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Area o Segmento en correos</h2>
 
 <p>
     @Html.ActionLink("Crear Nuevo", "Create")
