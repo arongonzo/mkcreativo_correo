@@ -185,22 +185,26 @@
     <Compile Include="Areas\portal\Controllers\DefaultController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadosActivacionController.cs" />
+    <Compile Include="Areas\portal\Controllers\InteresesController.cs" />
     <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCuentaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoPlanesController.cs" />
+    <Compile Include="Areas\portal\Controllers\UsuarioRolesController.cs" />
     <Compile Include="Areas\portal\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\portal\Models\AspNetUserRoles.cs" />
     <Compile Include="Areas\portal\Models\crr03_areasegmento.cs" />
     <Compile Include="Areas\portal\Models\gen01_estados.cs" />
     <Compile Include="Areas\portal\portalAreaRegistration.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetRoles.cs" />
+    <Compile Include="Areas\portal\ViewModels\_AspNetUserRoles.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetUsers.cs" />
     <Compile Include="Areas\portal\ViewModels\_cam02_tipocampana.cs" />
     <Compile Include="Areas\portal\ViewModels\_cnt02_tipocuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr02_tipoclasificacion.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr03_areasegmento.cs" />
+    <Compile Include="Areas\portal\ViewModels\_crr04_intereses.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr08_estadoCorreo.cs" />
     <Compile Include="Areas\portal\ViewModels\_gen01_estados.cs" />
     <Compile Include="Areas\portal\ViewModels\_lis02_clasificacion.cs" />
@@ -220,8 +224,8 @@
     <Compile Include="Areas\portal\Models\cnt03_cuenta_usuario.cs" />
     <Compile Include="context\crr01_correos.cs" />
     <Compile Include="Areas\portal\Models\crr02_tipoclasificacion.cs" />
-    <Compile Include="context\crr04_intereses.cs" />
-    <Compile Include="context\crr05_interesCorreo.cs" />
+    <Compile Include="Areas\portal\Models\crr04_intereses.cs" />
+    <Compile Include="Areas\portal\Models\crr05_interesCorreo.cs" />
     <Compile Include="context\crr06_organizacion.cs" />
     <Compile Include="context\crr07_correoOrganizacion.cs" />
     <Compile Include="Areas\portal\Models\crr08_estadoCorreo.cs" />
@@ -248,6 +252,7 @@
     <Compile Include="Funtion\AuthorizationAttribute.cs" />
     <Compile Include="Funtion\mkemail.cs" />
     <Compile Include="Funtion\Roles.cs" />
+    <Compile Include="Funtion\SessionExpireAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +284,10 @@
     <Compile Include="Migrations\201704271715307_ActualizarUsuariorol.Designer.cs">
       <DependentUpon>201704271715307_ActualizarUsuariorol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705041455593_actualizacionusuarioroles.cs" />
+    <Compile Include="Migrations\201705041455593_actualizacionusuarioroles.Designer.cs">
+      <DependentUpon>201705041455593_actualizacionusuarioroles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -308,6 +317,7 @@
     <Content Include="Content\assets\images\logomailcreativo.png" />
     <Content Include="Content\assets\images\man-back.jpg" />
     <Content Include="Content\assets\images\sparklers.jpg" />
+    <Content Include="Content\assets\images\timeout-icon.png" />
     <Content Include="Content\assets\images\yourlogohere.png" />
     <Content Include="Content\assets\jarallax\jarallax.js" />
     <Content Include="Content\assets\jquery-mb-ytplayer\jquery.mb.ytplayer.min.js" />
@@ -328,6 +338,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\timeout-dialog.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\200.png" />
@@ -392,6 +403,12 @@
     <Content Include="Areas\portal\Views\AreaSegmentoCorreo\Delete.cshtml" />
     <Content Include="Areas\portal\Views\Admin\Index.cshtml" />
     <Content Include="Areas\portal\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Intereses\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Intereses\Details.cshtml" />
+    <Content Include="Areas\portal\Views\Intereses\Create.cshtml" />
+    <Content Include="Areas\portal\Views\Intereses\Edit.cshtml" />
+    <Content Include="Areas\portal\Views\Intereses\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\UsuarioRoles\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -402,6 +419,7 @@
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\timeout-dialog.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -441,6 +459,7 @@
     <Content Include="Views\Cuentas\registrofinalizado.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutManager.cshtml" />
+    <Content Include="Views\Home\TimeoutRedirect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -452,6 +471,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\portal\Views\Shared\" />
+    <Folder Include="Views\Intereses\" />
+    <Folder Include="Views\UsuarioRoles\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704211418296_Primeraconfiguracion.resx">
@@ -474,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704271715307_ActualizarUsuariorol.resx">
       <DependentUpon>201704271715307_ActualizarUsuariorol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705041455593_actualizacionusuarioroles.resx">
+      <DependentUpon>201705041455593_actualizacionusuarioroles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

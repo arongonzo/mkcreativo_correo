@@ -94,14 +94,19 @@ namespace mksolucion.Controllers
                                     select new 
                                     { 
                                         UserId = usr.Id,
-                                        Rolname = rol.Name
+                                        Rolname = rol.Name,
+                                        usr.UserName
                                     };
                         string urlretorno = string.Empty;
                         if (query.Count()>0){
                             var datos = query.ToList();
                             foreach (var Row in datos) {
+
                                 Session["UserId"] = Row.UserId.ToString();
+                                Session["username"] = Row.UserName.ToString();
                                 Session["Rolname"] = Row.Rolname.ToString();
+                                Session.Timeout = 30;
+
                                 switch (Row.Rolname.ToString().ToLower()) { 
                                     case "admin":
                                         urlretorno = "~/portal/admin/index";

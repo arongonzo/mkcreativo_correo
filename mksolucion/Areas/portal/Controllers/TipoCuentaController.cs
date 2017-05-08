@@ -13,6 +13,7 @@ using mksolucion.Models;
 
 namespace mksolucion.Areas.portal.Controllers
 {
+    [SessionExpire]
     public class TipoCuentaController : Controller
     {
         private ModelMK db = new ModelMK();

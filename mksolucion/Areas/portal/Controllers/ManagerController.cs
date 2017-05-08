@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace mksolucion.Areas.portal.Controllers
 {
+    [SessionExpire]
     public class ManagerController : Controller
     {
         private ModelMK db = new ModelMK();

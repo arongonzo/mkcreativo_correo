@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace mksolucion.Areas.portal.Controllers
 {
+    [SessionExpire]
     public class DefaultController : Controller
     {
         private ModelMK db = new ModelMK();
@@ -32,6 +33,15 @@ namespace mksolucion.Areas.portal.Controllers
             }
 
             return View();
+        }
+
+
+        public ActionResult SessionTimeout()
+        {
+
+            Session.Timeout = 3;
+
+            return Json("", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

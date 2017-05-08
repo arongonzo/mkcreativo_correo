@@ -14,7 +14,7 @@ using Kendo.Mvc;
 namespace mksolucion.Areas.portal.Controllers
 {
     [SessionExpire]
-    public class TipoCampanaController : Controller
+    public class InteresesController : Controller
     {
         private ModelMK db = new ModelMK();
 
@@ -23,20 +23,18 @@ namespace mksolucion.Areas.portal.Controllers
             return View();
         }
 
-        public ActionResult cam02_tipocampana_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult crr04_intereses_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<cam02_tipocampana> cam02_tipocampana = db.cam02_tipocampana;
-
-            request.Filters.Add(new FilterDescriptor() { Member = "cam02_estado", MemberType = typeof(Int32), Operator = FilterOperator.IsEqualTo, Value = "1" });
-
-            DataSourceResult result = cam02_tipocampana.ToDataSourceResult(request, c => new _cam02_tipocampana 
+            IQueryable<crr04_intereses> crr04_intereses = db.crr04_intereses;
+            request.Filters.Add(new FilterDescriptor() { Member = "crr04_estado", MemberType = typeof(Int32), Operator = FilterOperator.IsEqualTo, Value = "1" });
+            DataSourceResult result = crr04_intereses.ToDataSourceResult(request, c => new _crr04_intereses 
             {
-                cam02_id = c.cam02_id,
-                cam02_nombre = c.cam02_nombre,
-                cam02_descripcion = c.cam02_descripcion,
-                cam02_estado = c.cam02_estado,
-                cam02_fechacreacion = c.cam02_fechacreacion,
-                cam02_ultimaactualizacion = c.cam02_ultimaactualizacion
+                crr04_id = c.crr04_id,
+                crr04_nombre = c.crr04_nombre,
+                crr04_descripcion = c.crr04_descripcion,
+                crr04_estado = c.crr04_estado,
+                crr04_fechacreacion = c.crr04_fechacreacion,
+                crr04_ultimaactualizacion = c.crr04_ultimaactualizacion
             });
 
             return Json(result);
@@ -63,7 +61,6 @@ namespace mksolucion.Areas.portal.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
-
         [Authorization(UserRoles.Admin, UserRoles.Manager)]
         // GET: configuracion/tipoplan/Details/5
         public ActionResult Details(decimal id)
@@ -72,12 +69,12 @@ namespace mksolucion.Areas.portal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cam02_tipocampana cam02_tipocampana = db.cam02_tipocampana.Find(id);
-            if (cam02_tipocampana == null)
+            crr04_intereses crr04_intereses = db.crr04_intereses.Find(id);
+            if (crr04_intereses == null)
             {
                 return HttpNotFound();
             }
-            return View(cam02_tipocampana);
+            return View(crr04_intereses);
         }
 
         [Authorization(UserRoles.Admin)]
@@ -93,22 +90,22 @@ namespace mksolucion.Areas.portal.Controllers
         [Authorization(UserRoles.Admin)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "cam02_nombre,cam02_descripcion")] cam02_tipocampana cam02_tipocampana)
+        public ActionResult Create([Bind(Include = "crr04_nombre,crr04_descripcion")] crr04_intereses crr04_intereses)
         {
             if (ModelState.IsValid)
             {
 
-                cam02_tipocampana.cam02_estado = 1;
-                cam02_tipocampana.cam02_fechacreacion = DateTime.Now;
-                cam02_tipocampana.cam02_ultimaactualizacion = DateTime.Now;
+                crr04_intereses.crr04_estado = 1;
+                crr04_intereses.crr04_fechacreacion = DateTime.Now;
+                crr04_intereses.crr04_ultimaactualizacion = DateTime.Now;
 
-                db.cam02_tipocampana.Add(cam02_tipocampana);
+                db.crr04_intereses.Add(crr04_intereses);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            return View(cam02_tipocampana);
+            return View(crr04_intereses);
         }
 
         // GET: configuracion/tipoplan/Edit/5
@@ -119,12 +116,12 @@ namespace mksolucion.Areas.portal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            cam02_tipocampana cam02_tipocampana = db.cam02_tipocampana.Find(id);
-            if (cam02_tipocampana == null)
+            crr04_intereses crr04_intereses = db.crr04_intereses.Find(id);
+            if (crr04_intereses == null)
             {
                 return HttpNotFound();
             }
-            return View(cam02_tipocampana);
+            return View(crr04_intereses);
         }
 
         // POST: configuracion/tipoplan/Edit/5
@@ -133,18 +130,18 @@ namespace mksolucion.Areas.portal.Controllers
         [Authorization(UserRoles.Admin)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "cam02_id,cam02_nombre,cam02_descripcion,cam02_estado")] cam02_tipocampana cam02_tipocampana)
+        public ActionResult Edit([Bind(Include = "crr04_id,crr04_nombre,crr04_descripcion,crr04_estado")] crr04_intereses crr04_intereses)
         {
             if (ModelState.IsValid)
             {
 
-                db.cam02_tipocampana.Attach(cam02_tipocampana);
-                cam02_tipocampana.cam02_ultimaactualizacion = DateTime.Now;
+                db.crr04_intereses.Attach(crr04_intereses);
+                crr04_intereses.crr04_ultimaactualizacion = DateTime.Now;
 
-                db.Entry(cam02_tipocampana).Property(x => x.cam02_nombre).IsModified = true;
-                db.Entry(cam02_tipocampana).Property(x => x.cam02_descripcion).IsModified = true;
-                db.Entry(cam02_tipocampana).Property(x => x.cam02_estado).IsModified = true;
-                db.Entry(cam02_tipocampana).Property(x => x.cam02_ultimaactualizacion).IsModified = true;
+                db.Entry(crr04_intereses).Property(x => x.crr04_nombre).IsModified = true;
+                db.Entry(crr04_intereses).Property(x => x.crr04_descripcion).IsModified = true;
+                db.Entry(crr04_intereses).Property(x => x.crr04_estado).IsModified = true;
+                db.Entry(crr04_intereses).Property(x => x.crr04_ultimaactualizacion).IsModified = true;
                 db.SaveChanges();
 
                 /*                
@@ -153,7 +150,7 @@ namespace mksolucion.Areas.portal.Controllers
                  */
                 return RedirectToAction("Index");
             }
-            return View(cam02_tipocampana);
+            return View(crr04_intereses);
         }
 
         // GET: configuracion/tipoplan/Delete/5
@@ -165,12 +162,12 @@ namespace mksolucion.Areas.portal.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            cam02_tipocampana cam02_tipocampana = db.cam02_tipocampana.Find(id);
-            if (cam02_tipocampana == null)
+            crr04_intereses crr04_intereses = db.crr04_intereses.Find(id);
+            if (crr04_intereses == null)
             {
                 return HttpNotFound();
             }
-            return View(cam02_tipocampana);
+            return View(crr04_intereses);
         }
 
         // POST: configuracion/tipoplan/Delete/5
@@ -180,16 +177,15 @@ namespace mksolucion.Areas.portal.Controllers
         public ActionResult DeleteConfirmed(decimal id)
         {
 
-            var cam02_tipocampana = new cam02_tipocampana { cam02_id = id };
-            db.cam02_tipocampana.Attach(cam02_tipocampana);
-            cam02_tipocampana.cam02_estado = 2;
-            db.Entry(cam02_tipocampana).Property(x => x.cam02_estado).IsModified = true;
+            var crr04_intereses = new crr04_intereses { crr04_id = id };
+            db.crr04_intereses.Attach(crr04_intereses);
+            crr04_intereses.crr04_estado = 2;
+            db.Entry(crr04_intereses).Property(x => x.crr04_estado).IsModified = true;
 
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
             return RedirectToAction("Index");
 
         }
-
     }
 }

@@ -12,8 +12,7 @@ using mksolucion.Models;
 
 namespace mksolucion.Areas.portal.Controllers
 {
-    [SessionExpire]
-    public class EstadosActivacionController : Controller
+    public class UsuarioRolesController : Controller
     {
         private ModelMK db = new ModelMK();
 
@@ -22,15 +21,15 @@ namespace mksolucion.Areas.portal.Controllers
             return View();
         }
 
-        public ActionResult gen01_estados_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult AspNetUserRoles_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<gen01_estados> gen01_estados = db.gen01_estados;
-            DataSourceResult result = gen01_estados.ToDataSourceResult(request, c => new _gen01_estados 
+            IQueryable<AspNetUserRoles> aspnetuserroles = db.AspNetUserRoles;
+            DataSourceResult result = aspnetuserroles.ToDataSourceResult(request, c => new _AspNetUserRoles 
             {
-                gen01_id = c.gen01_id,
-                gen01_nombre = c.gen01_nombre,
-                gen01_descripcion = c.gen01_descripcion,
-                gen01_fechacreacion = c.gen01_fechacreacion
+                UserId = c.UserId,
+                RoleId = c.RoleId,
+                AspNetUsers = c.AspNetUsers,
+                AspNetRoles = c.AspNetRoles
             });
 
             return Json(result);

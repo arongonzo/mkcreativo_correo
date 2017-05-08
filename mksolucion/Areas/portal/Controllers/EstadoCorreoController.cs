@@ -13,6 +13,7 @@ using Kendo.Mvc;
 
 namespace mksolucion.Areas.portal.Controllers
 {
+    [SessionExpire]
     public class EstadoCorreoController : Controller
     {
         private ModelMK db = new ModelMK();

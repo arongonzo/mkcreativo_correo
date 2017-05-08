@@ -12,6 +12,7 @@ using mksolucion.Models;
 
 namespace mksolucion.Areas.portal.Controllers
 {
+    [SessionExpire]
     public class UsuariosController : Controller
     {
         private ModelMK db = new ModelMK();
