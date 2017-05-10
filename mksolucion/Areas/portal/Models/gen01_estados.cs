@@ -24,6 +24,7 @@ namespace mksolucion.Models
             pln01_planes = new HashSet<pln01_planes>();
             crr08_estadoCorreo = new HashSet<crr08_estadoCorreo>();
             crr03_areasegmento = new HashSet<crr03_areasegmento>();
+            ntf02_tiponotificacioncorreo = new HashSet<ntf02_tiponotificacioncorreo>();
         }
         
         [ScaffoldColumn(false)]
@@ -85,6 +86,9 @@ namespace mksolucion.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<crr08_estadoCorreo> crr08_estadoCorreo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ntf02_tiponotificacioncorreo> ntf02_tiponotificacioncorreo { get; set; }
         
     }
 }

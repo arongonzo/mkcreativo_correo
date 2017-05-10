@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Reporte Notificaciones de correo";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Reporte Notificaciones de correo</h2>
+
+@(Html.Kendo().Grid<mksolucion.Models._ntf01_notificaciones>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.nombre_tiponotificacion);
+          columns.Bound(c => c.User_Name);
+          columns.Bound(c => c.ntf02_fechaenvio);
+          columns.Bound(c => c.ntf01_asunto);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .ColumnMenu()
+      .Pageable()
+      .Navigatable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.MultipleColumn);
+      })
+      .Filterable()
+      .Scrollable(scrollable => scrollable.Enabled(false))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("ntf01_notificaciones_Read", "ReportenotificacionesCorreo"))
+      )
+)

@@ -44,6 +44,11 @@ namespace mksolucion.Models
         public virtual DbSet<lis02_clasificacion> lis02_clasificacion { get; set; }
         public virtual DbSet<lis04_tipolista> lis04_tipolista { get; set; }
         public virtual DbSet<loc01_pais> loc01_pais { get; set; }
+
+        public virtual DbSet<ntf01_notificaciones> ntf01_notificaciones { get; set; }
+
+        public virtual DbSet<ntf02_tiponotificacioncorreo> ntf02_tiponotificacioncorreo { get; set; }
+
         public virtual DbSet<pln01_planes> pln01_planes { get; set; }
         public virtual DbSet<pln02_tipoplan> pln02_tipoplan { get; set; }
         public virtual DbSet<pln04_tipoconfiguracion> pln04_tipoconfiguracion { get; set; }
@@ -82,6 +87,9 @@ namespace mksolucion.Models
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<ntf01_notificaciones>()
+                .Property(e => e.ntf01_id)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<cam01_campana>()
                 .Property(e => e.cam01_id)
@@ -160,6 +168,10 @@ namespace mksolucion.Models
 
             modelBuilder.Entity<cnt01_cuenta>()
                 .Property(e => e.cnt02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
+                .Property(e => e.ntf02_id)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<cnt01_cuenta>()
@@ -245,6 +257,11 @@ namespace mksolucion.Models
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<gen01_estados>()
+               .HasMany(e => e.ntf02_tiponotificacioncorreo)
+               .WithOptional(e => e.gen01_estados)
+               .HasForeignKey(e => e.ntf02_estado);
+
+            modelBuilder.Entity<gen01_estados>()
                 .HasMany(e => e.crr08_estadoCorreo)
                 .WithOptional(e => e.gen01_estados)
                 .HasForeignKey(e => e.crr08_estado);
@@ -310,6 +327,18 @@ namespace mksolucion.Models
                 .HasMany(e => e.pln01_planes)
                 .WithOptional(e => e.gen01_estados)
                 .HasForeignKey(e => e.pln01_activo);
+
+            modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
+                .HasMany(e => e.ntf01_notificaciones)
+                .WithRequired(e => e.ntf02_tiponotificacioncorreo)
+                .HasForeignKey(e => e. ntf02_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.ntf01_notificaciones)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<lis01_lista>()
                 .Property(e => e.lis01_id)

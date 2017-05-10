@@ -1,8 +1,17 @@
-﻿
+﻿@{
+    ViewBag.Title = "Tipos de Planes de Usuario";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Roles de Usuarios</h2>
+
+
 @(Html.Kendo().Grid<mksolucion.Models._AspNetUserRoles>()
       .Name("grid")
       .Columns(columns =>
       {
+          columns.Bound(c => c.UserName);
+          columns.Bound(c => c.RolName); 
       })
       .ToolBar(toolbar => {
             toolbar.Excel();

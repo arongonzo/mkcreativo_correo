@@ -1,0 +1,43 @@
+﻿@model mksolucion.Models.ntf02_tiponotificacioncorreo
+
+@{
+    ViewBag.Title = "Detalle Tipo Notificación Correo";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Detalle Tipo Notificación Correo</h2>
+
+<div>
+    <h4>ntf02_tiponotificacioncorreo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ntf02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ntf02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ntf02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ntf02_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ntf02_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

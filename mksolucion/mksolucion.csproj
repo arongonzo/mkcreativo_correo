@@ -187,15 +187,19 @@
     <Compile Include="Areas\portal\Controllers\EstadosActivacionController.cs" />
     <Compile Include="Areas\portal\Controllers\InteresesController.cs" />
     <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\portal\Controllers\ReportenotificacionesCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCuentaController.cs" />
+    <Compile Include="Areas\portal\Controllers\TipoNotificacionCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoPlanesController.cs" />
     <Compile Include="Areas\portal\Controllers\UsuarioRolesController.cs" />
     <Compile Include="Areas\portal\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\portal\Models\AspNetUserRoles.cs" />
     <Compile Include="Areas\portal\Models\crr03_areasegmento.cs" />
     <Compile Include="Areas\portal\Models\gen01_estados.cs" />
+    <Compile Include="Areas\portal\Models\ntf01_notificaciones.cs" />
+    <Compile Include="Areas\portal\Models\ntf02_tiponotificacioncorreo.cs" />
     <Compile Include="Areas\portal\portalAreaRegistration.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetRoles.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetUserRoles.cs" />
@@ -208,6 +212,8 @@
     <Compile Include="Areas\portal\ViewModels\_crr08_estadoCorreo.cs" />
     <Compile Include="Areas\portal\ViewModels\_gen01_estados.cs" />
     <Compile Include="Areas\portal\ViewModels\_lis02_clasificacion.cs" />
+    <Compile Include="Areas\portal\ViewModels\_ntf01_notificaciones.cs" />
+    <Compile Include="Areas\portal\ViewModels\_ntf02_tiponotificacioncorreo.cs" />
     <Compile Include="Areas\portal\ViewModels\_pnl02_tipoplan.cs" />
     <Compile Include="Areas\portal\Models\AspNetRoles.cs" />
     <Compile Include="context\AspNetUserClaims.cs" />
@@ -287,6 +293,22 @@
     <Compile Include="Migrations\201705041455593_actualizacionusuarioroles.cs" />
     <Compile Include="Migrations\201705041455593_actualizacionusuarioroles.Designer.cs">
       <DependentUpon>201705041455593_actualizacionusuarioroles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091332443_actualizaciontiponotificaciones.cs" />
+    <Compile Include="Migrations\201705091332443_actualizaciontiponotificaciones.Designer.cs">
+      <DependentUpon>201705091332443_actualizaciontiponotificaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091545007_actualizacionNotificacionCorreo.cs" />
+    <Compile Include="Migrations\201705091545007_actualizacionNotificacionCorreo.Designer.cs">
+      <DependentUpon>201705091545007_actualizacionNotificacionCorreo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091557126_actualizacionNotificacionCorreo2.cs" />
+    <Compile Include="Migrations\201705091557126_actualizacionNotificacionCorreo2.Designer.cs">
+      <DependentUpon>201705091557126_actualizacionNotificacionCorreo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705091707265_actualizacionNotificacionCorreo3.cs" />
+    <Compile Include="Migrations\201705091707265_actualizacionNotificacionCorreo3.Designer.cs">
+      <DependentUpon>201705091707265_actualizacionNotificacionCorreo3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -409,6 +431,12 @@
     <Content Include="Areas\portal\Views\Intereses\Edit.cshtml" />
     <Content Include="Areas\portal\Views\Intereses\Delete.cshtml" />
     <Content Include="Areas\portal\Views\UsuarioRoles\Index.cshtml" />
+    <Content Include="Areas\portal\Views\TipoNotificacionCorreo\Index.cshtml" />
+    <Content Include="Areas\portal\Views\TipoNotificacionCorreo\Details.cshtml" />
+    <Content Include="Areas\portal\Views\TipoNotificacionCorreo\Create.cshtml" />
+    <Content Include="Areas\portal\Views\TipoNotificacionCorreo\Edit.cshtml" />
+    <Content Include="Areas\portal\Views\TipoNotificacionCorreo\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\ReportenotificacionesCorreo\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -472,6 +500,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\portal\Views\Shared\" />
     <Folder Include="Views\Intereses\" />
+    <Folder Include="Views\Shared\plantillas\" />
     <Folder Include="Views\UsuarioRoles\" />
   </ItemGroup>
   <ItemGroup>
@@ -498,6 +527,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705041455593_actualizacionusuarioroles.resx">
       <DependentUpon>201705041455593_actualizacionusuarioroles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091332443_actualizaciontiponotificaciones.resx">
+      <DependentUpon>201705091332443_actualizaciontiponotificaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091545007_actualizacionNotificacionCorreo.resx">
+      <DependentUpon>201705091545007_actualizacionNotificacionCorreo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091557126_actualizacionNotificacionCorreo2.resx">
+      <DependentUpon>201705091557126_actualizacionNotificacionCorreo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705091707265_actualizacionNotificacionCorreo3.resx">
+      <DependentUpon>201705091707265_actualizacionNotificacionCorreo3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

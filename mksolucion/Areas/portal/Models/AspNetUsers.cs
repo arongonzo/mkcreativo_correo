@@ -15,6 +15,7 @@ namespace mksolucion.Models
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             cnt03_cuenta_usuario = new HashSet<cnt03_cuenta_usuario>();
+            ntf01_notificaciones = new HashSet<ntf01_notificaciones>();
         }
 
         public string Id { get; set; }
@@ -55,5 +56,8 @@ namespace mksolucion.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cnt03_cuenta_usuario> cnt03_cuenta_usuario { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ntf01_notificaciones> ntf01_notificaciones { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using mksolucion.Models;
+using Kendo.Mvc;
 
 namespace mksolucion.Areas.portal.Controllers
 {
@@ -28,8 +29,8 @@ namespace mksolucion.Areas.portal.Controllers
             {
                 UserId = c.UserId,
                 RoleId = c.RoleId,
-                AspNetUsers = c.AspNetUsers,
-                AspNetRoles = c.AspNetRoles
+                UserName = c.AspNetUsers.UserName,
+                RolName = c.AspNetRoles.Name
             });
 
             return Json(result);

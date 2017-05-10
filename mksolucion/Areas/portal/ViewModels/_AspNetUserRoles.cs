@@ -11,8 +11,12 @@ namespace mksolucion.Models
         [Key]
         public string RoleId { get; set; }
 
-        public virtual AspNetUsers AspNetUsers { get; set; }
+        [Display(Name = "Usuario")]
 
-        public virtual AspNetRoles AspNetRoles { get; set; }
+        public string UserName { get; set; }
+
+        [Display(Name = "Roles")]
+
+        public string RolName { get; set; }
     }
 }

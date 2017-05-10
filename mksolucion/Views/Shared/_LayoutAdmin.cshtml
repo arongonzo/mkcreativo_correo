@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title - My Telerik MVC Application</title>
@@ -20,7 +19,6 @@
     <script src="https://kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
 
     <script src="../../Scripts/kendo.modernizr.custom.js"></script>
-
 
 </head>
 <body>
@@ -102,6 +100,13 @@
                                 </ul>
                             </li>
                             <li>
+                                @Html.ActionLink("Notificaciones", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                <ul>
+                                    <li>@Html.ActionLink("Tipos de Notificación de Correo", "Index", "TipoNotificacionCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Reporte Notificación de Correo", "Index", "ReportenotificacionesCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </li>
+                            <li>
                                 @Html.ActionLink("Sistema", "Index", "sistema", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
                                 <ul>
                                     <li>@Html.ActionLink("Estados de Activacón", "Index", "EstadosActivacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
@@ -114,10 +119,6 @@
                 </ul>
 
             </nav>
-
-
-
-
         </div>
     </header>
     <section class="section" style="padding-top:10px; min-height:450px;">
@@ -125,12 +126,9 @@
             <div class="row" style="padding-bottom:30px;">
 
                 @RenderBody()
-
             </div>
         </div>
     </section>
-
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-18 col-md-12">
@@ -138,15 +136,12 @@
             </div>
         </div>
     </div>
-
     <footer class="footer">
         <div class="container-fluid">
             <p class="text-muted">Copyright © 2002-2015 Telerik. All rights reserved.</p>
         </div>
     </footer>
-
     @RenderSection("scripts", required: false)
-
 
 @(Html.Kendo().Window()
     .Name("window")
@@ -173,10 +168,7 @@
     .Height(250)
     .Width(400)
     .Visible(false)
-    
-
 )
-        
 
     <script type="text/javascript">
 

@@ -225,9 +225,27 @@ namespace mksolucion.Controllers
                     message.To.Add(model.Email);
                     
                     string textplain = "Para confirmar la cuenta, haga clic " + callbackUrl ;
-                    string html = string.Format("<table border='0' cellspacing='0' cellpadding='0' align='left' width='100%' style='width:100.0%;border-collapse:collapse;margin-left:-2.25pt;margin-right:-2.25pt;padding:0px 0px 0px 0px'><tr><td valign='top' style='padding:0px 0px 30.0px 0px' id='bodyContent'><h1 align='center' style='text-align:center;line-height:31.5pt;'>&nbsp; </h1><h1 align='center' style='text-align:center;line-height:31.5pt;'><span style='font-size:22.5pt;font-family:'Helvetica Neue';color:#606060;'>Bienvenido, {0}</span> </h1></td></tr><tr><td valign='top' style='padding:0px 0px 3.75px 0px'><div align='center'><table border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;border-collapse:collapse;padding-alt:0px 0px 0px 0px'><tr><td style='padding:0px 0px 0px 0px'><div align='center'><table border='0' cellspacing='0' cellpadding='0' width='200' style='width:150.0pt;border-collapse:collapse;padding:0px 0px 0px 0px'><tr><td valign='top' style='background:#52BAD5;padding:15.0px 15.0px 15.0px 15.0px'><p align='center' style='text-align:center'> <span style='font-family:Times New Roman'> <a href='{1}' ='_blank' style='border-radius:3px;display:inline-block'> <b> <span style='font-family:Helvetica Neue; color:white;letter-spacing:.25pt;background:#52BAD5'>Activar Cuenta</span></b></a> </td></tr></table></div></td></tr></table></div></td></tr><tr><td valign='top' style='padding:0px 0px 30.0px 0px'><p align='center' style='margin:0px;margin-bottom:.0001pt;text-align:center;line-height:31.5pt;'> <span style='font-size:10.5pt;font-family:Helvetica Neue;color:#929292'>(Solo para confirmar que eres tu)</span></p></td></tr></table>",model.Email, callbackUrl);
+                    string html = string.Format("<table border='0' cellspacing='0' cellpadding='0' align='left' width='100%' style='width:100.0%;border-collapse:collapse;margin-left:-2.25pt;margin-right:-2.25pt;padding:0px 0px 0px 0px'><tr><td valign='top' style='padding:0px 0px 30.0px 0px' id='bodyContent'><h1 align='center' style='text-align:center;line-height:31.5pt;'>&nbsp; </h1><h1 align='center' style='text-align:center;line-height:31.5pt;'><span style='font-size:20px;font-family: Helvetica Neue;color:#626262;text-decoration:none;'>Bienvenido, {0}</span> </h1></td></tr><tr><td valign='top' style='padding:0px 0px 3.75px 0px'><div align='center'><table border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;border-collapse:collapse;padding-alt:0px 0px 0px 0px'><tr><td style='padding:0px 0px 0px 0px'><div align='center'><table border='0' cellspacing='0' cellpadding='0' width='200' style='width:150.0pt;border-collapse:collapse;padding:0px 0px 0px 0px'><tr><td valign='top' style='background:#52BAD5;padding:15.0px 15.0px 15.0px 15.0px'><p align='center' style='text-align:center'> <span style='font-family:Times New Roman'> <a href='{1}' ='_blank' style='border-radius:3px;display:inline-block'> <b> <span style='font-family:Helvetica Neue; color:white;letter-spacing:.25pt;background:#52BAD5'>Activar Cuenta</span></b></a> </td></tr></table></div></td></tr></table></div></td></tr><tr><td valign='top' style='padding:0px 0px 30.0px 0px'><p align='center' style='margin:0px;margin-bottom:.0001pt;text-align:center;line-height:31.5pt;'> <span style='font-size:10.5pt;font-family:Helvetica Neue;color:#929292'>(Solo para confirmar que eres tu)</span></p></td></tr></table>", model.Email, callbackUrl);
 
-                    var mail = mkemail.Base_Mail_ServicioCliente(message, html, textplain);
+                    decimal dcm_tiponotificacion = 0;
+
+                    ModelMK db = new ModelMK();
+                    var query = from tiponotificacion in db.ntf02_tiponotificacioncorreo
+                                where tiponotificacion.ntf02_nombre  == "notificación"
+                                select new
+                                {
+                                    llaveNotificacion = tiponotificacion.ntf02_id
+                                };
+                    if (query.Count() > 0)
+                    {
+                        var datos = query.ToList();
+                        foreach (var Row in datos)
+                        {
+                            dcm_tiponotificacion = (decimal)Row.llaveNotificacion;
+                        }
+                    }
+
+                    var mail = mkemail.Base_Mail_ServicioCliente(message, html, textplain, user.Id, dcm_tiponotificacion);
 
 
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
