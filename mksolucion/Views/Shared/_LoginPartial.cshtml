@@ -16,7 +16,7 @@
         @Html.ActionLink("Hola " + User.Identity.GetUserName() + "!", "Index", "portalcliente", routeValues: null, htmlAttributes: new { title = "Portal Clientes", @class = "nav-link link dropdown-toggle", data_toggle = "dropdown-submenu", aria_expanded = "true" })
         <ul>
             <li>
-                @Html.ActionLink("Notificaciones", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })
+                @Html.ActionLink("Notificaciones", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item" })
             </li>
             <li>
                 @Html.ActionLink("Perfil", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })

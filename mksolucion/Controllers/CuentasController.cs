@@ -219,7 +219,7 @@ namespace mksolucion.Controllers
 
                      var message = new MailMessage()
                      {
-                         Subject = "confirmacion",
+                         Subject = "Bienvenido a MailCreativo",
                          IsBodyHtml = true,
                      };
                     message.To.Add(model.Email);

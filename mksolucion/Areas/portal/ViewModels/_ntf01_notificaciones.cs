@@ -12,7 +12,7 @@ namespace mksolucion.Models
 
         public decimal? ntf02_id { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha envio")]
         public DateTime? ntf02_fechaenvio { get; set; }
 

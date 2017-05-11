@@ -187,6 +187,7 @@
     <Compile Include="Areas\portal\Controllers\EstadosActivacionController.cs" />
     <Compile Include="Areas\portal\Controllers\InteresesController.cs" />
     <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\portal\Controllers\NotificacionesController.cs" />
     <Compile Include="Areas\portal\Controllers\ReportenotificacionesCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
@@ -437,6 +438,8 @@
     <Content Include="Areas\portal\Views\TipoNotificacionCorreo\Edit.cshtml" />
     <Content Include="Areas\portal\Views\TipoNotificacionCorreo\Delete.cshtml" />
     <Content Include="Areas\portal\Views\ReportenotificacionesCorreo\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Notificaciones\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Notificaciones\viewemail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -500,6 +503,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\portal\Views\Shared\" />
     <Folder Include="Views\Intereses\" />
+    <Folder Include="Views\Notificaciones\" />
     <Folder Include="Views\Shared\plantillas\" />
     <Folder Include="Views\UsuarioRoles\" />
   </ItemGroup>
