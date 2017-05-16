@@ -24,7 +24,6 @@
 <body>
     <header>
         <div class="mbr-table">
-
             <nav id='cssmenu' class="navigation-left float-left">
                 <div class="logo" style=" display:block; width:210px; padding:3px 30px 3px 30px"><a href="index.html"><img src="~/Content/assets/images/logomailcreativo.jpg" /></a></div>
                 <div id="head-mobile"></div>
@@ -107,18 +106,28 @@
                                 </ul>
                             </li>
                             <li>
+                                @Html.ActionLink("Soporte", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                <ul>
+                                    <li>@Html.ActionLink("reporte soporte", "reporteSoporte", "soporte", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Tipo Soporte", "Index", "TipoSoporte", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </li>
+
+                            <li>
                                 @Html.ActionLink("Sistema", "Index", "sistema", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
                                 <ul>
                                     <li>@Html.ActionLink("Estados de Activacón", "Index", "EstadosActivacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Pasos Completar información", "Index", "pasoscompletarinformacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
 
                                 </ul>
                             </li>
                         </ul>
                     </li>
+                    
                     @Html.Partial("_LoginPartial")
                 </ul>
 
-            </nav>
+</nav>
         </div>
     </header>
     <section class="section" style="padding-top:10px; min-height:450px;">

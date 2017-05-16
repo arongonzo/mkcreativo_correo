@@ -25,6 +25,11 @@ namespace mksolucion.Models
             crr08_estadoCorreo = new HashSet<crr08_estadoCorreo>();
             crr03_areasegmento = new HashSet<crr03_areasegmento>();
             ntf02_tiponotificacioncorreo = new HashSet<ntf02_tiponotificacioncorreo>();
+            con02_tipocontacto = new HashSet<con02_tipocontacto>();
+            usr01_infopersonal = new HashSet<usr01_infopersonal>();
+            pln03_tipocobro = new HashSet<pln03_tipocobro>();
+            pln02_tipoplan = new HashSet<pln02_tipoplan>();
+
         }
         
         [ScaffoldColumn(false)]
@@ -51,8 +56,6 @@ namespace mksolucion.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<crr03_areasegmento> crr03_areasegmento { get; set; }
-
-        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cam01_campana> cam01_campana { get; set; }
@@ -89,6 +92,19 @@ namespace mksolucion.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ntf02_tiponotificacioncorreo> ntf02_tiponotificacioncorreo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<con02_tipocontacto> con02_tipocontacto { get; set; }
         
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<usr01_infopersonal> usr01_infopersonal { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pln03_tipocobro> pln03_tipocobro { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pln02_tipoplan> pln02_tipoplan { get; set; }
+                
+
     }
 }

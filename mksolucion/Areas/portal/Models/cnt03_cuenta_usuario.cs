@@ -18,5 +18,7 @@ namespace mksolucion.Models
         
         public virtual cnt01_cuenta cnt01_cuenta { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
+
+
     }
 }

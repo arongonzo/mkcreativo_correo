@@ -28,11 +28,11 @@ namespace mksolucion.Models
         public virtual DbSet<cam07_datoSociales> cam07_datoSociales { get; set; }
         public virtual DbSet<cnt01_cuenta> cnt01_cuenta { get; set; }
         public virtual DbSet<cnt02_tipocuenta> cnt02_tipocuenta { get; set; }
+        public virtual DbSet<con02_tipocontacto> con02_tipocontacto { get; set; }
         public virtual DbSet<cnt03_cuenta_usuario> cnt03_cuenta_usuario { get; set; }
         public virtual DbSet<crr01_correos> crr01_correos { get; set; }
         public virtual DbSet<crr02_tipoclasificacion> crr02_tipoclasificacion { get; set; }
         public virtual DbSet<crr03_areasegmento> crr03_areasegmento { get; set; }
-
         public virtual DbSet<crr04_intereses> crr04_intereses { get; set; }
         public virtual DbSet<crr05_interesCorreo> crr05_interesCorreo { get; set; }
         public virtual DbSet<crr06_organizacion> crr06_organizacion { get; set; }
@@ -44,20 +44,21 @@ namespace mksolucion.Models
         public virtual DbSet<lis02_clasificacion> lis02_clasificacion { get; set; }
         public virtual DbSet<lis04_tipolista> lis04_tipolista { get; set; }
         public virtual DbSet<loc01_pais> loc01_pais { get; set; }
-
         public virtual DbSet<ntf01_notificaciones> ntf01_notificaciones { get; set; }
-
         public virtual DbSet<ntf02_tiponotificacioncorreo> ntf02_tiponotificacioncorreo { get; set; }
-
         public virtual DbSet<pln01_planes> pln01_planes { get; set; }
         public virtual DbSet<pln02_tipoplan> pln02_tipoplan { get; set; }
-        public virtual DbSet<pln04_tipoconfiguracion> pln04_tipoconfiguracion { get; set; }
+        public virtual DbSet<pln03_tipocobro> pln03_tipocobro { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<red01_social> red01_social { get; set; }
         public virtual DbSet<red02_datosContacto> red02_datosContacto { get; set; }
         public virtual DbSet<red03_acceso> red03_acceso { get; set; }
         public virtual DbSet<serv01_servicios> serv01_servicios { get; set; }
         public virtual DbSet<serv02_contacto> serv02_contacto { get; set; }
+        public virtual DbSet<coninf01_pasocominfo> coninf01_pasocominfo { get; set; }
+        public virtual DbSet<usr02_estadocompletado> usr02_estadocompletado { get; set; }
+        public virtual DbSet<usr01_infopersonal> usr01_infopersonal { get; set; }
+
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -86,6 +87,29 @@ namespace mksolucion.Models
                 .WithRequired(e => e.AspNetUsers)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.usr01_infopersonal)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
+
+
+            modelBuilder.Entity<usr01_infopersonal>()
+              .Property(e => e.usr01_id)
+              .HasPrecision(18, 0);
+
+            modelBuilder.Entity<usr02_estadocompletado>()
+              .Property(e => e.usr02_id)
+              .HasPrecision(18, 0);
+
+            modelBuilder.Entity<coninf01_pasocominfo>()
+               .Property(e => e.coninf01_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<con02_tipocontacto>()
+               .Property(e => e.con02_id)
+               .HasPrecision(18, 0);
 
             modelBuilder.Entity<ntf01_notificaciones>()
                 .Property(e => e.ntf01_id)
@@ -186,6 +210,11 @@ namespace mksolucion.Models
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.usr02_estadocompletado)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<cnt02_tipocuenta>()
                 .Property(e => e.cnt02_id)
@@ -255,6 +284,11 @@ namespace mksolucion.Models
             modelBuilder.Entity<crr07_correoOrganizacion>()
                 .Property(e => e.crr06_id)
                 .HasPrecision(18, 0);
+
+            modelBuilder.Entity<gen01_estados>()
+               .HasMany(e => e.usr01_infopersonal)
+               .WithOptional(e => e.gen01_estados)
+               .HasForeignKey(e => e.usr01_estado);
 
             modelBuilder.Entity<gen01_estados>()
                .HasMany(e => e.ntf02_tiponotificacioncorreo)
@@ -328,6 +362,21 @@ namespace mksolucion.Models
                 .WithOptional(e => e.gen01_estados)
                 .HasForeignKey(e => e.pln01_activo);
 
+            modelBuilder.Entity<gen01_estados>()
+                .HasMany(e => e.pln03_tipocobro)
+                .WithOptional(e => e.gen01_estados)
+                .HasForeignKey(e => e.pln03_estado);
+
+            modelBuilder.Entity<gen01_estados>()
+                .HasMany(e => e.pln02_tipoplan)
+                .WithOptional(e => e.gen01_estados)
+                .HasForeignKey(e => e.pln02_estado);
+
+            modelBuilder.Entity<gen01_estados>()
+               .HasMany(e => e.con02_tipocontacto)
+               .WithOptional(e => e.gen01_estados)
+               .HasForeignKey(e => e.con02_estado);
+
             modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
                 .HasMany(e => e.ntf01_notificaciones)
                 .WithRequired(e => e.ntf02_tiponotificacioncorreo)
@@ -382,24 +431,30 @@ namespace mksolucion.Models
                 .HasForeignKey(e => e.pnl01_id);
 
             modelBuilder.Entity<pln01_planes>()
-                .HasMany(e => e.pln04_tipoconfiguracion)
-                .WithMany(e => e.pln01_planes)
-                .Map(m => m.ToTable("pln03_configuracion").MapLeftKey("pln01_id").MapRightKey("pln04_id"));
+                 .HasMany(e => e.serv01_servicios)
+                 .WithOptional(e => e.pln01_planes)
+                 .HasForeignKey(e => e.pnl01_id);
+
+            modelBuilder.Entity<pln03_tipocobro>()
+                 .HasMany(e => e.pln02_tipoplan)
+                 .WithOptional(e => e.pln03_tipocobro)
+                 .HasForeignKey(e => e.pln03_id);
+
+            modelBuilder.Entity<pln02_tipoplan>()
+                 .HasMany(e => e.pln01_planes)
+                 .WithOptional(e => e.pln02_tipoplan)
+                 .HasForeignKey(e => e.pln02_id);
 
             modelBuilder.Entity<pln02_tipoplan>()
                 .Property(e => e.pln02_id)
                 .HasPrecision(18, 0);
 
-            modelBuilder.Entity<pln04_tipoconfiguracion>()
-                .Property(e => e.pln04_id)
+            modelBuilder.Entity<pln02_tipoplan>()
+                .Property(e => e.pln03_id)
                 .HasPrecision(18, 0);
 
-            modelBuilder.Entity<pln04_tipoconfiguracion>()
-                .Property(e => e.pln04_padre)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<pln04_tipoconfiguracion>()
-                .Property(e => e.pln04_estado)
+            modelBuilder.Entity<pln03_tipocobro>()
+                .Property(e => e.pln03_id)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<red01_social>()
@@ -439,5 +494,7 @@ namespace mksolucion.Models
                 .Property(e => e.ser01_id)
                 .HasPrecision(18, 0);
         }
+
+      
     }
 }

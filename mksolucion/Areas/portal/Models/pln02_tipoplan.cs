@@ -20,7 +20,9 @@ namespace mksolucion.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal? pln02_id { get; set; }
 
-
+        [Column(TypeName = "numeric")]
+        public decimal? pln03_id { get; set; }
+        
         [Display(Name = "Tipo Plan")]
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
         [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
@@ -45,8 +47,12 @@ namespace mksolucion.Models
         [DataType(DataType.Date)]
         public DateTime? pln02_ultimaactualizacion { get; set; }
 
+        public virtual pln03_tipocobro pln03_tipocobro { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pln01_planes> pln01_planes { get; set; }
+
+        public virtual gen01_estados gen01_estados { get; set; }
+
     }
 }

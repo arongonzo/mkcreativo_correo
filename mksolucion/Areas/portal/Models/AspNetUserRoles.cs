@@ -21,6 +21,5 @@
 
         public virtual AspNetRoles AspNetRoles { get; set; }
 
-
     }
 }

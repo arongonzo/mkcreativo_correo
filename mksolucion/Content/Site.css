@@ -775,6 +775,8 @@ header{position:relative;width:100%;background:#fff; display:table;    border-bo
 .logo a{color:#c20f1a;}
 nav{}
 
+
+
 #cssmenu,#cssmenu ul,#cssmenu ul li,#cssmenu ul li a,#cssmenu #head-mobile{border:0;list-style:none;line-height:1;display:block;position:relative;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;    margin-bottom: 0px;}
 #cssmenu:after,#cssmenu > ul:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
 #cssmenu #head-mobile{display:none}
@@ -968,4 +970,16 @@ input.k-textbox {
   -moz-box-shadow: 0 0px 2px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0px 2px rgba(0, 0, 0, 0.4);
   outline: none;
+}
+.wide-menu {
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.boton_soporte {
+    display:inline-block; height: 90px; width: 90px; padding-top:95px; text-align:center;font-size: 14px; line-height: normal; color:#333; text-decoration:none; font-weight:bold;
+}
+.boton_soporte a:hover {
+    display:inline-block; height: 90px; width: 90px; padding-top:95px; text-align:center;font-size: 14px; line-height: normal;color: #000;text-decoration:none; font-weight:bold;
 }

@@ -6,7 +6,6 @@ namespace mksolucion.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
     using mksolucion.Models;
-    using mksolucion.Models;
 
     public partial class pln01_planes
     {
@@ -14,7 +13,6 @@ namespace mksolucion.Models
         public pln01_planes()
         {
             serv01_servicios = new HashSet<serv01_servicios>();
-            pln04_tipoconfiguracion = new HashSet<pln04_tipoconfiguracion>();
         }
 
         [Key]
@@ -45,7 +43,5 @@ namespace mksolucion.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<serv01_servicios> serv01_servicios { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pln04_tipoconfiguracion> pln04_tipoconfiguracion { get; set; }
     }
 }

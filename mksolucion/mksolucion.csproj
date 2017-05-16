@@ -178,6 +178,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\completarinformacion\completarinformacionAreaRegistration.cs" />
     <Compile Include="Areas\portal\Controllers\AdminController.cs" />
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
@@ -188,25 +189,36 @@
     <Compile Include="Areas\portal\Controllers\InteresesController.cs" />
     <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
     <Compile Include="Areas\portal\Controllers\NotificacionesController.cs" />
+    <Compile Include="Areas\portal\Controllers\pasoscompletarinformacionController.cs" />
     <Compile Include="Areas\portal\Controllers\ReportenotificacionesCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
+    <Compile Include="Areas\portal\Controllers\SoporteController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCuentaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoNotificacionCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoPlanesController.cs" />
+    <Compile Include="Areas\portal\Controllers\TipoSoporteController.cs" />
     <Compile Include="Areas\portal\Controllers\UsuarioRolesController.cs" />
     <Compile Include="Areas\portal\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\portal\Models\AspNetUserRoles.cs" />
+    <Compile Include="Areas\portal\Models\con02_tipocontacto.cs" />
+    <Compile Include="Areas\portal\Models\coninf01_pasocominfo.cs" />
     <Compile Include="Areas\portal\Models\crr03_areasegmento.cs" />
     <Compile Include="Areas\portal\Models\gen01_estados.cs" />
     <Compile Include="Areas\portal\Models\ntf01_notificaciones.cs" />
     <Compile Include="Areas\portal\Models\ntf02_tiponotificacioncorreo.cs" />
+    <Compile Include="Areas\portal\Models\pln03_tipocobro.cs" />
+    <Compile Include="Areas\portal\Models\usr01_infopersonal.cs" />
+    <Compile Include="Areas\portal\Models\usr02_estadocompletado.cs" />
+    <Compile Include="Areas\portal\Models\usr03_pasocompletacion.cs" />
     <Compile Include="Areas\portal\portalAreaRegistration.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetRoles.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetUserRoles.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetUsers.cs" />
     <Compile Include="Areas\portal\ViewModels\_cam02_tipocampana.cs" />
     <Compile Include="Areas\portal\ViewModels\_cnt02_tipocuenta.cs" />
+    <Compile Include="Areas\portal\ViewModels\_con02_tipocontacto.cs" />
+    <Compile Include="Areas\portal\ViewModels\_coninf01_pasocominfo.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr02_tipoclasificacion.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr03_areasegmento.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr04_intereses.cs" />
@@ -245,7 +257,6 @@
     <Compile Include="context\ModelMK.cs" />
     <Compile Include="Areas\portal\Models\pln01_planes.cs" />
     <Compile Include="Areas\portal\Models\pln02_tipoplan.cs" />
-    <Compile Include="context\pln04_tipoconfiguracion.cs" />
     <Compile Include="context\Products.cs" />
     <Compile Include="context\red01_social.cs" />
     <Compile Include="context\red02_datosContacto.cs" />
@@ -311,6 +322,26 @@
     <Compile Include="Migrations\201705091707265_actualizacionNotificacionCorreo3.Designer.cs">
       <DependentUpon>201705091707265_actualizacionNotificacionCorreo3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705111349397_actualizaciontipocontacto.cs" />
+    <Compile Include="Migrations\201705111349397_actualizaciontipocontacto.Designer.cs">
+      <DependentUpon>201705111349397_actualizaciontipocontacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705121307421_actualizacionpasocompletarinformacion.cs" />
+    <Compile Include="Migrations\201705121307421_actualizacionpasocompletarinformacion.Designer.cs">
+      <DependentUpon>201705121307421_actualizacionpasocompletarinformacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705121444213_CreacionTablaestadocompletado.cs" />
+    <Compile Include="Migrations\201705121444213_CreacionTablaestadocompletado.Designer.cs">
+      <DependentUpon>201705121444213_CreacionTablaestadocompletado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705121947316_agregartabladatospersonales.cs" />
+    <Compile Include="Migrations\201705121947316_agregartabladatospersonales.Designer.cs">
+      <DependentUpon>201705121947316_agregartabladatospersonales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161954468_20160516_tipocobro.cs" />
+    <Compile Include="Migrations\201705161954468_20160516_tipocobro.Designer.cs">
+      <DependentUpon>201705161954468_20160516_tipocobro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -340,6 +371,9 @@
     <Content Include="Content\assets\images\logomailcreativo.png" />
     <Content Include="Content\assets\images\man-back.jpg" />
     <Content Include="Content\assets\images\sparklers.jpg" />
+    <Content Include="Content\assets\images\ticket_pago.png" />
+    <Content Include="Content\assets\images\ticket_soporte.png" />
+    <Content Include="Content\assets\images\ticket_venta.png" />
     <Content Include="Content\assets\images\timeout-icon.png" />
     <Content Include="Content\assets\images\yourlogohere.png" />
     <Content Include="Content\assets\jarallax\jarallax.js" />
@@ -440,6 +474,15 @@
     <Content Include="Areas\portal\Views\ReportenotificacionesCorreo\Index.cshtml" />
     <Content Include="Areas\portal\Views\Notificaciones\Index.cshtml" />
     <Content Include="Areas\portal\Views\Notificaciones\viewemail.cshtml" />
+    <Content Include="Areas\portal\Views\TipoSoporte\Index.cshtml" />
+    <Content Include="Areas\portal\Views\TipoSoporte\Details.cshtml" />
+    <Content Include="Areas\portal\Views\TipoSoporte\Create.cshtml" />
+    <Content Include="Areas\portal\Views\TipoSoporte\Edit.cshtml" />
+    <Content Include="Areas\portal\Views\TipoSoporte\Delete.cshtml" />
+    <Content Include="Areas\completarinformacion\Views\web.config" />
+    <Content Include="Areas\portal\Views\pasoscompletarinformacion\Index.cshtml" />
+    <Content Include="Areas\portal\Views\pasoscompletarinformacion\Details.cshtml" />
+    <Content Include="Areas\portal\Views\Soporte\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -501,11 +544,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\completarinformacion\Controllers\" />
+    <Folder Include="Areas\completarinformacion\Models\" />
+    <Folder Include="Areas\completarinformacion\Views\Shared\" />
     <Folder Include="Areas\portal\Views\Shared\" />
-    <Folder Include="Views\Intereses\" />
-    <Folder Include="Views\Notificaciones\" />
     <Folder Include="Views\Shared\plantillas\" />
-    <Folder Include="Views\UsuarioRoles\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704211418296_Primeraconfiguracion.resx">
@@ -543,6 +586,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705091707265_actualizacionNotificacionCorreo3.resx">
       <DependentUpon>201705091707265_actualizacionNotificacionCorreo3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705111349397_actualizaciontipocontacto.resx">
+      <DependentUpon>201705111349397_actualizaciontipocontacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121307421_actualizacionpasocompletarinformacion.resx">
+      <DependentUpon>201705121307421_actualizacionpasocompletarinformacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121444213_CreacionTablaestadocompletado.resx">
+      <DependentUpon>201705121444213_CreacionTablaestadocompletado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705121947316_agregartabladatospersonales.resx">
+      <DependentUpon>201705121947316_agregartabladatospersonales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161954468_20160516_tipocobro.resx">
+      <DependentUpon>201705161954468_20160516_tipocobro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
