@@ -20,6 +20,7 @@ namespace mksolucion.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal? pln02_id { get; set; }
 
+        [Display(Name = "Tipo Cobro")]
         [Column(TypeName = "numeric")]
         public decimal? pln03_id { get; set; }
         

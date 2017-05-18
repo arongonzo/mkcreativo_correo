@@ -1,0 +1,45 @@
+﻿@model mksolucion.Models.pln03_tipocobro
+
+@{
+    ViewBag.Title = "Eliminar Tipos de Cobros";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Eliminar Tipos de Cobros</h2>
+
+<h3>¿Esta segurio de eliminar este registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pln03_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pln03_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pln03_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pln03_descripcion)
+        </dd>
+    </dl>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

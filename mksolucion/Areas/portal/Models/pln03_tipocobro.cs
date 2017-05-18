@@ -18,9 +18,10 @@
         [Key]
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "Tipo Cobro")]
         public decimal? pln03_id { get; set; }
 
-        [Display(Name = "Tipo Plan")]
+        [Display(Name = "Tipo Cobro de Planes")]
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
         [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string pln03_nombre { get; set; }
@@ -44,10 +45,10 @@
         [DataType(DataType.Date)]
         public DateTime? pln03_ultimaactualizacion { get; set; }
 
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pln02_tipoplan> pln02_tipoplan { get; set; }
 
         public virtual gen01_estados gen01_estados { get; set; }
+
     }
 }

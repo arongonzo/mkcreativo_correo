@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,75 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Kendo.Mvc.Extensions;
-using Kendo.Mvc.UI;
 using mksolucion.Models;
-using Kendo.Mvc;
 
 namespace mksolucion.Areas.portal.Controllers
 {
-    public class TipoPlanesController : Controller
+    public class pln02_tipoplanController : Controller
     {
         private ModelMK db = new ModelMK();
 
+        // GET: portal/pln02_tipoplan
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult pln02_tipoplan_Read([DataSourceRequest]DataSourceRequest request)
-        {
-            return Json(Read().ToDataSourceResult(request));
-        }
-
-        public IEnumerable<_pln02_tipoplan> Read()
-        {
-            return GetAll();
-        }
-
-        public IList<_pln02_tipoplan> GetAll()
-        {
-            IList<_pln02_tipoplan> result = new List<_pln02_tipoplan>();
-            result = db.pln02_tipoplan.Select(c => new _pln02_tipoplan
-            {
-                pln02_id = (decimal)c.pln02_id,
-                 pln03_id = (decimal)c.pln03_id,
-                pln02_nombre = c.pln02_nombre,
-                pln02_descripcion = c.pln02_descripcion,
-                pln02_estado = c.pln02_estado,
-                pln02_ultimaactualizacion = c.pln02_ultimaactualizacion,
-                pln02_fechacreacion = c.pln02_fechacreacion,
-                pln03_nombre = c.pln03_tipocobro.pln03_nombre,
-                _tipocobro = new _pln03_tipocobro()
-                {
-                    pln03_id = c.pln03_tipocobro.pln03_id,
-                    pln03_nombre = c.pln03_tipocobro.pln03_nombre,
-                    pln03_estado = c.pln03_tipocobro.pln03_estado
-                }
-            }).ToList();
-            return result;
-        }
-
-        [HttpPost]
-        public ActionResult Excel_Export_Save(string contentType, string base64, string fileName)
-        {
-            var fileContents = Convert.FromBase64String(base64);
-
-            return File(fileContents, contentType, fileName);
-        }
-    
-        [HttpPost]
-        public ActionResult Pdf_Export_Save(string contentType, string base64, string fileName)
-        {
-            var fileContents = Convert.FromBase64String(base64);
-
-            return File(fileContents, contentType, fileName);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-            base.Dispose(disposing);
+            var pln02_tipoplan = db.pln02_tipoplan.Include(p => p.gen01_estados).Include(p => p.pln03_tipocobro);
+            return View(pln02_tipoplan.ToList());
         }
 
         // GET: portal/pln02_tipoplan/Details/5
@@ -178,6 +122,15 @@ namespace mksolucion.Areas.portal.Controllers
             db.pln02_tipoplan.Remove(pln02_tipoplan);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

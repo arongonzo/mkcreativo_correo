@@ -9,12 +9,10 @@ using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using mksolucion.Models;
-using Kendo.Mvc;
 
 namespace mksolucion.Areas.portal.Controllers
 {
-    [SessionExpire]
-    public class InteresesController : Controller
+    public class TipocobroController : Controller
     {
         private ModelMK db = new ModelMK();
 
@@ -23,22 +21,20 @@ namespace mksolucion.Areas.portal.Controllers
             return View();
         }
 
-        public ActionResult crr04_intereses_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult pln03_tipocobro_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<crr04_intereses> crr04_intereses = db.crr04_intereses;
-            request.Filters.Add(new FilterDescriptor() { Member = "crr04_estado", MemberType = typeof(Int32), Operator = FilterOperator.IsEqualTo, Value = "1" });
-            DataSourceResult result = crr04_intereses.ToDataSourceResult(request, c => new _crr04_intereses 
+            IQueryable<pln03_tipocobro> pln03_tipocobro = db.pln03_tipocobro;
+            DataSourceResult result = pln03_tipocobro.ToDataSourceResult(request, c => new _pln03_tipocobro 
             {
-                crr04_id = c.crr04_id,
-                crr04_nombre = c.crr04_nombre,
-                crr04_descripcion = c.crr04_descripcion,
-                crr04_estado = c.crr04_estado,
-                crr04_fechacreacion = c.crr04_fechacreacion,
-                crr04_ultimaactualizacion = c.crr04_ultimaactualizacion
+                pln03_id = c.pln03_id,
+                pln03_nombre = c.pln03_nombre,
+                pln03_descripcion = c.pln03_descripcion,
+                pln03_estado = c.pln03_estado,
+                pln03_fechacreacion = c.pln03_fechacreacion,
+                pln03_ultimaactualizacion = c.pln03_ultimaactualizacion
             });
 
             return Json(result);
-
         }
 
         [HttpPost]
@@ -62,6 +58,7 @@ namespace mksolucion.Areas.portal.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
         [Authorization(UserRoles.Admin, UserRoles.Manager)]
         // GET: configuracion/tipoplan/Details/5
         public ActionResult Details(decimal id)
@@ -70,12 +67,12 @@ namespace mksolucion.Areas.portal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            crr04_intereses crr04_intereses = db.crr04_intereses.Find(id);
-            if (crr04_intereses == null)
+            pln03_tipocobro pln03_tipocobro = db.pln03_tipocobro.Find(id);
+            if (pln03_tipocobro == null)
             {
                 return HttpNotFound();
             }
-            return View(crr04_intereses);
+            return View(pln03_tipocobro);
         }
 
         [Authorization(UserRoles.Admin)]
@@ -91,22 +88,22 @@ namespace mksolucion.Areas.portal.Controllers
         [Authorization(UserRoles.Admin)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "crr04_nombre,crr04_descripcion")] crr04_intereses crr04_intereses)
+        public ActionResult Create([Bind(Include = "pln03_nombre,pln03_descripcion")] pln03_tipocobro pln03_tipocobro)
         {
             if (ModelState.IsValid)
             {
 
-                crr04_intereses.crr04_estado = 1;
-                crr04_intereses.crr04_fechacreacion = DateTime.Now;
-                crr04_intereses.crr04_ultimaactualizacion = DateTime.Now;
+                pln03_tipocobro.pln03_estado = 1;
+                pln03_tipocobro.pln03_fechacreacion = DateTime.Now;
+                pln03_tipocobro.pln03_ultimaactualizacion = DateTime.Now;
 
-                db.crr04_intereses.Add(crr04_intereses);
+                db.pln03_tipocobro.Add(pln03_tipocobro);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            return View(crr04_intereses);
+            return View(pln03_tipocobro);
         }
 
         // GET: configuracion/tipoplan/Edit/5
@@ -117,12 +114,12 @@ namespace mksolucion.Areas.portal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            crr04_intereses crr04_intereses = db.crr04_intereses.Find(id);
-            if (crr04_intereses == null)
+            pln03_tipocobro pln03_tipocobro = db.pln03_tipocobro.Find(id);
+            if (pln03_tipocobro == null)
             {
                 return HttpNotFound();
             }
-            return View(crr04_intereses);
+            return View(pln03_tipocobro);
         }
 
         // POST: configuracion/tipoplan/Edit/5
@@ -131,18 +128,18 @@ namespace mksolucion.Areas.portal.Controllers
         [Authorization(UserRoles.Admin)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "crr04_id,crr04_nombre,crr04_descripcion,crr04_estado")] crr04_intereses crr04_intereses)
+        public ActionResult Edit([Bind(Include = "pln03_id,pln03_nombre,pln03_descripcion,pln03_estado")] pln03_tipocobro pln03_tipocobro)
         {
             if (ModelState.IsValid)
             {
 
-                db.crr04_intereses.Attach(crr04_intereses);
-                crr04_intereses.crr04_ultimaactualizacion = DateTime.Now;
+                db.pln03_tipocobro.Attach(pln03_tipocobro);
+                pln03_tipocobro.pln03_ultimaactualizacion = DateTime.Now;
 
-                db.Entry(crr04_intereses).Property(x => x.crr04_nombre).IsModified = true;
-                db.Entry(crr04_intereses).Property(x => x.crr04_descripcion).IsModified = true;
-                db.Entry(crr04_intereses).Property(x => x.crr04_estado).IsModified = true;
-                db.Entry(crr04_intereses).Property(x => x.crr04_ultimaactualizacion).IsModified = true;
+                db.Entry(pln03_tipocobro).Property(x => x.pln03_nombre).IsModified = true;
+                db.Entry(pln03_tipocobro).Property(x => x.pln03_descripcion).IsModified = true;
+                db.Entry(pln03_tipocobro).Property(x => x.pln03_estado).IsModified = true;
+                db.Entry(pln03_tipocobro).Property(x => x.pln03_ultimaactualizacion).IsModified = true;
                 db.SaveChanges();
 
                 /*                
@@ -151,7 +148,7 @@ namespace mksolucion.Areas.portal.Controllers
                  */
                 return RedirectToAction("Index");
             }
-            return View(crr04_intereses);
+            return View(pln03_tipocobro);
         }
 
         // GET: configuracion/tipoplan/Delete/5
@@ -163,12 +160,12 @@ namespace mksolucion.Areas.portal.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            crr04_intereses crr04_intereses = db.crr04_intereses.Find(id);
-            if (crr04_intereses == null)
+            pln03_tipocobro pln03_tipocobro = db.pln03_tipocobro.Find(id);
+            if (pln03_tipocobro == null)
             {
                 return HttpNotFound();
             }
-            return View(crr04_intereses);
+            return View(pln03_tipocobro);
         }
 
         // POST: configuracion/tipoplan/Delete/5
@@ -178,10 +175,10 @@ namespace mksolucion.Areas.portal.Controllers
         public ActionResult DeleteConfirmed(decimal id)
         {
 
-            var crr04_intereses = new crr04_intereses { crr04_id = id };
-            db.crr04_intereses.Attach(crr04_intereses);
-            crr04_intereses.crr04_estado = 2;
-            db.Entry(crr04_intereses).Property(x => x.crr04_estado).IsModified = true;
+            var pln03_tipocobro = new pln03_tipocobro { pln03_id = id };
+            db.pln03_tipocobro.Attach(pln03_tipocobro);
+            pln03_tipocobro.pln03_estado = 2;
+            db.Entry(pln03_tipocobro).Property(x => x.pln03_estado).IsModified = true;
 
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();

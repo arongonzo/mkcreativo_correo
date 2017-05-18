@@ -183,6 +183,7 @@
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacionlistacorreoController.cs" />
+    <Compile Include="Areas\portal\Controllers\Default1Controller.cs" />
     <Compile Include="Areas\portal\Controllers\DefaultController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadosActivacionController.cs" />
@@ -190,10 +191,12 @@
     <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
     <Compile Include="Areas\portal\Controllers\NotificacionesController.cs" />
     <Compile Include="Areas\portal\Controllers\pasoscompletarinformacionController.cs" />
+    <Compile Include="Areas\portal\Controllers\pln02_tipoplanController.cs" />
     <Compile Include="Areas\portal\Controllers\ReportenotificacionesCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
     <Compile Include="Areas\portal\Controllers\SoporteController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
+    <Compile Include="Areas\portal\Controllers\TipocobroController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCuentaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoNotificacionCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoPlanesController.cs" />
@@ -227,6 +230,7 @@
     <Compile Include="Areas\portal\ViewModels\_lis02_clasificacion.cs" />
     <Compile Include="Areas\portal\ViewModels\_ntf01_notificaciones.cs" />
     <Compile Include="Areas\portal\ViewModels\_ntf02_tiponotificacioncorreo.cs" />
+    <Compile Include="Areas\portal\ViewModels\_pln03_tipocobro.cs" />
     <Compile Include="Areas\portal\ViewModels\_pnl02_tipoplan.cs" />
     <Compile Include="Areas\portal\Models\AspNetRoles.cs" />
     <Compile Include="context\AspNetUserClaims.cs" />
@@ -342,6 +346,10 @@
     <Compile Include="Migrations\201705161954468_20160516_tipocobro.Designer.cs">
       <DependentUpon>201705161954468_20160516_tipocobro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705171759118_20160517_tipoplan.cs" />
+    <Compile Include="Migrations\201705171759118_20160517_tipoplan.Designer.cs">
+      <DependentUpon>201705171759118_20160517_tipoplan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -420,11 +428,6 @@
     <Content Include="Areas\portal\Views\default\Index.cshtml" />
     <Content Include="Content\assets\normalize.css\package.json" />
     <Content Include="Content\assets\normalize.css\README.md" />
-    <Content Include="Areas\portal\Views\TipoPlanes\Index.cshtml" />
-    <Content Include="Areas\portal\Views\TipoPlanes\Edit.cshtml" />
-    <Content Include="Areas\portal\Views\TipoPlanes\Delete.cshtml" />
-    <Content Include="Areas\portal\Views\TipoPlanes\Details.cshtml" />
-    <Content Include="Areas\portal\Views\TipoPlanes\Create.cshtml" />
     <Content Include="Areas\portal\Views\TipoCampana\Index.cshtml" />
     <Content Include="Areas\portal\Views\TipoCampana\Details.cshtml" />
     <Content Include="Areas\portal\Views\TipoCampana\Create.cshtml" />
@@ -483,6 +486,13 @@
     <Content Include="Areas\portal\Views\pasoscompletarinformacion\Index.cshtml" />
     <Content Include="Areas\portal\Views\pasoscompletarinformacion\Details.cshtml" />
     <Content Include="Areas\portal\Views\Soporte\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Tipocobro\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Tipocobro\Details.cshtml" />
+    <Content Include="Areas\portal\Views\Tipocobro\Create.cshtml" />
+    <Content Include="Areas\portal\Views\Tipocobro\Edit.cshtml" />
+    <Content Include="Areas\portal\Views\Tipocobro\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\TipoPlanes\Index.cshtml" />
+    <Content Include="Areas\portal\Views\TipoPlanes\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -549,6 +559,8 @@
     <Folder Include="Areas\completarinformacion\Views\Shared\" />
     <Folder Include="Areas\portal\Views\Shared\" />
     <Folder Include="Views\Shared\plantillas\" />
+    <Folder Include="Views\Tipocobro\" />
+    <Folder Include="Views\TipoPlanes\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704211418296_Primeraconfiguracion.resx">
@@ -601,6 +613,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705161954468_20160516_tipocobro.resx">
       <DependentUpon>201705161954468_20160516_tipocobro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705171759118_20160517_tipoplan.resx">
+      <DependentUpon>201705171759118_20160517_tipoplan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

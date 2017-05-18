@@ -3,12 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace mksolucion.Models
 {
-    public class _pnl02_tipoplan
+    public class _pln02_tipoplan
     {
         [Key]
         public decimal pln02_id { get; set; }
 
-        [Display(Name="Nombre")]
+        public decimal pln03_id { get; set; }
+
+        [Display(Name="Tipo Cobro")]
+        public string pln03_nombre { get; set; }
+
+        [Display(Name = "Nombre")]
         public string pln02_nombre { get; set; }
 
         [Display(Name="Descripción")]
@@ -19,5 +24,14 @@ namespace mksolucion.Models
         public DateTime? pln02_ultimaactualizacion { get; set; }
 
         public DateTime? pln02_fechacreacion { get; set; }
+
+        [UIHint("ClientCategory")]
+        public _pln03_tipocobro _tipocobro
+        {
+            get;
+            set;
+        }
+
+
     }
 }
