@@ -95,7 +95,6 @@ namespace mksolucion.Areas.portal.Controllers
         // GET: portal/pln02_tipoplan/Create
         public ActionResult Create()
         {
-            ViewBag.pln02_estado = new SelectList(db.gen01_estados, "gen01_id", "gen01_nombre");
             ViewBag.pln03_id = new SelectList(db.pln03_tipocobro, "pln03_id", "pln03_nombre");
             return View();
         }
@@ -105,19 +104,32 @@ namespace mksolucion.Areas.portal.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "pln02_id,pln03_id,pln02_nombre,pln02_descripcion,pln02_estado,pln02_fechacreacion,pln02_ultimaactualizacion")] pln02_tipoplan pln02_tipoplan)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create(FormCollection values)
         {
             if (ModelState.IsValid)
             {
+                pln02_tipoplan pln02_tipoplan = new pln02_tipoplan();
+                pln02_tipoplan.pln02_nombre = values["pln02_nombre"];
+                pln02_tipoplan.pln02_descripcion = values["pln02_nombre"];
+                pln02_tipoplan.pln02_estado = 1;
+                pln02_tipoplan.pln03_id = Convert.ToDecimal(values["cbxtipocobro"].ToString());
+
                 db.pln02_tipoplan.Add(pln02_tipoplan);
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.pln02_estado = new SelectList(db.gen01_estados, "gen01_id", "gen01_nombre", pln02_tipoplan.pln02_estado);
-            ViewBag.pln03_id = new SelectList(db.pln03_tipocobro, "pln03_id", "pln03_nombre", pln02_tipoplan.pln03_id);
-            return View(pln02_tipoplan);
+ 
+            return View();
         }
+
+
+        public JsonResult GetTipoCobro()
+        {
+            return Json(db.pln03_tipocobro.Select(p => new { pln03_id = p.pln03_id, pln03_nombre = p.pln03_nombre }), JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: portal/pln02_tipoplan/Edit/5
         public ActionResult Edit(decimal id)

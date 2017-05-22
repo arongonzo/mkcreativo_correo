@@ -25,7 +25,7 @@ namespace mksolucion.Models
 
         public DateTime? pln02_fechacreacion { get; set; }
 
-        [UIHint("ClientCategory")]
+        [UIHint("TipoCobro")]
         public _pln03_tipocobro _tipocobro
         {
             get;

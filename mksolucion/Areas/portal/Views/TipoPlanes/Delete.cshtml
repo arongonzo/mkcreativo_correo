@@ -1,12 +1,13 @@
 ﻿@model mksolucion.Models.pln02_tipoplan
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Eliminar Tipos de Planes";
     Layout = Session["layout"].ToString();
 }
 
-    <h2>Detalle Tipos de Planes</h2>
+<h2>Eliminar Tipos de Planes</h2>
 
+<h3>¿Esta segurio de eliminar este registro?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -43,8 +44,13 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.pln02_id }) |
-    @Html.ActionLink("Volver al Listado", "Index")
-</p>

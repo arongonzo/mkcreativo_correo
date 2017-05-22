@@ -5,6 +5,7 @@ namespace mksolucion.Models
 {
     public class _pln03_tipocobro
     {
+        [Display(Name = "Tipo de Plan")]
         [Key]
         public decimal? pln03_id { get; set; }
 

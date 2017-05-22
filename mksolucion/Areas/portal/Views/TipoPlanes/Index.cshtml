@@ -9,7 +9,7 @@
     @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 
-@(Html.Kendo().Grid<mksolucion.Models._pnl02_tipoplan>()
+@(Html.Kendo().Grid<mksolucion.Models._pln02_tipoplan>()
       .Name("grid")
       .Columns(columns =>
       {
@@ -19,12 +19,14 @@
             Html.ActionLink("Eliminar", "Delete", new { Id = c.pln02_id })).ClientTemplate(Html.ActionLink(" ", "Delete", new { Id = "pln02_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_delete.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("pln02_id", "#=pln02_id#")).Width(24);
           columns.Template(c =>
             Html.ActionLink("Detalle", "Details", new { Id = c.pln02_id })).ClientTemplate(Html.ActionLink(" ", "Details", new { Id = "pln02_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_detail.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("pln02_id", "#=pln02_id#")).Width(24);
-
+          
+          columns.Bound(c => c._tipocobro.pln03_nombre);
+          
           columns.Bound(c => c.pln02_nombre);
         
           columns.Bound(c => c.pln02_descripcion);
         
-          columns.Bound(c => c._tipocobro.pln03_nombre);
+         
                    
       })
       .ToolBar(toolbar => {
