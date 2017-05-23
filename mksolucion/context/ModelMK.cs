@@ -494,7 +494,6 @@ namespace mksolucion.Models
                 .Property(e => e.ser01_id)
                 .HasPrecision(18, 0);
         }
-
-      
+     
     }
 }

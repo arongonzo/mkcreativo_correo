@@ -35,10 +35,15 @@ namespace mksolucion.Areas.portal.Controllers
         public IList<_pln02_tipoplan> GetAll()
         {
             IList<_pln02_tipoplan> result = new List<_pln02_tipoplan>();
-            result = db.pln02_tipoplan.Select(c => new _pln02_tipoplan
+
+            var tipoplan = db.pln02_tipoplan.AsQueryable();
+            tipoplan = tipoplan.Where(p => p.pln02_estado == 1);
+            tipoplan = tipoplan.Where(p => p.pln03_tipocobro.pln03_estado == 1);
+
+            result = tipoplan.Select(c => new _pln02_tipoplan
             {
                 pln02_id = (decimal)c.pln02_id,
-                 pln03_id = (decimal)c.pln03_id,
+                pln03_id = (decimal)c.pln03_id,
                 pln02_nombre = c.pln02_nombre,
                 pln02_descripcion = c.pln02_descripcion,
                 pln02_estado = c.pln02_estado,
@@ -114,6 +119,9 @@ namespace mksolucion.Areas.portal.Controllers
                 pln02_tipoplan.pln02_descripcion = values["pln02_nombre"];
                 pln02_tipoplan.pln02_estado = 1;
                 pln02_tipoplan.pln03_id = Convert.ToDecimal(values["cbxtipocobro"].ToString());
+                pln02_tipoplan.pln02_estado = 1;
+                pln02_tipoplan.pln02_fechacreacion = DateTime.Now;
+                pln02_tipoplan.pln02_ultimaactualizacion = DateTime.Now;
 
                 db.pln02_tipoplan.Add(pln02_tipoplan);
                 
@@ -127,7 +135,9 @@ namespace mksolucion.Areas.portal.Controllers
 
         public JsonResult GetTipoCobro()
         {
-            return Json(db.pln03_tipocobro.Select(p => new { pln03_id = p.pln03_id, pln03_nombre = p.pln03_nombre }), JsonRequestBehavior.AllowGet);
+            var TipoCobro = db.pln03_tipocobro.AsQueryable();
+            TipoCobro = TipoCobro.Where(p => p.pln03_estado == 1);
+            return Json(TipoCobro.Select(p => new { pln03_id = p.pln03_id, pln03_nombre = p.pln03_nombre }), JsonRequestBehavior.AllowGet);
         }
 
 
@@ -153,17 +163,24 @@ namespace mksolucion.Areas.portal.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "pln02_id,pln03_id,pln02_nombre,pln02_descripcion,pln02_estado,pln02_fechacreacion,pln02_ultimaactualizacion")] pln02_tipoplan pln02_tipoplan)
+        public ActionResult Edit(FormCollection values)
         {
             if (ModelState.IsValid)
             {
+
+                pln02_tipoplan pln02_tipoplan = db.pln02_tipoplan.Find(int.Parse(values["pln02_id"]));
+                pln02_tipoplan.pln02_nombre = values["pln02_nombre"];
+                pln02_tipoplan.pln02_descripcion = values["pln02_descripcion"];
+                pln02_tipoplan.pln03_id = Convert.ToDecimal(values["cbxtipocobro"].ToString());
+                pln02_tipoplan.pln02_estado = int.Parse(values["pln02_estado"]);
+                pln02_tipoplan.pln02_ultimaactualizacion = DateTime.Now;
+
                 db.Entry(pln02_tipoplan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.pln02_estado = new SelectList(db.gen01_estados, "gen01_id", "gen01_nombre", pln02_tipoplan.pln02_estado);
-            ViewBag.pln03_id = new SelectList(db.pln03_tipocobro, "pln03_id", "pln03_nombre", pln02_tipoplan.pln03_id);
-            return View(pln02_tipoplan);
+            
+            return View(values);
         }
 
         // GET: portal/pln02_tipoplan/Delete/5

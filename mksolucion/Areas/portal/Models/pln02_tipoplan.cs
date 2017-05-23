@@ -18,6 +18,7 @@ namespace mksolucion.Models
         [Key]
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "Tipo Plan")]
         public decimal? pln02_id { get; set; }
 
         [Display(Name = "Tipo Cobro")]

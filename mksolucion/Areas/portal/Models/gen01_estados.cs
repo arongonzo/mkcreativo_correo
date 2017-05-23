@@ -21,7 +21,7 @@ namespace mksolucion.Models
             crr06_organizacion = new HashSet<crr06_organizacion>();
             lis01_lista = new HashSet<lis01_lista>();
             lis02_clasificacion = new HashSet<lis02_clasificacion>();
-            pln01_planes = new HashSet<pln01_planes>();
+            
             crr08_estadoCorreo = new HashSet<crr08_estadoCorreo>();
             crr03_areasegmento = new HashSet<crr03_areasegmento>();
             ntf02_tiponotificacioncorreo = new HashSet<ntf02_tiponotificacioncorreo>();
@@ -29,6 +29,7 @@ namespace mksolucion.Models
             usr01_infopersonal = new HashSet<usr01_infopersonal>();
             pln03_tipocobro = new HashSet<pln03_tipocobro>();
             pln02_tipoplan = new HashSet<pln02_tipoplan>();
+            pln01_planes = new HashSet<pln01_planes>();
 
         }
         

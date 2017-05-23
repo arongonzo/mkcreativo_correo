@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using mksolucion.Models;
+using Kendo.Mvc;
 
 namespace mksolucion.Areas.portal.Controllers
 {
@@ -24,6 +25,9 @@ namespace mksolucion.Areas.portal.Controllers
         public ActionResult pln03_tipocobro_Read([DataSourceRequest]DataSourceRequest request)
         {
             IQueryable<pln03_tipocobro> pln03_tipocobro = db.pln03_tipocobro;
+
+            request.Filters.Add(new FilterDescriptor() { Member = "pln03_estado", MemberType = typeof(Int32), Operator = FilterOperator.IsEqualTo, Value = "1" });      
+
             DataSourceResult result = pln03_tipocobro.ToDataSourceResult(request, c => new _pln03_tipocobro 
             {
                 pln03_id = c.pln03_id,

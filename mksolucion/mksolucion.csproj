@@ -499,6 +499,10 @@
     <Content Include="Areas\portal\Views\TipoPlanes\Edit.cshtml" />
     <Content Include="Areas\portal\Views\TipoPlanes\Delete.cshtml" />
     <Content Include="Areas\portal\Views\Planes\Index.cshtml" />
+    <Content Include="Areas\portal\Views\Planes\Details.cshtml" />
+    <Content Include="Areas\portal\Views\Planes\Create.cshtml" />
+    <Content Include="Areas\portal\Views\Planes\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\Planes\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

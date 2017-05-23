@@ -21,10 +21,10 @@
             Html.ActionLink("Detalle", "Details", new { Id = c.pln01_id })).ClientTemplate(Html.ActionLink(" ", "Details", new { Id = "pln01_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_detail.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("pln01_id", "#=pln01_id#")).Width(24);
 
 
-        columns.Bound(c => c._TipoPlan._tipocobro.pln03_nombre);
-        columns.Bound(c => c._TipoPlan.pln02_nombre);
-        columns.Bound(c => c.pln01_nombre);
-        columns.Bound(c => c.pln01_detalle);
+          columns.Bound(c => c._TipoPlan._tipocobro.pln03_nombre);
+          columns.Bound(c => c._TipoPlan.pln02_nombre);
+          columns.Bound(c => c.pln01_nombre);
+          columns.Bound(c => c.pln01_detalle);
       })
       .ToolBar(toolbar => {
             toolbar.Excel();

@@ -15,10 +15,29 @@
         <h4>Complete la informacion solicitada</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.pln02_id)
+            @Html.HiddenFor(model => model.pln02_estado)
+
             <div class="form-group">
                 @Html.LabelFor(model => model.pln03_id, "pln03_id", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("pln03_id", null, htmlAttributes: new { @class = "form-control" })
+                <div class="col-md-8">
+
+                    @(Html.Kendo().DropDownList()
+                    .Name("cbxtipocobro")
+                    .HtmlAttributes(new { style = "width:100%", required = "required" })
+                    .OptionLabel("Seleccione Tipo de Cobro")
+                    .DataTextField("pln03_nombre")
+                    .DataValueField("pln03_id")
+                    .Value(Model.pln03_id.ToString())
+                    .DataSource(source =>
+                    {
+                        source.Read(read =>
+                        {
+                            read.Action("GetTipoCobro", "tipoplanes");
+                        }).ServerFiltering(true);
+                    })
+                    )
+
                     @Html.ValidationMessageFor(model => model.pln03_id, "", new { @class = "text-danger" })
                 </div>
             </div>

@@ -12,7 +12,7 @@ namespace mksolucion.Models
         [Display(Name = "Tipo de Plan")]
         public decimal? pln02_id { get; set; }
 
-        [Display(Name = "Planes")]
+        [Display(Name = "Nombre del Plan")]
         public string pln01_nombre { get; set; }
 
         [Display(Name = "Descripción")]
@@ -29,10 +29,6 @@ namespace mksolucion.Models
 
         [Display(Name = "Fecha Actualización")]
         public DateTime? pln01_ultimaactualizacion { get; set; }
-
-        public virtual gen01_estados gen01_estados { get; set; }
-
-        public virtual pln02_tipoplan pln02_tipoplan { get; set; }
 
         [UIHint("TipoPlan")]
         public _pln02_tipoplan _TipoPlan

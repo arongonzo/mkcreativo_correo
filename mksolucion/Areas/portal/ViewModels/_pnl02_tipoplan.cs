@@ -6,14 +6,16 @@ namespace mksolucion.Models
     public class _pln02_tipoplan
     {
         [Key]
+        [Display(Name = "Tipo de Plan")]
         public decimal pln02_id { get; set; }
 
+        [Display(Name = "Tipo Cobro")]
         public decimal pln03_id { get; set; }
 
         [Display(Name="Tipo Cobro")]
         public string pln03_nombre { get; set; }
 
-        [Display(Name = "Nombre")]
+        [Display(Name = "Tipo de Plan")]
         public string pln02_nombre { get; set; }
 
         [Display(Name="Descripción")]
