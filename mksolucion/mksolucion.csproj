@@ -179,6 +179,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\completarinformacion\completarinformacionAreaRegistration.cs" />
+    <Compile Include="Areas\completarinformacion\Controllers\InformacionUsuarioController.cs" />
     <Compile Include="Areas\portal\Controllers\AdminController.cs" />
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
@@ -503,6 +504,7 @@
     <Content Include="Areas\portal\Views\Planes\Create.cshtml" />
     <Content Include="Areas\portal\Views\Planes\Delete.cshtml" />
     <Content Include="Areas\portal\Views\Planes\Edit.cshtml" />
+    <Content Include="Areas\completarinformacion\Views\InformacionUsuario\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -564,7 +566,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\completarinformacion\Controllers\" />
     <Folder Include="Areas\completarinformacion\Models\" />
     <Folder Include="Areas\completarinformacion\Views\Shared\" />
     <Folder Include="Areas\portal\Views\Shared\" />

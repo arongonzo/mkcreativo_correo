@@ -2,6 +2,20 @@
     ViewBag.Title = "Confirmar correo electrónico";
 }
 
+@section header
+{
+    @{
+
+        if (Session["username"] != null)
+        {
+        <meta http-equiv="refresh" content="4; url=http://localhost:13800/completarinformacion/InformacionUsuario">
+        }
+    }
+}
+    
+
+
+
 <section class="mbr-section article mbr-parallax-background mbr-after-navbar" id="msg-box8-c" style="background-image: url(../Content/images/desert.jpg); padding-top: 120px; padding-bottom: 120px;">
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(34, 34, 34);">
     </div>
@@ -9,7 +23,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
                 <h3 class="mbr-section-title display-2">ARTICLE HEADER</h3>
-                <div class="lead"><p>Article header with background image and parallax effect.</p></div>
+                <div class="lead"><p>hjhjg</p></div>
 
             </div>
         </div>

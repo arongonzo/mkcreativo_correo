@@ -236,10 +236,10 @@ namespace mksolucion.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-
                     await this.UserManager.AddToRoleAsync(user.Id, "User");
+                    ModelMK db = new ModelMK();
 
-                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                      var callbackUrl = Url.Action(
                          "ConfirmEmail", "Cuentas", 
                          new { userId = user.Id, code = code }, 
@@ -258,7 +258,7 @@ namespace mksolucion.Controllers
 
                     decimal dcm_tiponotificacion = 0;
 
-                    ModelMK db = new ModelMK();
+                    
                     var query = from tiponotificacion in db.ntf02_tiponotificacioncorreo
                                 where tiponotificacion.ntf02_nombre  == "notificación"
                                 select new
@@ -314,83 +314,86 @@ namespace mksolucion.Controllers
             }
             var result = await UserManager.ConfirmEmailAsync(userId, code);
 
-            /*
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 var query = from usr in db.AspNetUsers
-                join usrrl in db.AspNetUserRoles on usr.Id equals usrrl.UserId
-                join rol in db.AspNetRoles on usrrl.RoleId equals rol.Id
-                where usr.Id == userId
+                            join usrrl in db.AspNetUserRoles on usr.Id equals usrrl.UserId
+                            join rol in db.AspNetRoles on usrrl.RoleId equals rol.Id
+                            where usr.Id == userId
 
-                select new 
-                { 
-                    UserId = usr.Id,
-                    Rolname = rol.Name,
-                    usr.UserName
-                };
+                            select new
+                            {
+                                UserId = usr.Id,
+                                Rolname = rol.Name,
+                                usr.UserName
+                            };
 
                 string urlretorno = string.Empty;
 
-                if (query.Count()>0){
+                if (query.Count() > 0)
+                {
 
                     var datos = query.ToList();
-                    foreach (var Row in datos) {
-                                
+                    foreach (var Row in datos)
+                    {
+
                         Session["UserId"] = Row.UserId.ToString();
                         Session["username"] = Row.UserName.ToString();
                         Session["Rolname"] = Row.Rolname.ToString();
                         Session.Timeout = 30;
 
-                        string idcuenta = string.Empty; 
+                        string idcuenta = string.Empty;
 
                         var querycuenta = from usrcnt in db.cnt03_cuenta_usuario
-                        join usr2 in db.AspNetUsers on usrcnt.UserId equals usr2.Id
-                        join cnt in db.cnt01_cuenta on usrcnt.cnt01_id equals cnt.cnt01_id
-                        where usr2.Id == Row.UserId.ToString()                                                                                               
-                        select new
+                                          join usr2 in db.AspNetUsers on usrcnt.UserId equals usr2.Id
+                                          join cnt in db.cnt01_cuenta on usrcnt.cnt01_id equals cnt.cnt01_id
+                                          where usr2.Id == Row.UserId.ToString()
+                                          select new
+                                          {
+                                              id_cuenta = usrcnt.cnt01_id
+                                          };
+                        if (querycuenta.Count() > 0)
                         {
-                            id_cuenta = usrcnt.cnt01_id
-                        };
-                                if (querycuenta.Count() > 0)
-                                {
-                                    var datoscuenta = querycuenta.ToList();
-                                    foreach (var Rowcuenta in datoscuenta) {
-                                        idcuenta = Rowcuenta.id_cuenta.ToString();
-                                    }
-                                }
-
-                                Session["CuentaId"] = idcuenta;
-
-                                if (idcuenta != string.Empty)
-                                {
-                                    switch (Row.Rolname.ToString().ToLower())
-                                    {
-                                        case "admin":
-                                            urlretorno = "~/portal/admin/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
-                                            break;
-                                        case "manager":
-                                            urlretorno = "~/portal/manager/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
-                                            break;
-                                        case "user":
-                                            urlretorno = "~/portal/default/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
-                                            break;
-                                        default:
-                                            urlretorno = "~/portal/default/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
-                                            break;
-                                    }
-                                }
-                                else {
-                                    urlretorno = "~/completarinformacion/index";
-                                    Session["layout"] = "";
-                                }
+                            var datoscuenta = querycuenta.ToList();
+                            foreach (var Rowcuenta in datoscuenta)
+                            {
+                                idcuenta = Rowcuenta.id_cuenta.ToString();
                             }
                         }
-            */
 
+                        Session["CuentaId"] = idcuenta;
+
+                        if (idcuenta != string.Empty)
+                        {
+                            switch (Row.Rolname.ToString().ToLower())
+                            {
+                                case "admin":
+                                    urlretorno = "~/portal/admin/index";
+                                    Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
+                                    break;
+                                case "manager":
+                                    urlretorno = "~/portal/manager/index";
+                                    Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
+                                    break;
+                                case "user":
+                                    urlretorno = "~/portal/default/index";
+                                    Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                    break;
+                                default:
+                                    urlretorno = "~/portal/default/index";
+                                    Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            urlretorno = "~/completarinformacion/InformacionUsuario/index";
+                            Session["layout"] = "";
+                        }
+                    }
+                }
+
+            }
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
