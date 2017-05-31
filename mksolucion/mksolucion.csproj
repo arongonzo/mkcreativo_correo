@@ -269,7 +269,7 @@
     <Compile Include="context\red01_social.cs" />
     <Compile Include="context\red02_datosContacto.cs" />
     <Compile Include="context\red03_acceso.cs" />
-    <Compile Include="context\serv01_servicios.cs" />
+    <Compile Include="Areas\portal\Models\serv01_servicios.cs" />
     <Compile Include="context\serv02_contacto.cs" />
     <Compile Include="context\sysdiagrams.cs" />
     <Compile Include="Controllers\CuentasController.cs" />
@@ -353,6 +353,10 @@
     <Compile Include="Migrations\201705171759118_20160517_tipoplan.cs" />
     <Compile Include="Migrations\201705171759118_20160517_tipoplan.Designer.cs">
       <DependentUpon>201705171759118_20160517_tipoplan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705312042057_actualizacionservicio.cs" />
+    <Compile Include="Migrations\201705312042057_actualizacionservicio.Designer.cs">
+      <DependentUpon>201705312042057_actualizacionservicio.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -635,6 +639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705171759118_20160517_tipoplan.resx">
       <DependentUpon>201705171759118_20160517_tipoplan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312042057_actualizacionservicio.resx">
+      <DependentUpon>201705312042057_actualizacionservicio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
