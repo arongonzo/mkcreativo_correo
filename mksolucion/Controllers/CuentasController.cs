@@ -307,6 +307,7 @@ namespace mksolucion.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+
             ModelMK db = new ModelMK();
             if (userId == null || code == null)
             {
@@ -368,33 +369,34 @@ namespace mksolucion.Controllers
                             switch (Row.Rolname.ToString().ToLower())
                             {
                                 case "admin":
-                                    urlretorno = "~/portal/admin/index";
+                                    
                                     Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
+                                    return View("~/portal/admin/index");
                                     break;
                                 case "manager":
-                                    urlretorno = "~/portal/manager/index";
                                     Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
+                                    return View("~/portal/manager/index");
                                     break;
                                 case "user":
-                                    urlretorno = "~/portal/default/index";
                                     Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                    return View("~/portal/default/index");
                                     break;
                                 default:
-                                    urlretorno = "~/portal/default/index";
                                     Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                    return View("~/portal/default/index");
                                     break;
                             }
                         }
                         else
                         {
-                            urlretorno = "~/completarinformacion/InformacionUsuario/index";
                             Session["layout"] = "";
+                            return RedirectToAction("index", "InformacionUsuario", new { area = "completarinformacion" });
                         }
                     }
                 }
 
             }
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return RedirectToAction("index", "InformacionUsuario", new { area = "completarinformacion" });
         }
 
         //

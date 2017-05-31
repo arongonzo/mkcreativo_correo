@@ -180,6 +180,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\completarinformacion\completarinformacionAreaRegistration.cs" />
     <Compile Include="Areas\completarinformacion\Controllers\InformacionUsuarioController.cs" />
+    <Compile Include="Areas\completarinformacion\Models\completarinfo.cs" />
     <Compile Include="Areas\portal\Controllers\AdminController.cs" />
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
@@ -505,11 +506,19 @@
     <Content Include="Areas\portal\Views\Planes\Delete.cshtml" />
     <Content Include="Areas\portal\Views\Planes\Edit.cshtml" />
     <Content Include="Areas\completarinformacion\Views\InformacionUsuario\Index.cshtml" />
+    <Content Include="Areas\completarinformacion\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
@@ -566,8 +575,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\completarinformacion\Models\" />
-    <Folder Include="Areas\completarinformacion\Views\Shared\" />
     <Folder Include="Areas\portal\Views\Shared\" />
     <Folder Include="Views\Planes\" />
     <Folder Include="Views\Shared\plantillas\" />

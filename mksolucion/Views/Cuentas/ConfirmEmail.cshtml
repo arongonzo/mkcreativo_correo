@@ -2,19 +2,6 @@
     ViewBag.Title = "Confirmar correo electrónico";
 }
 
-@section header
-{
-    @{
-
-        if (Session["username"] != null)
-        {
-        <meta http-equiv="refresh" content="4; url=http://localhost:13800/completarinformacion/InformacionUsuario">
-        }
-    }
-}
-    
-
-
 
 <section class="mbr-section article mbr-parallax-background mbr-after-navbar" id="msg-box8-c" style="background-image: url(../Content/images/desert.jpg); padding-top: 120px; padding-bottom: 120px;">
     <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(34, 34, 34);">
@@ -35,7 +22,10 @@
             <div class="col-md-8 col-md-offset-2 text-xs-center">
                 <div>
                     <p>
-                        Gracias por confirmar su correo electrónico. @Html.ActionLink("Haga clic aquí para iniciar sesión", "Login", "Cuentas", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                        Gracias por confirmar su correo electrónico. 
+                    </p>
+                    <p>
+                        @Html.ActionLink("Haga clic aquí para completar la informacion acerca de su cuenta", "Login", "Cuentas", routeValues: null, htmlAttributes: new { id = "loginLink" })
                     </p>
                 </div>
             </div>
