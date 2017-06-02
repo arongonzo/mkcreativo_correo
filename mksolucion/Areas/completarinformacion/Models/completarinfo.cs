@@ -26,7 +26,6 @@
 
         [Display(Name = "Sitio web")]
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string Sitioweb { get; set; }
 
         [Display(Name = "Direccion Linea 1")]
@@ -36,7 +35,6 @@
 
         [Display(Name = "Direccion Linea 2")]
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string direccion2 { get; set; }
 
         [Display(Name = "Ciudad")]
@@ -46,7 +44,6 @@
 
         [Display(Name = "Zip code")]
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string Zipcode { get; set; }
 
         [Display(Name = "Pais")]

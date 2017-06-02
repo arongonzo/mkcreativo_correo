@@ -13,6 +13,8 @@
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal? usr01_id { get; set; }
+
+
         public string UserId { get; set; }
 
         [Display(Name = "Nombre")]
@@ -31,43 +33,27 @@
         public string usr01_direccion1 { get; set; }
 
         [Display(Name = "Direccion 2")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_direccion2 { get; set; }
 
         [Display(Name = "Ciudad")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_ciudad { get; set; }
 
         [Display(Name = "Estado / Proviencia / Región")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_region { get; set; }
 
         [Display(Name = "zip / codigo postal")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_codigopostal { get; set; }
 
         [Display(Name = "Telefono Principal")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_Telefono { get; set; }
 
         [Display(Name = "Telefono Secundario")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_Telefono2 { get; set; }
 
         [Display(Name = "Celular Principal")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_Celular { get; set; }
 
         [Display(Name = "Celular Secundario")]
-        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
-        [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         public string usr01_Celular2 { get; set; }
 
         [ScaffoldColumn(false)]

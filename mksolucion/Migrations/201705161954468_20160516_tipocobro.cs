@@ -9,7 +9,7 @@ namespace mksolucion.Migrations
         {
             
             CreateTable(
-                "dbo.con02_tipocontacto",
+                "con02_tipocontacto",
                 c => new
                     {
                         con02_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -25,11 +25,11 @@ namespace mksolucion.Migrations
                         con02_ultimaactualizacion = c.DateTime(),
                     })
                 .PrimaryKey(t => t.con02_id)
-                .ForeignKey("dbo.gen01_estados", t => t.con02_estado)
+                .ForeignKey("gen01_estados", t => t.con02_estado)
                 .Index(t => t.con02_estado);
             
             CreateTable(
-                "dbo.pln03_tipocobro",
+                "pln03_tipocobro",
                 c => new
                     {
                         pln03_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -40,11 +40,11 @@ namespace mksolucion.Migrations
                         pln03_ultimaactualizacion = c.DateTime(),
                     })
                 .PrimaryKey(t => t.pln03_id)
-                .ForeignKey("dbo.gen01_estados", t => t.pln03_estado)
+                .ForeignKey("gen01_estados", t => t.pln03_estado)
                 .Index(t => t.pln03_estado);
             
             CreateTable(
-                "dbo.usr01_infopersonal",
+                "usr01_infopersonal",
                 c => new
                     {
                         usr01_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -65,13 +65,13 @@ namespace mksolucion.Migrations
                         usr01_ultimaactualizacion = c.DateTime(),
                     })
                 .PrimaryKey(t => t.usr01_id)
-                .ForeignKey("dbo.gen01_estados", t => t.usr01_estado)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("gen01_estados", t => t.usr01_estado)
+                .ForeignKey("AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId)
                 .Index(t => t.usr01_estado);
             
             CreateTable(
-                "dbo.usr02_estadocompletado",
+                "usr02_estadocompletado",
                 c => new
                     {
                         usr02_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -82,11 +82,11 @@ namespace mksolucion.Migrations
                         usr02_fechacompletado = c.DateTime(),
                     })
                 .PrimaryKey(t => t.usr02_id)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.coninf01_pasocominfo",
+                "coninf01_pasocominfo",
                 c => new
                     {
                         coninf01_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -97,18 +97,18 @@ namespace mksolucion.Migrations
                     })
                 .PrimaryKey(t => t.coninf01_id);
             
-            AddColumn("dbo.pln02_tipoplan", "pln03_id", c => c.Decimal(precision: 18, scale: 0, storeType: "numeric"));
-            CreateIndex("dbo.pln02_tipoplan", "pln03_id");
-            CreateIndex("dbo.pln02_tipoplan", "pln02_estado");
-            AddForeignKey("dbo.pln02_tipoplan", "pln03_id", "dbo.pln03_tipocobro", "pln03_id");
-            AddForeignKey("dbo.pln02_tipoplan", "pln02_estado", "dbo.gen01_estados", "gen01_id");
+            AddColumn("pln02_tipoplan", "pln03_id", c => c.Decimal(precision: 18, scale: 0, storeType: "numeric"));
+            CreateIndex("pln02_tipoplan", "pln03_id");
+            CreateIndex("pln02_tipoplan", "pln02_estado");
+            AddForeignKey("pln02_tipoplan", "pln03_id", "pln03_tipocobro", "pln03_id");
+            AddForeignKey("pln02_tipoplan", "pln02_estado", "gen01_estados", "gen01_id");
    
         }
         
         public override void Down()
         {
             CreateTable(
-                "dbo.pln03_configuracion",
+                "pln03_configuracion",
                 c => new
                     {
                         pln01_id = c.Decimal(nullable: false, precision: 18, scale: 0, storeType: "numeric"),
@@ -117,7 +117,7 @@ namespace mksolucion.Migrations
                 .PrimaryKey(t => new { t.pln01_id, t.pln04_id });
             
             CreateTable(
-                "dbo.pln04_tipoconfiguracion",
+                "pln04_tipoconfiguracion",
                 c => new
                     {
                         pln04_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
@@ -133,30 +133,30 @@ namespace mksolucion.Migrations
                     })
                 .PrimaryKey(t => t.pln04_id);
             
-            DropForeignKey("dbo.usr02_estadocompletado", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.usr01_infopersonal", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.usr01_infopersonal", "usr01_estado", "dbo.gen01_estados");
-            DropForeignKey("dbo.pln03_tipocobro", "pln03_estado", "dbo.gen01_estados");
-            DropForeignKey("dbo.pln02_tipoplan", "pln02_estado", "dbo.gen01_estados");
-            DropForeignKey("dbo.pln02_tipoplan", "pln03_id", "dbo.pln03_tipocobro");
-            DropForeignKey("dbo.con02_tipocontacto", "con02_estado", "dbo.gen01_estados");
-            DropIndex("dbo.usr02_estadocompletado", new[] { "UserId" });
-            DropIndex("dbo.usr01_infopersonal", new[] { "usr01_estado" });
-            DropIndex("dbo.usr01_infopersonal", new[] { "UserId" });
-            DropIndex("dbo.pln03_tipocobro", new[] { "pln03_estado" });
-            DropIndex("dbo.pln02_tipoplan", new[] { "pln02_estado" });
-            DropIndex("dbo.pln02_tipoplan", new[] { "pln03_id" });
-            DropIndex("dbo.con02_tipocontacto", new[] { "con02_estado" });
-            DropColumn("dbo.pln02_tipoplan", "pln03_id");
-            DropTable("dbo.coninf01_pasocominfo");
-            DropTable("dbo.usr02_estadocompletado");
-            DropTable("dbo.usr01_infopersonal");
-            DropTable("dbo.pln03_tipocobro");
-            DropTable("dbo.con02_tipocontacto");
-            CreateIndex("dbo.pln03_configuracion", "pln04_id");
-            CreateIndex("dbo.pln03_configuracion", "pln01_id");
-            AddForeignKey("dbo.pln03_configuracion", "pln04_id", "dbo.pln04_tipoconfiguracion", "pln04_id", cascadeDelete: true);
-            AddForeignKey("dbo.pln03_configuracion", "pln01_id", "dbo.pln01_planes", "pln01_id", cascadeDelete: true);
+            DropForeignKey("usr02_estadocompletado", "UserId", "AspNetUsers");
+            DropForeignKey("usr01_infopersonal", "UserId", "AspNetUsers");
+            DropForeignKey("usr01_infopersonal", "usr01_estado", "gen01_estados");
+            DropForeignKey("pln03_tipocobro", "pln03_estado", "gen01_estados");
+            DropForeignKey("pln02_tipoplan", "pln02_estado", "gen01_estados");
+            DropForeignKey("pln02_tipoplan", "pln03_id", "pln03_tipocobro");
+            DropForeignKey("con02_tipocontacto", "con02_estado", "gen01_estados");
+            DropIndex("usr02_estadocompletado", new[] { "UserId" });
+            DropIndex("usr01_infopersonal", new[] { "usr01_estado" });
+            DropIndex("usr01_infopersonal", new[] { "UserId" });
+            DropIndex("pln03_tipocobro", new[] { "pln03_estado" });
+            DropIndex("pln02_tipoplan", new[] { "pln02_estado" });
+            DropIndex("pln02_tipoplan", new[] { "pln03_id" });
+            DropIndex("con02_tipocontacto", new[] { "con02_estado" });
+            DropColumn("pln02_tipoplan", "pln03_id");
+            DropTable("coninf01_pasocominfo");
+            DropTable("usr02_estadocompletado");
+            DropTable("usr01_infopersonal");
+            DropTable("pln03_tipocobro");
+            DropTable("con02_tipocontacto");
+            CreateIndex("pln03_configuracion", "pln04_id");
+            CreateIndex("pln03_configuracion", "pln01_id");
+            AddForeignKey("pln03_configuracion", "pln04_id", "pln04_tipoconfiguracion", "pln04_id", cascadeDelete: true);
+            AddForeignKey("pln03_configuracion", "pln01_id", "pln01_planes", "pln01_id", cascadeDelete: true);
         }
     }
 }

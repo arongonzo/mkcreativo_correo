@@ -51,9 +51,9 @@
                             <li>
                                 @Html.ActionLink("Clientes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
                                 <ul>
-                                    <li>@Html.ActionLink("Cuentas Clientes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("Cuentas Clientes", "Index", "CuentaCliente", new { area = "portal" }, new { @class = "dropdown-item" })</li>
                                     <li>@Html.ActionLink("Tipos de Cuenta", "Index", "tipocuenta", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-
+                                    <li>@Html.ActionLink("Servicio Cliente", "Index", "ServicioCliente", new { area = "portal" }, new { @class = "dropdown-item" })</li>
                                 </ul>
                             </li>
                             <li>

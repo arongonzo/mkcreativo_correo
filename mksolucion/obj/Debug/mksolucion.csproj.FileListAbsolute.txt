@@ -99,3 +99,4 @@ D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mk
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations._20160516_tipocobro.resources
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations._20160517_tipoplan.resources
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations.actualizacionservicio.resources
+D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations.actualizacion_cuentaCliente_20170601.resources

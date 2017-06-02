@@ -88,73 +88,87 @@ namespace mksolucion.Controllers
 
                         ModelMK db = new ModelMK();
                         var query = from usr in db.AspNetUsers
-                                    join usrrl in db.AspNetUserRoles on usr.Id equals usrrl.UserId
-                                    join rol in db.AspNetRoles on usrrl.RoleId equals rol.Id
-                                    where usr.UserName == model.Email
-                                    select new 
-                                    { 
-                                        UserId = usr.Id,
-                                        Rolname = rol.Name,
-                                        usr.UserName
-                                    };
+                             join usrrl in db.AspNetUserRoles on usr.Id equals usrrl.UserId
+                             join rol in db.AspNetRoles on usrrl.RoleId equals rol.Id
+                             where usr.UserName == model.Email
+
+                             select new
+                             {
+                                 UserId = usr.Id,
+                                 Rolname = rol.Name,
+                                 usr.UserName
+                             };
+
                         string urlretorno = string.Empty;
-                        if (query.Count()>0){
-                            var datos = query.ToList();
-                            foreach (var Row in datos) {
-                                
-                                Session["UserId"] = Row.UserId.ToString();
-                                Session["username"] = Row.UserName.ToString();
-                                Session["Rolname"] = Row.Rolname.ToString();
-                                Session.Timeout = 30;
 
-                                string idcuenta = string.Empty; 
+                         if (query.Count() > 0)
+                         {
+                             var datos = query.ToList();
+                             foreach (var Row in datos)
+                             {
+                                 Session["UserId"] = Row.UserId.ToString();
+                                 Session["username"] = Row.UserName.ToString();
+                                 Session["Rolname"] = Row.Rolname.ToString();
+                                 Session.Timeout = 30;
 
-                                var querycuenta = from usrcnt in db.cnt03_cuenta_usuario
-                                                  join usr2 in db.AspNetUsers on usrcnt.UserId equals usr2.Id
-                                                  join cnt in db.cnt01_cuenta on usrcnt.cnt01_id equals cnt.cnt01_id
-                                                  where usr2.Id == Row.UserId.ToString()                                                                                               
-                                            select new
-                                            {
-                                                id_cuenta = usrcnt.cnt01_id
-                                            };
-                                if (querycuenta.Count() > 0)
-                                {
-                                    var datoscuenta = querycuenta.ToList();
-                                    foreach (var Rowcuenta in datoscuenta) {
-                                        idcuenta = Rowcuenta.id_cuenta.ToString();
-                                    }
-                                }
+                                 string idcuenta = string.Empty;
+                                 string nombreusuario = string.Empty;
 
-                                Session["CuentaId"] = idcuenta;
+                                 var querycuenta = from usrcnt in db.cnt03_cuenta_usuario
+                                                   join usr2 in db.AspNetUsers on usrcnt.UserId equals usr2.Id
+                                                   join usrinfo in db.usr01_infopersonal on usr2.Id equals usrinfo.UserId
+                                                   join cnt in db.cnt01_cuenta on usrcnt.cnt01_id equals cnt.cnt01_id
+                                                   where usr2.Id == Row.UserId.ToString()
+                                                   select new
+                                                   {
+                                                       id_cuenta = usrcnt.cnt01_id,
+                                                       nombreusuario = usrinfo.usr01_nombre +"  "+ usrinfo.usr01_apellido 
+                                                   };
+                                 if (querycuenta.Count() > 0)
+                                 {
+                                     var datoscuenta = querycuenta.ToList();
+                                     foreach (var Rowcuenta in datoscuenta)
+                                     {
+                                         idcuenta = Rowcuenta.id_cuenta.ToString();
+                                         nombreusuario = Rowcuenta.nombreusuario.ToString();
+                                     }
+                                 }
+                                 Session["CuentaId"] = idcuenta;
+                                 Session["nmbrusr"] = nombreusuario;
 
-                               /* if (idcuenta != string.Empty)
-                                {*/
-                                    switch (Row.Rolname.ToString().ToLower())
-                                    {
-                                        case "admin":
-                                            urlretorno = "~/portal/admin/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
-                                            break;
-                                        case "manager":
-                                            urlretorno = "~/portal/manager/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
-                                            break;
-                                        case "user":
-                                            urlretorno = "~/portal/default/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
-                                            break;
-                                        default:
-                                            urlretorno = "~/portal/default/index";
-                                            Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
-                                            break;
-                                    }
-                               /* }
-                                else {
-                                    urlretorno = "~/completarinformacion/index";
-                                    Session["layout"] = "";
-                                */
-                            }
-                        }
+                                 if (idcuenta != string.Empty)
+                                 {
+                                     switch (Row.Rolname.ToString().ToLower())
+                                     {
+                                         case "admin":
+
+                                             Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
+                                             urlretorno = "~/portal/admin/index";
+                                             break;
+                                         case "manager":
+                                             Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
+                                             urlretorno = "~/portal/manager/index";
+                                             break;
+                                         case "user":
+                                             Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                             urlretorno = "~/portal/default/index";
+                                             break;
+                                         default:
+                                             Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
+                                             urlretorno = "~/portal/default/index";
+                                             break;
+                                     }
+                                 }
+                                 else
+                                 {
+                                     Session["layout"] = "";
+                                     urlretorno = "~/completarinformacion/InformacionUsuario/index";
+                                 }
+
+
+                             }
+                         }
+
                         return RedirectToLocal(urlretorno);
                     }
                     else
@@ -317,84 +331,13 @@ namespace mksolucion.Controllers
 
             if (result.Succeeded)
             {
-                var query = from usr in db.AspNetUsers
-                            join usrrl in db.AspNetUserRoles on usr.Id equals usrrl.UserId
-                            join rol in db.AspNetRoles on usrrl.RoleId equals rol.Id
-                            where usr.Id == userId
+                
+                return View("ConfirmEmail");
 
-                            select new
-                            {
-                                UserId = usr.Id,
-                                Rolname = rol.Name,
-                                usr.UserName
-                            };
-
-                string urlretorno = string.Empty;
-
-                if (query.Count() > 0)
-                {
-
-                    var datos = query.ToList();
-                    foreach (var Row in datos)
-                    {
-
-                        Session["UserId"] = Row.UserId.ToString();
-                        Session["username"] = Row.UserName.ToString();
-                        Session["Rolname"] = Row.Rolname.ToString();
-                        Session.Timeout = 30;
-
-                        string idcuenta = string.Empty;
-
-                        var querycuenta = from usrcnt in db.cnt03_cuenta_usuario
-                                          join usr2 in db.AspNetUsers on usrcnt.UserId equals usr2.Id
-                                          join cnt in db.cnt01_cuenta on usrcnt.cnt01_id equals cnt.cnt01_id
-                                          where usr2.Id == Row.UserId.ToString()
-                                          select new
-                                          {
-                                              id_cuenta = usrcnt.cnt01_id
-                                          };
-                        if (querycuenta.Count() > 0)
-                        {
-                            var datoscuenta = querycuenta.ToList();
-                            foreach (var Rowcuenta in datoscuenta)
-                            {
-                                idcuenta = Rowcuenta.id_cuenta.ToString();
-                            }
-                        }
-
-                        Session["CuentaId"] = idcuenta;
-
-                        if (idcuenta != string.Empty)
-                        {
-                            switch (Row.Rolname.ToString().ToLower())
-                            {
-                                case "admin":
-                                    
-                                    Session["layout"] = "~/Views/Shared/_LayoutAdmin.cshtml";
-                                    return View("~/portal/admin/index");
-                                    break;
-                                case "manager":
-                                    Session["layout"] = "~/Views/Shared/_LayoutManager.cshtml";
-                                    return View("~/portal/manager/index");
-                                    break;
-                                case "user":
-                                    Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
-                                    return View("~/portal/default/index");
-                                    break;
-                                default:
-                                    Session["layout"] = "~/Views/Shared/_LayoutUser.cshtml";
-                                    return View("~/portal/default/index");
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            Session["layout"] = "";
-                            return RedirectToAction("index", "InformacionUsuario", new { area = "completarinformacion" });
-                        }
-                    }
-                }
-
+            }
+            else 
+            {
+                var dato = result;
             }
             return RedirectToAction("index", "InformacionUsuario", new { area = "completarinformacion" });
         }

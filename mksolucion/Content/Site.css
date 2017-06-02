@@ -516,13 +516,16 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-errors {
     color: #e80c4d;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 12px;
 }
 
 .validation-summary-valid {
     display: none;
 }
 
+.field-error {
+    list-style:none; font-size:12px;
+}
 
 /* tables
 ----------------------------------------------------------*/

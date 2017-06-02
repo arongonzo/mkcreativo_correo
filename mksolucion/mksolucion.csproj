@@ -185,6 +185,7 @@
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacionlistacorreoController.cs" />
+    <Compile Include="Areas\portal\Controllers\CuentaClienteController.cs" />
     <Compile Include="Areas\portal\Controllers\Default1Controller.cs" />
     <Compile Include="Areas\portal\Controllers\DefaultController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadoCorreoController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Areas\portal\Controllers\pln02_tipoplanController.cs" />
     <Compile Include="Areas\portal\Controllers\ReportenotificacionesCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\rolesController.cs" />
+    <Compile Include="Areas\portal\Controllers\ServicioClienteController.cs" />
     <Compile Include="Areas\portal\Controllers\SoporteController.cs" />
     <Compile Include="Areas\portal\Controllers\TipoCampanaController.cs" />
     <Compile Include="Areas\portal\Controllers\TipocobroController.cs" />
@@ -222,6 +224,7 @@
     <Compile Include="Areas\portal\ViewModels\_AspNetUserRoles.cs" />
     <Compile Include="Areas\portal\ViewModels\_AspNetUsers.cs" />
     <Compile Include="Areas\portal\ViewModels\_cam02_tipocampana.cs" />
+    <Compile Include="Areas\portal\ViewModels\_cnt01_cuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_cnt02_tipocuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_con02_tipocontacto.cs" />
     <Compile Include="Areas\portal\ViewModels\_coninf01_pasocominfo.cs" />
@@ -237,6 +240,7 @@
     <Compile Include="Areas\portal\ViewModels\_pln03_tipocobro.cs" />
     <Compile Include="Areas\portal\ViewModels\_pnl02_tipoplan.cs" />
     <Compile Include="Areas\portal\Models\AspNetRoles.cs" />
+    <Compile Include="Areas\portal\ViewModels\_serv01_servicios.cs" />
     <Compile Include="context\AspNetUserClaims.cs" />
     <Compile Include="context\AspNetUserLogins.cs" />
     <Compile Include="Areas\portal\Models\AspNetUsers.cs" />
@@ -357,6 +361,10 @@
     <Compile Include="Migrations\201705312042057_actualizacionservicio.cs" />
     <Compile Include="Migrations\201705312042057_actualizacionservicio.Designer.cs">
       <DependentUpon>201705312042057_actualizacionservicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706011406138_actualizacion_cuentaCliente_20170601.cs" />
+    <Compile Include="Migrations\201706011406138_actualizacion_cuentaCliente_20170601.Designer.cs">
+      <DependentUpon>201706011406138_actualizacion_cuentaCliente_20170601.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -511,6 +519,8 @@
     <Content Include="Areas\portal\Views\Planes\Edit.cshtml" />
     <Content Include="Areas\completarinformacion\Views\InformacionUsuario\Index.cshtml" />
     <Content Include="Areas\completarinformacion\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\portal\Views\CuentaCliente\Index.cshtml" />
+    <Content Include="Areas\portal\Views\ServicioCliente\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -580,7 +590,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\portal\Views\Shared\" />
+    <Folder Include="Views\CuentaCliente\" />
     <Folder Include="Views\Planes\" />
+    <Folder Include="Views\ServicioCliente\" />
     <Folder Include="Views\Shared\plantillas\" />
     <Folder Include="Views\Tipocobro\" />
     <Folder Include="Views\TipoPlanes\" />
@@ -642,6 +654,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705312042057_actualizacionservicio.resx">
       <DependentUpon>201705312042057_actualizacionservicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011406138_actualizacion_cuentaCliente_20170601.resx">
+      <DependentUpon>201706011406138_actualizacion_cuentaCliente_20170601.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
