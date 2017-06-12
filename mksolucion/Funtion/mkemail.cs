@@ -17,7 +17,7 @@ namespace mksolucion.Funtion.Mail
         }
 
 
-        public static string Base_Mail_ServicioCliente(MailMessage message, string stx_Contenido_html, string Stx_Contenido_Text, string Llave_usuario, decimal tiponotificacion)
+        public static string Base_Mail_Cliente(MailMessage message, string stx_Contenido_html, string Stx_Contenido_Text, string Llave_usuario, decimal tiponotificacion)
         {
 
             ModelMK db = new ModelMK();

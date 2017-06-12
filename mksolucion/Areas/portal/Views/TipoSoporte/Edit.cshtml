@@ -68,8 +68,27 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.con02_ssl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.con02_ssl, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-8">
+
+                @(Html.Kendo().DropDownList()
+                  .Name("cbx_ssl")
+                  .DataTextField("Text")
+                  .DataValueField("Value")
+                  .Value(Model.con02_ssl.ToString())
+                  .BindTo(new List<SelectListItem>() {
+                      new SelectListItem() {
+                          Text = "Activar",
+                          Value = "1"
+                      },
+                      new SelectListItem() {
+                          Text = "Desactivar",
+                          Value = "0"
+                      }
+                  })
+                  .Value("1")
+                  .HtmlAttributes(new { style = "width: 100%" })
+                )
+                
                 @Html.ValidationMessageFor(model => model.con02_ssl, "", new { @class = "text-danger" })
             </div>
         </div>

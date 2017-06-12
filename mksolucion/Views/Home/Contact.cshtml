@@ -1,0 +1,135 @@
+﻿@model mksolucion.Models.con01_contacto
+
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+@section header
+{
+    <link href="@Url.Content("~/Content/forms.css")" rel="stylesheet" type="text/css" />
+
+<link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.dataviz.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.0/jquery.min.js"></script>
+
+<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/jquery.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/jszip.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/kendo.all.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
+
+<script src="../../Scripts/kendo.modernizr.custom.js"></script>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+}
+
+<section class="mbr-section article mbr-parallax-background mbr-after-navbar" id="msg-box8-c" style="background-image: url(../Content/assets/images/desert.jpg); padding-top: 120px; padding-bottom: 120px;">
+    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(34, 34, 34);">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title display-2">ARTICLE HEADER</h3>
+                <div class="lead"><p>esto es un banner</p></div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mbr-section article" id="msg-box3-1" style="background-color: rgb(242, 242, 242); padding-top: 30px; padding-bottom: 30px; min-height:400px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title">Contacto</h3>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("Contact", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" , @class = "form-whole" }))
+        {
+            @Html.AntiForgeryToken()
+            
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <h3>@ViewBag.Message</h3>
+            <div class="row whole-container">
+                <div class="col-md-6 whole-form-input-wrapper">
+                    @Html.TextBoxFor(model => model.con01_nombre, new { placeholder = "NOMBRE" })
+                    
+                </div>
+                <div class="col-md-6 whole-form-input-wrapper">
+
+                    @Html.TextBoxFor(model => model.con01_email, new { placeholder = "DIRECCIÓN EMAIL", type = "email" })
+                    
+
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-12 whole-form-input-wrapper">
+                    @Html.TextBoxFor(model => model.con01_asunto, new { placeholder = "ASUNTO" })
+                    
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-6 whole-form-input-wrapper">
+                    <div class="btn-group bootstrap-select _admin form-select" style="width: 100%;">
+                        @Html.DropDownList("con02_id", null, htmlAttributes: new { @class = "form-control " })
+                        
+                    </div>
+                </div>
+                <div class="col-md-6 whole-form-input-wrapper">
+                    <div class="btn-group bootstrap-select _admin form-select" style="width: 100%;">
+                        @Html.DropDownList("con03_id", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-12 textarea-container-huge">
+                    @Html.TextAreaFor(model => model.con01_mensaje, new { placeholder = "MENSAJE", rows="3"})
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-12 file-input-container no-inner-space">
+                    <div class="col-md-2 v-center">
+                        <label class="label">ADJUNTO</label>
+                    </div>
+                    
+                    <div class="col-md-10 v-center">
+                        <label for="file" class="js-styled-file-wrapper file-input-wrapper no-inner-space" style="padding-top:10px">
+                            <div class="label label-primary xs v-center col-md-3">
+                                Seleccionar archivo
+                                <input type="file" name="attachments[]" id="file" onchange="document.getElementById('FileName').value = this.value;" class="js-styled-file">
+                                
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" readonly id="FileName" />
+                            </div>
+                        </label>
+                        <small>(Extensiones de archivo permitidas: .jpg, .gif, .jpeg, .png)</small>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row whole-container">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong>Verificación anti-Spam</strong>
+                        </div>
+
+                        <div class="g-recaptcha" data-sitekey="6Lf45SQUAAAAAC7W_8h9m7lEo6AqU9gFu1gFFvmn"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <input type="submit" value="Enviar" class="btn btn-primary btn-md">
+            </div>
+
+            
+        }
+
+    </div>
+</section>
+ 

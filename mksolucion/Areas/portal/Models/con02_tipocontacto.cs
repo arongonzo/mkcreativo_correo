@@ -8,6 +8,13 @@
 
     public partial class con02_tipocontacto
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public con02_tipocontacto()
+        {
+            con01_contacto = new HashSet<con01_contacto>();
+        }
+
+        [Display(Name = "Tipo Soporte")]
         [ScaffoldColumn(false)]
         [Key]
         [Column(TypeName = "numeric")]
@@ -52,6 +59,9 @@
         [ScaffoldColumn(false)]
         [DataType(DataType.Date)]
         public DateTime? con02_ultimaactualizacion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<con01_contacto> con01_contacto { get; set; }
 
         public virtual gen01_estados gen01_estados { get; set; }
 

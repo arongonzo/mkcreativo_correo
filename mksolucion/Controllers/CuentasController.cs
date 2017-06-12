@@ -254,7 +254,7 @@ namespace mksolucion.Controllers
                     ModelMK db = new ModelMK();
 
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                     var callbackUrl = Url.Action(
+                    var callbackUrl = Url.Action(
                          "ConfirmEmail", "Cuentas", 
                          new { userId = user.Id, code = code }, 
                          protocol: Request.Url.Scheme);
@@ -289,7 +289,7 @@ namespace mksolucion.Controllers
                         }
                     }
 
-                    var mail = mkemail.Base_Mail_ServicioCliente(message, html, textplain, user.Id, dcm_tiponotificacion);
+                    var mail = mkemail.Base_Mail_Cliente(message, html, textplain, user.Id, dcm_tiponotificacion);
 
 
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

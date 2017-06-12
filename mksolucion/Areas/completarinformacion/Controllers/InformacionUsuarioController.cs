@@ -241,7 +241,6 @@ namespace mksolucion.Areas.completarinformacion.Controllers
                     db.usr01_infopersonal.Add(usr01_infopersonal);
                     db.SaveChanges();
 
-
                     string stx_Rol = Session["Rolname"].ToString();
                     string urlretorno = string.Empty;
 
@@ -267,8 +266,7 @@ namespace mksolucion.Areas.completarinformacion.Controllers
                             urlretorno = "~/portal/default/index";
                             break;
                     }
-
-                    return RedirectToAction(urlretorno);
+                    return Redirect(urlretorno);
                 }
             }
             catch (Exception ex)
@@ -278,7 +276,5 @@ namespace mksolucion.Areas.completarinformacion.Controllers
             }
             return View();
         }
-
-
     }
 }

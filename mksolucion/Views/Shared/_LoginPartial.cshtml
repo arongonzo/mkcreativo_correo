@@ -4,7 +4,7 @@
 {
     
 
-                using (Html.BeginForm("LogOff", "Users", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                using (Html.BeginForm("LogOff", "cuenta", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
                     }
@@ -28,18 +28,14 @@
                 @Html.ActionLink("Cuenta", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })
             </li>
         </ul>
-</li>
-
-
+    </li>
 }
 else
 {
-
         <li class="nav-item nav-btn">
             @Html.ActionLink("REGíSTRATE GRATIS", "Register", "Users", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link btn btn-color" })
             <!--<a class="nav-link btn btn-white btn-white-outline" href="https://mobirise.com/">DOWNLOAD</a>-->
         </li>
-
         <li class="nav-item">
             @Html.ActionLink("INGRESAR", "Login", "Users", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link link" })
         </li>

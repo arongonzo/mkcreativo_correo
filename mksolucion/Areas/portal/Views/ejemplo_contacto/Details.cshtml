@@ -1,0 +1,91 @@
+﻿@model mksolucion.Models.con01_contacto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>con01_contacto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_tipocontacto.con02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_tipocontacto.con02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con03_importancia.con03_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con03_importancia.con03_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serv01_servicios.ser01_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serv01_servicios.ser01_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_asunto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_asunto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_mensaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_mensaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_adjunto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_adjunto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.con01_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

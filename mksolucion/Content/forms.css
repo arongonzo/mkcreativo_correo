@@ -1,0 +1,158 @@
+﻿/* START whole form */
+
+.form-whole {
+  font-size: 12px;
+}
+
+.form-whole .whole-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.form-whole > .row:first-child > [class*=col-]:first-child > textarea,
+.form-whole > .row:first-child > [class*=col-]:first-child > input {
+  border-top-left-radius: 4px;
+}
+
+.form-whole > .row:first-child > [class*=col-]:last-child > textarea,
+.form-whole > .row:first-child > [class*=col-]:last-child > input {
+  border-top-right-radius: 4px;
+}
+
+.form-whole > .row:last-child > [class*=col-]:first-child > textarea,
+.form-whole > .row:last-child > [class*=col-]:first-child > input {
+  border-bottom-left-radius: 4px;
+}
+
+.form-whole > .row:last-child > [class*=col-]:last-child > textarea,
+.form-whole > .row:last-child > [class*=col-]:last-child > input {
+  border-bottom-right-radius: 4px;
+}
+
+.form-whole > .row > [class*=col-] + [class*=col-] textarea,
+.form-whole > .row > [class*=col-] + [class*=col-] input,
+.form-whole > .row > [class*=col-] + [class*=col-] .dropdown-toggle {
+  border-left: 1px solid transparent;
+}
+
+.form-whole > .row > [class*=col-] {
+  padding: 0;
+}
+
+.form-whole input[type=text],
+.form-whole input[type=email] {
+  height: 48px !important;
+}
+
+
+.form-whole input[type=text],
+.form-whole input[type=email],
+.form-whole textarea {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  outline: none;
+  resize: none;
+  z-index: 4;
+}
+
+.form-whole input[type=text]:focus,
+.form-whole input[type=email]:focus,
+.form-whole textarea:focus {
+  border-color: #929497 !important;
+  z-index: 5;
+}
+
+.admin .form-whole .form-select .dropdown-toggle {
+  border-color: #ddd;
+  border-radius: 0 !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+.admin .form-whole .form-select.bootstrap-select.open {
+  z-index: 5;
+}
+
+.admin .form-whole .form-select.bootstrap-select.open button {
+  box-shadow: none !important;
+  border-color: #929497 !important;
+}
+
+.form-whole textarea {
+  padding: 20px 15px;
+}
+
+
+.textarea-container-huge,
+.textarea-container-huge textarea {
+  height: 400px;
+}
+
+.file-input-container {
+  position: relative;
+  border: 1px solid #ddd;
+  background-color:#fff;
+}
+
+.file-input-container .file-input-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
+.file-input-container label {
+  margin: 0;
+}
+
+.file-input-container label.label {
+  padding: 15px;
+  color: #424242;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.file-input-container div.label {
+  position: relative;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: normal;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.file-input-wrapper input[type=text] {
+  height: 45px !important;
+  border: none;
+  color: #6d6d6d;
+  font-weight: normal;
+  margin-top: 0 !important;
+}
+
+.file-input-container input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 20px;
+  opacity: 0;
+}
+
+.file-input-container input[type=text]::-webkit-input-placeholder {
+  color: #6d6d6d;
+  font-weight: normal;
+}
+.file-input-container input[type=text]::-moz-placeholder {
+  color: #6d6d6d;
+  font-weight: normal;
+}
+.file-input-container input[type=text]:-moz-placeholder {
+  color: #6d6d6d;
+  font-weight: normal;
+}
+.file-input-container input[type=text]:-ms-input-placeholder {
+  color: #6d6d6d;
+  font-weight: normal;
+}
+/* END whole form */

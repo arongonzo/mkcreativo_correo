@@ -9,6 +9,12 @@ namespace mksolucion.Models
 
     public partial class serv01_servicios
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public serv01_servicios()
+        {
+            con01_contacto = new HashSet<con01_contacto>();
+        }
+
         [ScaffoldColumn(false)]
         [Key]
         [Column(TypeName = "numeric")]
@@ -43,5 +49,8 @@ namespace mksolucion.Models
         public virtual cnt01_cuenta cnt01_cuenta { get; set; }
 
         public virtual pln01_planes pln01_planes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<con01_contacto> con01_contacto { get; set; }
     }
 }

@@ -186,10 +186,14 @@
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacionlistacorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\CuentaClienteController.cs" />
+    <Compile Include="Areas\portal\Controllers\CuentaController.cs" />
     <Compile Include="Areas\portal\Controllers\Default1Controller.cs" />
     <Compile Include="Areas\portal\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\portal\Controllers\ejemplo_contactoController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadoCorreoController.cs" />
+    <Compile Include="Areas\portal\Controllers\EstadoMensajeController.cs" />
     <Compile Include="Areas\portal\Controllers\EstadosActivacionController.cs" />
+    <Compile Include="Areas\portal\Controllers\ImportanciaMailController.cs" />
     <Compile Include="Areas\portal\Controllers\InteresesController.cs" />
     <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
     <Compile Include="Areas\portal\Controllers\NotificacionesController.cs" />
@@ -209,7 +213,11 @@
     <Compile Include="Areas\portal\Controllers\UsuarioRolesController.cs" />
     <Compile Include="Areas\portal\Controllers\UsuariosController.cs" />
     <Compile Include="Areas\portal\Models\AspNetUserRoles.cs" />
+    <Compile Include="Areas\portal\Models\con01_contacto.cs" />
     <Compile Include="Areas\portal\Models\con02_tipocontacto.cs" />
+    <Compile Include="Areas\portal\Models\con03_importancia.cs" />
+    <Compile Include="Areas\portal\Models\con04_mensajepredef.cs" />
+    <Compile Include="Areas\portal\Models\con05_EstadoMensaje.cs" />
     <Compile Include="Areas\portal\Models\coninf01_pasocominfo.cs" />
     <Compile Include="Areas\portal\Models\crr03_areasegmento.cs" />
     <Compile Include="Areas\portal\Models\gen01_estados.cs" />
@@ -227,6 +235,8 @@
     <Compile Include="Areas\portal\ViewModels\_cnt01_cuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_cnt02_tipocuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_con02_tipocontacto.cs" />
+    <Compile Include="Areas\portal\ViewModels\_con03_importancia.cs" />
+    <Compile Include="Areas\portal\ViewModels\_con05_EstadoMensaje.cs" />
     <Compile Include="Areas\portal\ViewModels\_coninf01_pasocominfo.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr02_tipoclasificacion.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr03_areasegmento.cs" />
@@ -366,8 +376,21 @@
     <Compile Include="Migrations\201706011406138_actualizacion_cuentaCliente_20170601.Designer.cs">
       <DependentUpon>201706011406138_actualizacion_cuentaCliente_20170601.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706082127012_ActualizacionContacto_20160608.cs" />
+    <Compile Include="Migrations\201706082127012_ActualizacionContacto_20160608.Designer.cs">
+      <DependentUpon>201706082127012_ActualizacionContacto_20160608.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706091846488_actualizacionContacto.cs" />
+    <Compile Include="Migrations\201706091846488_actualizacionContacto.Designer.cs">
+      <DependentUpon>201706091846488_actualizacionContacto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706121944421_ActualizacionContacto20160612.cs" />
+    <Compile Include="Migrations\201706121944421_ActualizacionContacto20160612.Designer.cs">
+      <DependentUpon>201706121944421_ActualizacionContacto20160612.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CaptchaResponse.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -419,6 +442,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\forms.css" />
     <Content Include="Content\timeout-dialog.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -521,6 +545,17 @@
     <Content Include="Areas\completarinformacion\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\portal\Views\CuentaCliente\Index.cshtml" />
     <Content Include="Areas\portal\Views\ServicioCliente\Index.cshtml" />
+    <Content Include="Areas\portal\Views\ImportanciaMail\Index.cshtml" />
+    <Content Include="Areas\portal\Views\ejemplo_contacto\Create.cshtml" />
+    <Content Include="Areas\portal\Views\ejemplo_contacto\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\ejemplo_contacto\Details.cshtml" />
+    <Content Include="Areas\portal\Views\ejemplo_contacto\Edit.cshtml" />
+    <Content Include="Areas\portal\Views\ejemplo_contacto\Index.cshtml" />
+    <Content Include="Areas\portal\Views\EstadoMensaje\Index.cshtml" />
+    <Content Include="Areas\portal\Views\EstadoMensaje\Details.cshtml" />
+    <Content Include="Areas\portal\Views\EstadoMensaje\Create.cshtml" />
+    <Content Include="Areas\portal\Views\EstadoMensaje\Edit.cshtml" />
+    <Content Include="Areas\portal\Views\EstadoMensaje\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -579,6 +614,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutManager.cshtml" />
     <Content Include="Views\Home\TimeoutRedirect.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -589,13 +625,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\portal\Views\Cuenta\" />
     <Folder Include="Areas\portal\Views\Shared\" />
-    <Folder Include="Views\CuentaCliente\" />
-    <Folder Include="Views\Planes\" />
-    <Folder Include="Views\ServicioCliente\" />
+    <Folder Include="Views\EstadoMensaje\" />
     <Folder Include="Views\Shared\plantillas\" />
-    <Folder Include="Views\Tipocobro\" />
-    <Folder Include="Views\TipoPlanes\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704211418296_Primeraconfiguracion.resx">
@@ -657,6 +690,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706011406138_actualizacion_cuentaCliente_20170601.resx">
       <DependentUpon>201706011406138_actualizacion_cuentaCliente_20170601.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706082127012_ActualizacionContacto_20160608.resx">
+      <DependentUpon>201706082127012_ActualizacionContacto_20160608.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706091846488_actualizacionContacto.resx">
+      <DependentUpon>201706091846488_actualizacionContacto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706121944421_ActualizacionContacto20160612.resx">
+      <DependentUpon>201706121944421_ActualizacionContacto20160612.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

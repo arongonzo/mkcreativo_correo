@@ -36,6 +36,7 @@ namespace mksolucion.Areas.portal.Controllers
         }
 
 
+
         public ActionResult SessionTimeout()
         {
 

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<mksolucion.Models.con01_contacto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.con02_tipocontacto.con02_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.con03_importancia.con03_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serv01_servicios.ser01_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.con01_nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.con01_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.con01_asunto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.con01_mensaje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.con01_adjunto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.con02_tipocontacto.con02_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.con03_importancia.con03_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gen01_estados.gen01_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.serv01_servicios.ser01_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.con01_nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.con01_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.con01_asunto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.con01_mensaje)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.con01_adjunto)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.con01_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.con01_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.con01_id })
+        </td>
+    </tr>
+}
+
+</table>

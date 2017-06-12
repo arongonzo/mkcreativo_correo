@@ -28,7 +28,15 @@ namespace mksolucion.Models
         public virtual DbSet<cam07_datoSociales> cam07_datoSociales { get; set; }
         public virtual DbSet<cnt01_cuenta> cnt01_cuenta { get; set; }
         public virtual DbSet<cnt02_tipocuenta> cnt02_tipocuenta { get; set; }
+
+
+        public virtual DbSet<con01_contacto> con01_contacto { get; set; }
         public virtual DbSet<con02_tipocontacto> con02_tipocontacto { get; set; }
+        public virtual DbSet<con03_importancia> con03_importancia { get; set; }
+        public virtual DbSet<con04_mensajepredef> con04_mensajepredef { get; set; }
+        public virtual DbSet<con05_EstadoMensaje> con05_EstadoMensaje { get; set; }
+        
+
         public virtual DbSet<cnt03_cuenta_usuario> cnt03_cuenta_usuario { get; set; }
         public virtual DbSet<crr01_correos> crr01_correos { get; set; }
         public virtual DbSet<crr02_tipoclasificacion> crr02_tipoclasificacion { get; set; }
@@ -94,39 +102,6 @@ namespace mksolucion.Models
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
-
-            modelBuilder.Entity<usr01_infopersonal>()
-              .Property(e => e.usr01_id)
-              .HasPrecision(18, 0);
-
-            modelBuilder.Entity<usr02_estadocompletado>()
-              .Property(e => e.usr02_id)
-              .HasPrecision(18, 0);
-
-            modelBuilder.Entity<coninf01_pasocominfo>()
-               .Property(e => e.coninf01_id)
-               .HasPrecision(18, 0);
-
-            modelBuilder.Entity<con02_tipocontacto>()
-               .Property(e => e.con02_id)
-               .HasPrecision(18, 0);
-
-            modelBuilder.Entity<ntf01_notificaciones>()
-                .Property(e => e.ntf01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam01_campana>()
-                .Property(e => e.cam01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam01_campana>()
-                .Property(e => e.cnt01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam01_campana>()
-                .Property(e => e.cam02_id)
-                .HasPrecision(18, 0);
-
             modelBuilder.Entity<cam01_campana>()
                 .HasMany(e => e.cam07_datoSociales)
                 .WithRequired(e => e.cam01_campana)
@@ -141,62 +116,6 @@ namespace mksolucion.Models
                 .HasMany(e => e.lis01_lista)
                 .WithMany(e => e.cam01_campana)
                 .Map(m => m.ToTable("cam08_campanalistas").MapLeftKey("cam01_id").MapRightKey("lis01_id"));
-
-            modelBuilder.Entity<cam02_tipocampana>()
-                .Property(e => e.cam02_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam03_detallecampana>()
-                .Property(e => e.cam03_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam03_detallecampana>()
-                .Property(e => e.cam01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam05_configuracionadiocional>()
-                .Property(e => e.cam05_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam05_configuracionadiocional>()
-                .Property(e => e.cam06_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
-                .Property(e => e.cam06_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
-                .Property(e => e.cam06_tipoelemento)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
-                .Property(e => e.cam06_estado)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
-                .HasOptional(e => e.cam05_configuracionadiocional)
-                .WithRequired(e => e.cam06_tipoconfiguracionadicional);
-
-            modelBuilder.Entity<cam07_datoSociales>()
-                .Property(e => e.cam01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cam07_datoSociales>()
-                .Property(e => e.red01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cnt01_cuenta>()
-                .Property(e => e.cnt01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cnt01_cuenta>()
-                .Property(e => e.cnt02_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
-                .Property(e => e.ntf02_id)
-                .HasPrecision(18, 0);
 
             modelBuilder.Entity<cnt01_cuenta>()
                 .HasMany(e => e.cnt03_cuenta_usuario)
@@ -216,22 +135,6 @@ namespace mksolucion.Models
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<cnt02_tipocuenta>()
-                .Property(e => e.cnt02_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<cnt03_cuenta_usuario>()
-                .Property(e => e.cnt01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<crr01_correos>()
-                .Property(e => e.crr01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<crr01_correos>()
-                .Property(e => e.crr01_rut)
-                .HasPrecision(18, 0);
-
             modelBuilder.Entity<crr01_correos>()
                 .HasMany(e => e.crr05_interesCorreo)
                 .WithRequired(e => e.crr01_correos)
@@ -247,43 +150,15 @@ namespace mksolucion.Models
                 .WithMany(e => e.crr01_correos)
                 .Map(m => m.ToTable("lis05_listacorreo").MapLeftKey("crr01_id").MapRightKey("lis01_id"));
 
-            modelBuilder.Entity<crr02_tipoclasificacion>()
-                .Property(e => e.crr02_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<crr04_intereses>()
-                .Property(e => e.crr04_id)
-                .HasPrecision(18, 0);
-
             modelBuilder.Entity<crr04_intereses>()
                 .HasMany(e => e.crr05_interesCorreo)
                 .WithRequired(e => e.crr04_intereses)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<crr05_interesCorreo>()
-                .Property(e => e.crr01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<crr05_interesCorreo>()
-                .Property(e => e.crr04_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<crr06_organizacion>()
-                .Property(e => e.crr06_id)
-                .HasPrecision(18, 0);
-
             modelBuilder.Entity<crr06_organizacion>()
                 .HasMany(e => e.crr07_correoOrganizacion)
                 .WithRequired(e => e.crr06_organizacion)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<crr07_correoOrganizacion>()
-                .Property(e => e.crr01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<crr07_correoOrganizacion>()
-                .Property(e => e.crr06_id)
-                .HasPrecision(18, 0);
 
             modelBuilder.Entity<gen01_estados>()
                .HasMany(e => e.usr01_infopersonal)
@@ -373,9 +248,31 @@ namespace mksolucion.Models
                 .HasForeignKey(e => e.pln02_estado);
 
             modelBuilder.Entity<gen01_estados>()
+               .HasMany(e => e.con01_contacto)
+               .WithOptional(e => e.gen01_estados)
+               .HasForeignKey(e => e.con01_estado);
+
+            modelBuilder.Entity<gen01_estados>()
                .HasMany(e => e.con02_tipocontacto)
                .WithOptional(e => e.gen01_estados)
                .HasForeignKey(e => e.con02_estado);
+
+
+            modelBuilder.Entity<gen01_estados>()
+               .HasMany(e => e.con03_importancia)
+               .WithOptional(e => e.gen01_estados)
+               .HasForeignKey(e => e.con03_estado);
+
+             modelBuilder.Entity<gen01_estados>()
+               .HasMany(e => e.con04_mensajepredef)
+               .WithOptional(e => e.gen01_estados)
+               .HasForeignKey(e => e.con04_estado);
+
+             modelBuilder.Entity<gen01_estados>()
+                .HasMany(e => e.con05_EstadoMensaje)
+                .WithOptional(e => e.gen01_estados)
+                .HasForeignKey(e => e.con05_estado);
+
 
             modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
                 .HasMany(e => e.ntf01_notificaciones)
@@ -390,14 +287,6 @@ namespace mksolucion.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<lis01_lista>()
-                .Property(e => e.lis01_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<lis01_lista>()
-                .Property(e => e.lis04_id)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<lis01_lista>()
                 .HasMany(e => e.crr05_interesCorreo)
                 .WithRequired(e => e.lis01_lista)
                 .HasForeignKey(e => e.crr01_id)
@@ -408,6 +297,192 @@ namespace mksolucion.Models
                 .WithRequired(e => e.lis01_lista)
                 .HasForeignKey(e => e.crr01_id)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<con02_tipocontacto>()
+                .HasMany(e => e.con01_contacto)
+                .WithRequired(e => e.con02_tipocontacto)
+                .HasForeignKey(e => e.con02_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<serv01_servicios>()
+                .HasMany(e => e.con01_contacto)
+                .WithOptional(e => e.serv01_servicios)
+                .HasForeignKey(e => e.ser01_id);
+
+
+            modelBuilder.Entity<con03_importancia>()
+                .HasMany(e => e.con01_contacto)
+                .WithRequired(e => e.con03_importancia)
+                .HasForeignKey(e => e.con03_id)
+                .WillCascadeOnDelete(false);
+            
+            modelBuilder.Entity<usr01_infopersonal>()
+              .Property(e => e.usr01_id)
+              .HasPrecision(18, 0);
+
+            modelBuilder.Entity<usr02_estadocompletado>()
+              .Property(e => e.usr02_id)
+              .HasPrecision(18, 0);
+
+            modelBuilder.Entity<coninf01_pasocominfo>()
+               .Property(e => e.coninf01_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<con01_contacto>()
+               .Property(e => e.con01_id)
+               .HasPrecision(18, 0);
+            
+            modelBuilder.Entity<con01_contacto>()
+               .Property(e => e.con02_id)
+               .HasPrecision(18, 0);
+            
+            modelBuilder.Entity<con01_contacto>()
+               .Property(e => e.con03_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<con01_contacto>()
+               .Property(e => e.ser01_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<con02_tipocontacto>()
+               .Property(e => e.con02_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<con03_importancia>()
+               .Property(e => e.con03_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<con04_mensajepredef>()
+               .Property(e => e.con04_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<con05_EstadoMensaje>()
+               .Property(e => e.con05_id)
+               .HasPrecision(18, 0);
+            
+            modelBuilder.Entity<ntf01_notificaciones>()
+                .Property(e => e.ntf01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam01_campana>()
+                .Property(e => e.cam01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam01_campana>()
+                .Property(e => e.cnt01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam01_campana>()
+                .Property(e => e.cam02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam02_tipocampana>()
+                .Property(e => e.cam02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam03_detallecampana>()
+                .Property(e => e.cam03_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam03_detallecampana>()
+                .Property(e => e.cam01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam05_configuracionadiocional>()
+                .Property(e => e.cam05_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam05_configuracionadiocional>()
+                .Property(e => e.cam06_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
+                .Property(e => e.cam06_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
+                .Property(e => e.cam06_tipoelemento)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
+                .Property(e => e.cam06_estado)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam06_tipoconfiguracionadicional>()
+                .HasOptional(e => e.cam05_configuracionadiocional)
+                .WithRequired(e => e.cam06_tipoconfiguracionadicional);
+
+            modelBuilder.Entity<cam07_datoSociales>()
+                .Property(e => e.cam01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cam07_datoSociales>()
+                .Property(e => e.red01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cnt01_cuenta>()
+                .Property(e => e.cnt01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cnt01_cuenta>()
+                .Property(e => e.cnt02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
+                .Property(e => e.ntf02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cnt02_tipocuenta>()
+                .Property(e => e.cnt02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<cnt03_cuenta_usuario>()
+                .Property(e => e.cnt01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr01_correos>()
+                .Property(e => e.crr01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr01_correos>()
+                .Property(e => e.crr01_rut)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr02_tipoclasificacion>()
+                .Property(e => e.crr02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr04_intereses>()
+                .Property(e => e.crr04_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr05_interesCorreo>()
+                .Property(e => e.crr01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr05_interesCorreo>()
+                .Property(e => e.crr04_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr06_organizacion>()
+                .Property(e => e.crr06_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr07_correoOrganizacion>()
+                .Property(e => e.crr01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<crr07_correoOrganizacion>()
+                .Property(e => e.crr06_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<lis01_lista>()
+                .Property(e => e.lis01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<lis01_lista>()
+                .Property(e => e.lis04_id)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<lis02_clasificacion>()
                 .Property(e => e.lis02_id)

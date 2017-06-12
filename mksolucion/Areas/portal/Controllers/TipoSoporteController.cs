@@ -96,10 +96,19 @@ namespace mksolucion.Areas.portal.Controllers
         [Authorization(UserRoles.Admin)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "con02_nombre,con02_descripcion,con02_usuariocredencial,con02_usuariocredencialclave,con02_host,con02_port,con02_ssl")] con02_tipocontacto con02_tipocontacto)
+        public ActionResult Create(FormCollection values)
         {
             if (ModelState.IsValid)
             {
+                con02_tipocontacto con02_tipocontacto = new con02_tipocontacto();
+
+                con02_tipocontacto.con02_nombre = values["con02_nombre"];
+                con02_tipocontacto.con02_descripcion = values["con02_descripcion"];
+                con02_tipocontacto.con02_host = values["con02_host"];
+                con02_tipocontacto.con02_port = values["con02_port"];
+                con02_tipocontacto.con02_ssl = Convert.ToInt32(values["cbx_ssl"]);
+                con02_tipocontacto.con02_usuariocredencial = values["con02_usuariocredencial"];
+                con02_tipocontacto.con02_usuariocredencialclave = values["con02_usuariocredencialclave"];
 
                 con02_tipocontacto.con02_estado = 1;
                 con02_tipocontacto.con02_fechacreacion = DateTime.Now;
@@ -111,7 +120,7 @@ namespace mksolucion.Areas.portal.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(con02_tipocontacto);
+            return View(values);
         }
 
         // GET: configuracion/tipoplan/Edit/5
