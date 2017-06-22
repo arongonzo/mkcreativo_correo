@@ -282,7 +282,7 @@ namespace mksolucion.Models
 
             modelBuilder.Entity<AspNetUsers>()
                 .HasMany(e => e.ntf01_notificaciones)
-                .WithRequired(e => e.AspNetUsers)
+                .WithOptional(e => e.AspNetUsers)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
 

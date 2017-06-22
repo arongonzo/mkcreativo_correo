@@ -1,0 +1,66 @@
+﻿@model mksolucion.Models.con04_mensajepredef
+
+@{
+    ViewBag.Title = "Detalle Mensajes Predefinidos de Contacto";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Detalle Mensajes Predefinidos de Contacto</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con04_accesoRapido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con04_accesoRapido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con04_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con04_descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con04_Asunto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con04_Asunto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con04_mensajetxt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con04_mensajetxt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con04_mensajehtml)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con04_mensajehtml)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.con04_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

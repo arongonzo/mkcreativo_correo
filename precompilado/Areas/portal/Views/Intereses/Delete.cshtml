@@ -1,0 +1,49 @@
+﻿@model mksolucion.Models.crr04_intereses
+
+@{
+    ViewBag.Title = "Eliminar Tipos de Intereses de correo";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Eliminar Tipos de Intereses de correo</h2>
+
+<h3>¿Esta segurio de eliminar este registro?</h3>
+<div>
+    <h4>crr04_intereses</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr04_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr04_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr04_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr04_descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

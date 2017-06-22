@@ -1,0 +1,43 @@
+﻿@model mksolucion.Models.crr02_tipoclasificacion
+
+@{
+    ViewBag.Title = "Detalle clasificación de correos";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Detalle clasificación de correos</h2>
+
+<div>
+    <h4>crr02_tipoclasificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr02_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.crr02_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

@@ -1,0 +1,97 @@
+﻿@model mksolucion.Models.con01_contacto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>con01_contacto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_tipocontacto.con02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_tipocontacto.con02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con03_importancia.con03_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con03_importancia.con03_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serv01_servicios.ser01_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serv01_servicios.ser01_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_asunto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_asunto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_mensaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_mensaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con01_adjunto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con01_adjunto)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

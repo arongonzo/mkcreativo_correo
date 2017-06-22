@@ -1,0 +1,43 @@
+﻿@model mksolucion.Models.con05_EstadoMensaje
+
+@{
+    ViewBag.Title = "Detalle de Estados de Mensaje";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Detalle de Estados de Mensaje</h2>
+
+<div>
+    <h4>con05_EstadoMensaje</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con05_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con05_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con05_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con05_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.con05_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

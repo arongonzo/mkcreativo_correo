@@ -1,0 +1,43 @@
+﻿@model mksolucion.Models.crr03_areasegmento
+
+@{
+    ViewBag.Title = "Detalle de Area o Segmentos de correos";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Detalle de Area o Segmentos de correos</h2>
+
+<div>
+    <h4>crr03_areasegmento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr03_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr03_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr03_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr03_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.crr03_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

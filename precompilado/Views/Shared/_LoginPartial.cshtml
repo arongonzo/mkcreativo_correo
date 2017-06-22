@@ -1,0 +1,42 @@
+﻿
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    
+
+                using (Html.BeginForm("LogOff", "cuenta", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    }
+                    <li style ="float:right">
+                        <a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a>
+                    </li>
+    
+    <li style="float:right">
+        @Html.ActionLink("Hola " + @Session["nmbrusr"].ToString() + "!", "Index", "portalcliente", routeValues: null, htmlAttributes: new { title = "Portal Clientes", @class = "nav-link link dropdown-toggle", data_toggle = "dropdown-submenu", aria_expanded = "true" })
+        <ul>
+            <li>
+                @Html.ActionLink("Soporte", "Index", "soporte", new { area = "portal" }, new { @class = "dropdown-item" })
+            </li>
+            <li>
+                @Html.ActionLink("Notificaciones", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item" })
+            </li>
+            <li>
+                @Html.ActionLink("Perfil", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })
+            </li>
+            <li>
+                @Html.ActionLink("Cuenta", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })
+            </li>
+        </ul>
+    </li>
+}
+else
+{
+        <li class="nav-item nav-btn">
+            @Html.ActionLink("REGíSTRATE GRATIS", "Register", "Users", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link btn btn-color" })
+            <!--<a class="nav-link btn btn-white btn-white-outline" href="https://mobirise.com/">DOWNLOAD</a>-->
+        </li>
+        <li class="nav-item">
+            @Html.ActionLink("INGRESAR", "Login", "Users", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link link" })
+        </li>
+        }

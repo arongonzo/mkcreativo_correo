@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = Session["layout"].ToString();
+}
+
+
+
+<h2>SetSession</h2>
+<div>@(Session["Test"] == null ? "empty" : Session["Test"].ToString())</div>
+
+<input type="button" value="Click Here" id="btn1" />
+
+

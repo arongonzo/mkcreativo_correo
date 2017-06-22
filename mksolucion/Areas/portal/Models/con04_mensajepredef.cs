@@ -26,10 +26,10 @@
         public string con04_Asunto { get; set; }
 
         [Display(Name = "Mensaje Plano")]
-        public string con04_mesnajetxt { get; set; }
+        public string con04_mensajetxt { get; set; }
 
         [Display(Name = "Mensaje Html")]
-        public string con04_mesnajehtml { get; set; }
+        public string con04_mensajehtml { get; set; }
         
         [ScaffoldColumn(false)]
         [Display(Name = "Estado")]

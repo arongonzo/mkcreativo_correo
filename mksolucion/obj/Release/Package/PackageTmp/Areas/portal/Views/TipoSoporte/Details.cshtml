@@ -1,0 +1,80 @@
+﻿@model mksolucion.Models.con02_tipocontacto
+
+@{
+    ViewBag.Title = "Detalle Tipo de Plan";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Detalle de Tipo de Plan </h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_usuariocredencial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_usuariocredencial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_usuariocredencialclave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_usuariocredencialclave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_host)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_host)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_port)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_port)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_ssl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_ssl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.con02_id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

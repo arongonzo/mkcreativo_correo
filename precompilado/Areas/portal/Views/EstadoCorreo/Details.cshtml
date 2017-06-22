@@ -1,0 +1,42 @@
+﻿@model mksolucion.Models.crr08_estadoCorreo
+
+@{
+    ViewBag.Title = "Detalle estado de correo";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Detalle estado de correo</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr08_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr08_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.crr08_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crr08_descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.crr08_id }) |
+    @Html.ActionLink("Volver Al Listado", "Index")
+</p>

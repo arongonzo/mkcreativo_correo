@@ -1,0 +1,20 @@
+﻿
+@model mksolucion.Models.ntf01_notificaciones
+
+@{
+    ViewBag.Title = "Detalle Tipo de Plan";
+    Layout = Session["layout"].ToString();
+    ViewBag.content = "";
+}
+
+<div>
+    <hr />
+        @Html.DisplayFor(model => model.ntf01_asunto)
+        <br />
+            @{ WriteLiteral(Model.ntf01_contenido);}
+    <hr />    
+</div>
+<p>
+
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Importancia Email";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Importancia Email</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+
+@(Html.Kendo().Grid<mksolucion.Models._con03_importancia>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+        columns.Bound(c => c.con03_nombre);
+        columns.Bound(c => c.con03_descripcion);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .ColumnMenu()
+      .Pageable()
+      .Navigatable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.MultipleColumn);
+      })
+      .Filterable()
+      .Scrollable(scrollable => scrollable.Enabled(false))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("con03_importancia_Read", "ImportanciaMail"))
+      )
+)

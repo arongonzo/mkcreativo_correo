@@ -1,0 +1,350 @@
+﻿@model mksolucion.Models.completarinfo.completarinfo
+
+@{
+    ViewBag.Title = "Crear Tipo de Soporte";
+    Layout = "~/Areas/completarinformacion/Views/Shared/_Layout.cshtml";
+}
+
+
+@section head
+{
+
+@Scripts.Render("~/bundles/jqueryval")
+
+    <style type="text/css">
+        .wizard-step {
+            display: none;
+        }
+
+        .wizard-confirmation {
+            display: none;
+        }
+
+        .wizard-nav {
+        }
+
+        .wizard-nav input[type="button"] {
+            width: 100px;
+        }
+    </style>
+}
+
+
+<div class="container" style="padding-top:60px">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center; padding:3px 30px 3px 30px">
+            <img src="~/Content/assets/images/logomailcreativo.jpg" />
+        </div>
+        <div class="col-lg-12" style="text-align:center">
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "signupform" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <div class="wizard-step" style="padding: 40px 0 40px 0">
+                            <div class="col-lg-12" style="text-align:center; padding-bottom:30px;">
+                                <h1>Binvenido a MailCreativo</h1>
+                                <p>Este de ser tu primer ingreso.<br />
+                                Cuentanos sobre ti, completando la siguiente información</p>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="wizard-step" style="padding: 40px 0 40px 0">
+                            <div class="col-lg-12" style="text-align:center ;padding-bottom:30px;">
+                                <h1>Acerca de Tu empresa</h1>
+                                <p>Cuentanos sobre tu empresa para generar un perfil</p>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Empresa, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Empresa, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Empresa, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Sitioweb, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Sitioweb, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Sitioweb, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="wizard-step" style="padding: 40px 0 40px 0">
+                            <div class="col-lg-12" style="text-align:center; padding-bottom:30px; ">
+                                <h1>AGREGA UNA DIRECCION</h1>
+                                <p>Cuentanos sobre tu empresa para generar un perfil</p>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.direccion1, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.direccion1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.direccion1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.direccion2, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.direccion2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.direccion2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Ciudad, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Ciudad, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Zipcode, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Zipcode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Pais, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-5">
+                                    @Html.EditorFor(model => model.Pais, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Pais, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="wizard-step" style="padding: 40px 0 40px 0">
+                            <div class="col-lg-12" style="text-align:center ;padding-bottom:30px;">
+                                <h1>SUSCRIBETE PROMOCIONES Y EVENTOS</h1>
+                                
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <p>Quieres recibir e-mail semanales con promociones y eventos especiales @Html.CheckBox("Quieres recibir e-mail semanales con promociones y eventos especiales", true) </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="wizard-step wizard-confirmation">
+                            <div id="field-summary"></div>
+                            <div id="validation-summary">
+                                <span class="message-error">Por favor corriga los siguientes errores</span>
+                                @Html.ValidationSummary(true)
+                            </div>
+                        </div>
+                        <div>
+                            <input type="button" id="wizard-next" value="Continuar" />
+                            <input type="button" id="wizard-submit" value="Finalizar" />
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+</div>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+
+        function DisplayStep() {
+
+            var selectedStep = null;
+            var firstInputError = $("input.input-validation-error:first"); // check for any invalid input fields
+            if (firstInputError.length) {
+                selectedStep = $(".wizard-confirmation");
+                if (selectedStep && selectedStep.length) { // the confirmation step should be initialized and selected if it exists present
+                    UpdateConfirmation();
+                }
+                else {
+                    selectedStep = firstInputError.closest(".wizard-step"); // the first step with invalid fields should be displayed
+                }
+            }
+            if (!selectedStep || !selectedStep.length) {
+                selectedStep = $(".wizard-step:first"); // display first step if no step has invalid fields
+            }
+
+            $(".wizard-step:visible").hide(); // hide the step that currently is visible
+            selectedStep.fadeIn(); // fade in the step that should become visible
+
+            // enable/disable the prev/next/submit buttons
+            if (selectedStep.prev().hasClass("wizard-step")) {
+                $("#wizard-prev").show();
+            }
+            else {
+                $("#wizard-prev").hide();
+            }
+            
+            if (selectedStep.next().hasClass("wizard-step")) {
+                $("#wizard-submit").hide();
+                $("#wizard-next").show();
+            }
+            else {
+                $("#wizard-next").hide();
+                $("#wizard-submit").show();
+            }
+        }
+
+
+        function PrevStep() {
+
+            var currentStep = $(".wizard-step:visible"); // get current step
+
+            if (currentStep.prev().hasClass("wizard-step")) { // is there a previous step?
+
+                currentStep.hide().prev().fadeIn();  // hide current step and display previous step
+
+                $("#wizard-submit").hide(); // disable wizard-submit button
+                $("#wizard-next").show(); // enable wizard-next button
+
+                if (!currentStep.prev().prev().hasClass("wizard-step")) { // disable wizard-prev button?
+                    $("#wizard-prev").hide();
+                }
+            }
+        }
+
+        function NextStep() {
+            var currentStep = $(".wizard-step:visible"); // get current step
+            var validator = $("#signupform").validate(); // get validator
+            var valid = true;
+            
+            var validationSummary = $("#validation-summary");
+            if (!validationSummary.find(".validation-summary-errors").length) { // check if validation errors container already exists, and if not create it
+                $('<div class="validation-summary-errors"><ul></ul></div>').appendTo(validationSummary);
+            }
+            var errorList = $(".validation-summary-errors ul");
+            errorList.find("li.field-error").remove();        // remove any field errors that might have been added earlier, leaving any server errors intact
+
+            currentStep.find("input").each(function () {
+                var input = this;
+                value = input.value;
+                if (input.type == "text") {
+                    var attrExist = input.getAttribute('data-val-required') || '';
+                    if (attrExist != "" || attrExist.length > 0) {
+                        if (input.value.length <= 0) {
+                            valid = false;
+                            var attrExist = input.getAttribute('data-val-required');
+                            errorList.append("<li class='field-error'><label>" + attrExist + "</label></li>");
+                        } else {
+                            var attrlen = input.getAttribute('data-val-length-min');
+                            if (input.value.length < attrlen) {
+                                valid = false;
+                                var attrlen = input.getAttribute('data-val-length');
+                                errorList.append("<li class='field-error'><label>" + attrlen + "</label></li>");
+                            }
+                        }
+                    } 
+                }
+                });
+                if (!valid) {
+                    $('.field-validation-error').each(function () {
+                        var element = this;
+                        $('<li class="field-error">' + element.innerText + '</li>').appendTo(errorList); // add the current field errors
+                    });
+                    if (errorList.find("li").length)
+                    {
+                        $(".wizard-confirmation").show();
+                        $("#validation-summary span").show();
+                    }
+                    else {
+                        $("#validation-summary span").hide();
+                    }
+                    return;
+                }
+            
+            if (currentStep.next().hasClass("wizard-step")) { // is there a next step?
+
+                if (currentStep.next().hasClass("wizard-confirmation")) { // is the next step the confirmation?
+                    /*UpdateConfirmation();*/
+                }
+                currentStep.hide().next().fadeIn();  // hide current step and display next step
+
+                /*$("#wizard-prev").show(); // enable wizard-prev button*/
+
+                if (!currentStep.next().next().next().hasClass("wizard-step")) { // disable wizard-next button and enable wizard-submit?
+                    $("#wizard-next").hide();
+                    $("#wizard-submit").show();
+                }
+            }
+        }
+
+        function Submit() {
+            if ($("form").valid()) { // validate all fields, including blank required fields
+                $("form").submit();
+            }
+            else {
+                DisplayStep(); // validation failed, redisplay correct step
+            }
+        }
+
+
+        function UpdateConfirmation() {
+            UpdateValidationSummary();
+            var fieldList = $("<ol/>");
+            $(".wizard-step:not(.wizard-confirmation)").find("input").each(function () {
+                var input = this;
+                var value;
+                switch (input.type) {
+                    case "hidden":
+                        return;
+                    case "checkbox":
+                        value = input.checked;
+                        break;
+                    default:
+                        value = input.value;
+                }
+                var name = $('label[for="' + input.name + '"]').text();
+                fieldList.append("<li><label>" + name + "</label><span>" + value + "&nbsp;</span></li>");
+            });
+            $("#field-summary").children().remove();
+            $("#field-summary").append(fieldList);
+        }
+
+        function UpdateValidationSummary() {
+            var validationSummary = $("#validation-summary");
+            if (!validationSummary.find(".validation-summary-errors").length) { // check if validation errors container already exists, and if not create it
+                $('<div class="validation-summary-errors"><ul></ul></div>').appendTo(validationSummary);
+            }
+            var errorList = $(".validation-summary-errors ul");
+            errorList.find("li.field-error").remove();        // remove any field errors that might have been added earlier, leaving any server errors intact
+            $('.field-validation-error').each(function () {
+                var element = this;
+                $('<li class="field-error">' + element.innerText + '</li>').appendTo(errorList); // add the current field errors
+            });
+
+            if (errorList.find("li").length) {
+                $("#validation-summary span").show();
+            }
+            else {
+                $("#validation-summary span").hide();
+            }
+        }
+
+        $(function () {
+            // attach click handlers to the nav buttons
+            //$("#wizard-next-1").click(function () { PrevStep(); });
+            $("#wizard-next").click(function () { NextStep(); });
+            $("#wizard-submit").click(function () { Submit(); });
+
+            // display the first step (or the confirmation if returned from server with errors)
+            DisplayStep();
+        });
+    </script>
+}
+

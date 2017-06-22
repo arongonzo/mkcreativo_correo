@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Area o Segmento de Correo";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Area o Segmento en correos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+
+@(Html.Kendo().Grid<mksolucion.Models._crr03_areasegmento>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+
+          columns.Template(c =>
+                Html.ActionLink("Editar", "Edit", new { Id = c.crr03_id })).ClientTemplate(Html.ActionLink(" ", "Edit", new { Id = "crr03_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_edit.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("crr03_id", "#=crr03_id#")).Width(24);
+          columns.Template(c =>
+                Html.ActionLink("Eliminar", "Delete", new { Id = c.crr03_id })).ClientTemplate(Html.ActionLink(" ", "Delete", new { Id = "crr03_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_delete.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("crr03_id", "#=crr03_id#")).Width(24);
+          columns.Template(c =>
+                Html.ActionLink("Detalle", "Details", new { Id = c.crr03_id })).ClientTemplate(Html.ActionLink(" ", "Details", new { Id = "crr03_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_detail.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("crr03_id", "#=crr03_id#")).Width(24);
+
+          
+        columns.Bound(c => c.crr03_nombre);
+        columns.Bound(c => c.crr03_descripcion);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .ColumnMenu()
+      .Pageable()
+      .Navigatable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.MultipleColumn);
+      })
+      .Filterable()
+      .Scrollable(scrollable => scrollable.Enabled(false))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("crr03_areasegmento_Read", "AreaSegmentoCorreo"))
+      )
+)

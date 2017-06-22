@@ -289,8 +289,9 @@ namespace mksolucion.Controllers
                         }
                     }
 
+                    /*
                     var mail = mkemail.Base_Mail_Cliente(message, html, textplain, user.Id, dcm_tiponotificacion);
-
+                    */
 
                     //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

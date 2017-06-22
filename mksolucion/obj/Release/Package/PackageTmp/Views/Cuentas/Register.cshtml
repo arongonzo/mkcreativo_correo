@@ -1,0 +1,89 @@
+﻿@model mksolucion.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Registrarse";
+}
+
+<section class="mbr-section article mbr-parallax-background mbr-after-navbar" id="msg-box8-c" style="background-image: url(../Content/images/desert.jpg); padding-top: 120px; padding-bottom: 120px;">
+    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(34, 34, 34);">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title display-2">ARTICLE HEADER</h3>
+                <div class="lead"><p>Article header with background image and parallax effect.</p></div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mbr-section article" id="msg-box3-1" style="background-color: #f6f8f9; padding-top: 30px; padding-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title">¡Cree su cuenta gratuita ahora mismo! </h3>
+                <div><p>Al registrarte en Mailcreativo podrás enviar hasta 1.000 emails al mes y subir una lista de contactos de hasta 500</p></div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="col-sm-7">
+                <div class="col-md-11 col-md-offset-1">
+                    <h4>
+                        ¿Por qué Elegir MailCreativo?
+                    </h4>
+                    <div class="lead">
+                        <p>Ofrecemos servicios gratuitos para el envió de mail con herramientas que te entregan la mejor solución, además entregamos servicio de Diseño con profesionales en el diseño y publicidad.</p>
+                        <p style="padding-top: 30px;">Quieres conocer mas ventajas de nuestro servicio</p>
+                    </div>
+
+                    <h4 style="padding-top: 30px; padding-bottom: 30px;">
+                        Ventajas MailCreativo
+                    </h4>
+                    <ul class="signup-guideline list-unstyled spacer-top-lg">
+                        <li><span class="guideline_icon typcn typcn-headphones typcn-lg color-primary typcn-signup-md spacer-right-xs"></span><span class="guideline_text">Servicio de atención al cliente</span></li>
+                        <li><span class="guideline_icon typcn typcn-mail typcn-lg color-primary typcn-signup-md spacer-right-xs"></span><span class="guideline_text"><b>1 millones de e-mails </b> enviados cada día</span></li>
+                        <li><span class="guideline_icon typcn typcn-volume-up typcn-lg color-primary typcn-signup-md spacer-right-xs"></span><span class="guideline_text">Envíe hasta <b>1.000 e-mails gratuitos</b> al mes</span></li>
+                        <li><span class="guideline_icon typcn typcn-volume-up typcn-lg color-primary typcn-signup-md spacer-right-xs"></span><span class="guideline_text"><b>Diseño personalizado</b> por profecionales en Marketing</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <section id="loginForm">
+                    @using (Html.BeginForm("Register", "Cuentas", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                            <div>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                            <div>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                            <div>
+                                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <input type="submit" class="btn btn-default" value="Registrarse" style="width:100%" />
+                            </div>
+                        </div>
+                    }
+                </section>
+            </div>
+        </div>
+</section>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

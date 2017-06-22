@@ -1,0 +1,109 @@
+﻿@model mksolucion.Models.pln01_planes
+
+@{
+    ViewBag.Title = "Nuevo Tipo de cuentas de clientes";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Nuevo Tipo de cuentas de clientes</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Ingrese los campos solicitados</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pln02_tipoplan.pln03_id, "Tipo de Cobro", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @(Html.Kendo().DropDownList()
+                    .Name("cbxtipocobro")
+                    .HtmlAttributes(new { style = "width:100%", required = "required" })
+                    .OptionLabel("Seleccione Tipo de Cobro")
+                    .DataTextField("pln03_nombre")
+                    .DataValueField("pln03_id")
+                    .DataSource(source =>
+                    {
+                        source.Read(read =>
+                        {
+                            read.Action("GetTipoCobro", "planes");
+                        }).ServerFiltering(true);
+                    })
+                )
+
+                @Html.ValidationMessageFor(model => model.pln02_tipoplan.pln03_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pln02_id, "Tipo de Plan", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @(Html.Kendo().DropDownList()
+                      .Name("cbxtipoplan")
+                        .HtmlAttributes(new { style = "width:100%", required = "required" })
+                      .OptionLabel("Seleccione Tipo de Plan")
+                        .DataTextField("pln02_nombre")
+                        .DataValueField("pln02_id")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetTipoPlan", "planes").Data("filtertipocobro");
+                          })
+                          .ServerFiltering(true);
+                      })
+                      .Enable(false)
+                      .AutoBind(false)
+                      .CascadeFrom("cbxtipocobro")
+                )
+                <script>
+                    function filtertipocobro() {
+                        return {
+                            tipocobro: $("#cbxtipocobro").val()
+                        };
+                    }
+                </script>
+
+                @Html.ValidationMessageFor(model => model.pln02_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pln01_nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pln01_nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pln01_nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pln01_detalle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pln01_detalle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pln01_detalle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pln01_html, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pln01_html, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.pln01_html, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear Nuevo" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver al listado", "Index")
+</div>

@@ -1,0 +1,27 @@
+﻿<h2>Notificaciones</h2>
+
+@(Html.Kendo().Grid<mksolucion.Models._ntf01_notificaciones>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Template(c => Html.ActionLink("Ver Notificación", "viewemail", new { Id = c.ntf01_id })).ClientTemplate(Html.ActionLink("Ver Notificación", "viewemail", new { Id = "ntf01_id" }, new { target = "_blank", @style = "background:url('../../Content/assets/Images/btn/btn_edit.png') no-repeat center left; display:inline-block; height: 24px; width:130px; padding-left:25px" }).ToHtmlString().Replace("ntf01_id", "#=ntf01_id#")).Width(150);
+          columns.Bound(c => c.ntf02_fechaenvio).Width(150);
+          columns.Bound(c => c.ntf01_asunto);
+      })
+      .ToolBar(toolbar => {
+            toolbar.Excel();
+            toolbar.Pdf();
+      })
+      .ColumnMenu()
+      .Pageable()
+      .Navigatable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.MultipleColumn);
+      })
+      .Filterable()
+      .Scrollable(scrollable => scrollable.Enabled(false))
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Read(read => read.Action("ntf01_notificaciones_Read", "Notificaciones"))
+      )
+)

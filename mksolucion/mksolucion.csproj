@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +22,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>bcb804bb</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +47,10 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -55,6 +63,10 @@
       <HintPath>..\lib\KENDOUIMVC\2016.3.1028.545\Kendo.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MailKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
+      <HintPath>..\packages\MailKit.1.16.1\lib\net451\MailKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -65,6 +77,10 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -96,8 +112,12 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="MimeKit, Version=1.16.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.1.16.1\lib\net451\MimeKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
@@ -106,6 +126,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -119,8 +140,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -157,15 +177,14 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -196,6 +215,7 @@
     <Compile Include="Areas\portal\Controllers\ImportanciaMailController.cs" />
     <Compile Include="Areas\portal\Controllers\InteresesController.cs" />
     <Compile Include="Areas\portal\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\portal\Controllers\MensajesPredefinidosController.cs" />
     <Compile Include="Areas\portal\Controllers\NotificacionesController.cs" />
     <Compile Include="Areas\portal\Controllers\pasoscompletarinformacionController.cs" />
     <Compile Include="Areas\portal\Controllers\PlanesController.cs" />
@@ -236,6 +256,7 @@
     <Compile Include="Areas\portal\ViewModels\_cnt02_tipocuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_con02_tipocontacto.cs" />
     <Compile Include="Areas\portal\ViewModels\_con03_importancia.cs" />
+    <Compile Include="Areas\portal\ViewModels\_con04_mensajepredef.cs" />
     <Compile Include="Areas\portal\ViewModels\_con05_EstadoMensaje.cs" />
     <Compile Include="Areas\portal\ViewModels\_coninf01_pasocominfo.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr02_tipoclasificacion.cs" />
@@ -387,6 +408,10 @@
     <Compile Include="Migrations\201706121944421_ActualizacionContacto20160612.cs" />
     <Compile Include="Migrations\201706121944421_ActualizacionContacto20160612.Designer.cs">
       <DependentUpon>201706121944421_ActualizacionContacto20160612.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706161357493_AcualizacionMensajePredefinidos20160616.cs" />
+    <Compile Include="Migrations\201706161357493_AcualizacionMensajePredefinidos20160616.Designer.cs">
+      <DependentUpon>201706161357493_AcualizacionMensajePredefinidos20160616.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -556,6 +581,12 @@
     <Content Include="Areas\portal\Views\EstadoMensaje\Create.cshtml" />
     <Content Include="Areas\portal\Views\EstadoMensaje\Edit.cshtml" />
     <Content Include="Areas\portal\Views\EstadoMensaje\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\MensajesPredefinidos\Index.cshtml" />
+    <Content Include="Areas\portal\Views\MensajesPredefinidos\Details.cshtml" />
+    <Content Include="Areas\portal\Views\MensajesPredefinidos\Create.cshtml" />
+    <Content Include="Areas\portal\Views\MensajesPredefinidos\Edit.cshtml" />
+    <Content Include="Areas\portal\Views\MensajesPredefinidos\Delete.cshtml" />
+    <None Include="Properties\PublishProfiles\mailcreativo.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -615,6 +646,8 @@
     <Content Include="Views\Shared\_LayoutManager.cshtml" />
     <Content Include="Views\Home\TimeoutRedirect.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ContactFinish.cshtml" />
+    <Content Include="Views\Emails\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
@@ -627,7 +660,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\portal\Views\Cuenta\" />
     <Folder Include="Areas\portal\Views\Shared\" />
-    <Folder Include="Views\EstadoMensaje\" />
+    <Folder Include="Views\MensajesPredefinidos\" />
     <Folder Include="Views\Shared\plantillas\" />
   </ItemGroup>
   <ItemGroup>
@@ -700,6 +733,9 @@
     <EmbeddedResource Include="Migrations\201706121944421_ActualizacionContacto20160612.resx">
       <DependentUpon>201706121944421_ActualizacionContacto20160612.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706161357493_AcualizacionMensajePredefinidos20160616.resx">
+      <DependentUpon>201706161357493_AcualizacionMensajePredefinidos20160616.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -730,6 +766,13 @@
       <UserProperties UseCdnSupport="True" />
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Habilite la restauración del paquete NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

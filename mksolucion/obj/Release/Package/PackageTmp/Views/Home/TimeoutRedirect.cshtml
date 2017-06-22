@@ -1,0 +1,38 @@
+﻿<meta http-equiv="refresh" content="5;url=/Cuentas/Login/" />
+
+<h2>
+    Sorry, but your session has timed out. You'll be redirected to the Log On page in 5 seconds...
+</h2>
+
+<script>
+
+    function checkTimeout(data) {
+        var thereIsStillTime = true;
+
+        if (data) {
+            if (data.responseText) {
+                if ((data.responseText.indexOf("<title>Log On</title>") > -1) || (data.responseText.indexOf("<title>Object moved</title>") > -1) || (data.responseText === '"_Logon_"')) thereIsStillTime = false;
+            } else {
+                if (data == "_Logon_") thereIsStillTime = false;
+            }
+
+            if (!thereIsStillTime) {
+                window.location.href = "/Home/TimeoutRedirect";
+            }
+        } else {
+            $.ajax({
+                url: "/Home/CheckTimeout/",
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                async: false,
+                complete: function (result) {
+                    thereIsStillTime = checkTimeout(result);
+                }
+            });
+        }
+
+        return thereIsStillTime;
+    }
+
+</script>

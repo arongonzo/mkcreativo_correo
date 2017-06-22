@@ -1,0 +1,88 @@
+﻿@model mksolucion.Models.con02_tipocontacto
+
+@{
+    ViewBag.Title = "Eliminar Tipo de Soporte";
+    Layout = Session["layout"].ToString();
+}
+
+<h2>Eliminar Tipo de Soporte</h2>
+
+<h3>¿Esta segurio de eliminar este registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gen01_estados.gen01_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gen01_estados.gen01_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_usuariocredencial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_usuariocredencial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_usuariocredencialclave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_usuariocredencialclave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_host)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_host)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_port)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_port)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.con02_ssl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.con02_ssl)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>
