@@ -78,14 +78,14 @@ namespace mksolucion.Funtion.Mail
                 }
             }
 
-            var query = from msn in db.con04_mensajepredef
-                        where msn.con04_accesoRapido == AccesoRapido
+            var query = from msn in db.ntf03_mensajepredef
+                        where msn.ntf03_accesoRapido == AccesoRapido
 
                         select new
                         {
-                            Asunto = msn.con04_Asunto,
-                            Mensajetxt = msn.con04_mensajetxt,
-                            Mensajehtml = msn.con04_mensajehtml
+                            Asunto = msn.ntf03_Asunto,
+                            Mensajetxt = msn.ntf03_mensajetxt,
+                            Mensajehtml = msn.ntf03_mensajehtml
                         };
 
             if (query.Count() > 0)
@@ -205,14 +205,14 @@ namespace mksolucion.Funtion.Mail
                 }
             }
 
-            var query = from msn in db.con04_mensajepredef
-                        where msn.con04_accesoRapido == AccesoRapido
+            var query = from msn in db.ntf03_mensajepredef
+                        where msn.ntf03_accesoRapido == AccesoRapido
 
                         select new
                         {
-                            Asunto = msn.con04_Asunto,
-                            Mensajetxt = msn.con04_mensajetxt,
-                            Mensajehtml = msn.con04_mensajehtml
+                            Asunto = msn.ntf03_Asunto,
+                            Mensajetxt = msn.ntf03_mensajetxt,
+                            Mensajehtml = msn.ntf03_mensajehtml
                         };
 
            if (query.Count() > 0)

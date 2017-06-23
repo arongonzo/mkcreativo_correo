@@ -204,6 +204,7 @@
     <Compile Include="Areas\portal\Controllers\AreaSegmentoCorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacioncorreoController.cs" />
     <Compile Include="Areas\portal\Controllers\clasificacionlistacorreoController.cs" />
+    <Compile Include="Areas\portal\Controllers\CombosController.cs" />
     <Compile Include="Areas\portal\Controllers\CuentaClienteController.cs" />
     <Compile Include="Areas\portal\Controllers\CuentaController.cs" />
     <Compile Include="Areas\portal\Controllers\Default1Controller.cs" />
@@ -236,7 +237,7 @@
     <Compile Include="Areas\portal\Models\con01_contacto.cs" />
     <Compile Include="Areas\portal\Models\con02_tipocontacto.cs" />
     <Compile Include="Areas\portal\Models\con03_importancia.cs" />
-    <Compile Include="Areas\portal\Models\con04_mensajepredef.cs" />
+    <Compile Include="Areas\portal\Models\ntf03_mensajepredef.cs" />
     <Compile Include="Areas\portal\Models\con05_EstadoMensaje.cs" />
     <Compile Include="Areas\portal\Models\coninf01_pasocominfo.cs" />
     <Compile Include="Areas\portal\Models\crr03_areasegmento.cs" />
@@ -256,7 +257,7 @@
     <Compile Include="Areas\portal\ViewModels\_cnt02_tipocuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_con02_tipocontacto.cs" />
     <Compile Include="Areas\portal\ViewModels\_con03_importancia.cs" />
-    <Compile Include="Areas\portal\ViewModels\_con04_mensajepredef.cs" />
+    <Compile Include="Areas\portal\ViewModels\_ntf03_mensajepredef.cs" />
     <Compile Include="Areas\portal\ViewModels\_con05_EstadoMensaje.cs" />
     <Compile Include="Areas\portal\ViewModels\_coninf01_pasocominfo.cs" />
     <Compile Include="Areas\portal\ViewModels\_crr02_tipoclasificacion.cs" />
@@ -412,6 +413,10 @@
     <Compile Include="Migrations\201706161357493_AcualizacionMensajePredefinidos20160616.cs" />
     <Compile Include="Migrations\201706161357493_AcualizacionMensajePredefinidos20160616.Designer.cs">
       <DependentUpon>201706161357493_AcualizacionMensajePredefinidos20160616.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706222118304_actualizacionMensajeRapidos20170622.cs" />
+    <Compile Include="Migrations\201706222118304_actualizacionMensajeRapidos20170622.Designer.cs">
+      <DependentUpon>201706222118304_actualizacionMensajeRapidos20170622.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -658,6 +663,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\portal\Views\Combos\" />
     <Folder Include="Areas\portal\Views\Cuenta\" />
     <Folder Include="Areas\portal\Views\Shared\" />
     <Folder Include="Views\MensajesPredefinidos\" />
@@ -735,6 +741,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706161357493_AcualizacionMensajePredefinidos20160616.resx">
       <DependentUpon>201706161357493_AcualizacionMensajePredefinidos20160616.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706222118304_actualizacionMensajeRapidos20170622.resx">
+      <DependentUpon>201706222118304_actualizacionMensajeRapidos20170622.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

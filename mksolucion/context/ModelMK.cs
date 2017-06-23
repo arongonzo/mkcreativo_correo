@@ -28,15 +28,10 @@ namespace mksolucion.Models
         public virtual DbSet<cam07_datoSociales> cam07_datoSociales { get; set; }
         public virtual DbSet<cnt01_cuenta> cnt01_cuenta { get; set; }
         public virtual DbSet<cnt02_tipocuenta> cnt02_tipocuenta { get; set; }
-
-
         public virtual DbSet<con01_contacto> con01_contacto { get; set; }
         public virtual DbSet<con02_tipocontacto> con02_tipocontacto { get; set; }
         public virtual DbSet<con03_importancia> con03_importancia { get; set; }
-        public virtual DbSet<con04_mensajepredef> con04_mensajepredef { get; set; }
         public virtual DbSet<con05_EstadoMensaje> con05_EstadoMensaje { get; set; }
-        
-
         public virtual DbSet<cnt03_cuenta_usuario> cnt03_cuenta_usuario { get; set; }
         public virtual DbSet<crr01_correos> crr01_correos { get; set; }
         public virtual DbSet<crr02_tipoclasificacion> crr02_tipoclasificacion { get; set; }
@@ -54,6 +49,7 @@ namespace mksolucion.Models
         public virtual DbSet<loc01_pais> loc01_pais { get; set; }
         public virtual DbSet<ntf01_notificaciones> ntf01_notificaciones { get; set; }
         public virtual DbSet<ntf02_tiponotificacioncorreo> ntf02_tiponotificacioncorreo { get; set; }
+        public virtual DbSet<ntf03_mensajepredef> ntf03_mensajepredef { get; set; }
         public virtual DbSet<pln01_planes> pln01_planes { get; set; }
         public virtual DbSet<pln02_tipoplan> pln02_tipoplan { get; set; }
         public virtual DbSet<pln03_tipocobro> pln03_tipocobro { get; set; }
@@ -66,12 +62,9 @@ namespace mksolucion.Models
         public virtual DbSet<coninf01_pasocominfo> coninf01_pasocominfo { get; set; }
         public virtual DbSet<usr02_estadocompletado> usr02_estadocompletado { get; set; }
         public virtual DbSet<usr01_infopersonal> usr01_infopersonal { get; set; }
-
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<AspNetUsers>()
@@ -257,16 +250,15 @@ namespace mksolucion.Models
                .WithOptional(e => e.gen01_estados)
                .HasForeignKey(e => e.con02_estado);
 
-
             modelBuilder.Entity<gen01_estados>()
                .HasMany(e => e.con03_importancia)
                .WithOptional(e => e.gen01_estados)
                .HasForeignKey(e => e.con03_estado);
 
              modelBuilder.Entity<gen01_estados>()
-               .HasMany(e => e.con04_mensajepredef)
+               .HasMany(e => e.ntf03_mensajepredef)
                .WithOptional(e => e.gen01_estados)
-               .HasForeignKey(e => e.con04_estado);
+               .HasForeignKey(e => e.ntf03_estado);
 
              modelBuilder.Entity<gen01_estados>()
                 .HasMany(e => e.con05_EstadoMensaje)
@@ -278,6 +270,12 @@ namespace mksolucion.Models
                 .HasMany(e => e.ntf01_notificaciones)
                 .WithRequired(e => e.ntf02_tiponotificacioncorreo)
                 .HasForeignKey(e => e. ntf02_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
+                .HasMany(e => e.ntf03_mensajepredef)
+                .WithRequired(e => e.ntf02_tiponotificacioncorreo)
+                .HasForeignKey(e => e.ntf02_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<AspNetUsers>()
@@ -352,9 +350,7 @@ namespace mksolucion.Models
                .Property(e => e.con03_id)
                .HasPrecision(18, 0);
 
-            modelBuilder.Entity<con04_mensajepredef>()
-               .Property(e => e.con04_id)
-               .HasPrecision(18, 0);
+            
 
             modelBuilder.Entity<con05_EstadoMensaje>()
                .Property(e => e.con05_id)
@@ -362,6 +358,22 @@ namespace mksolucion.Models
             
             modelBuilder.Entity<ntf01_notificaciones>()
                 .Property(e => e.ntf01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<ntf01_notificaciones>()
+                .Property(e => e.ntf02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
+                .Property(e => e.ntf02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<ntf03_mensajepredef>()
+               .Property(e => e.ntf03_id)
+               .HasPrecision(18, 0);
+
+            modelBuilder.Entity<ntf03_mensajepredef>()
+                .Property(e => e.ntf02_id)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<cam01_campana>()
@@ -428,9 +440,7 @@ namespace mksolucion.Models
                 .Property(e => e.cnt02_id)
                 .HasPrecision(18, 0);
 
-            modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
-                .Property(e => e.ntf02_id)
-                .HasPrecision(18, 0);
+            
 
             modelBuilder.Entity<cnt02_tipocuenta>()
                 .Property(e => e.cnt02_id)

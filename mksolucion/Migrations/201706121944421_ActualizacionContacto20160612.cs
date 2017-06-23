@@ -8,22 +8,22 @@ namespace mksolucion.Migrations
         public override void Up()
         {
             CreateTable(
-                "con04_mensajepredef",
+                "ntf03_mensajepredef",
                 c => new
                     {
-                        con04_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
-                        con04_accesoRapido = c.String(nullable: false, maxLength: 500),
-                        con04_descripcion = c.String(),
-                        con04_Asunto = c.String(),
-                        con04_mensajetxt = c.String(),
-                        con04_mensajehtml = c.String(),
-                        con04_estado = c.Int(),
-                        con04_fechacreacion = c.DateTime(),
-                        con04_ultimaactualizacion = c.DateTime(),
+                        ntf03_id = c.Decimal(nullable: false, precision: 18, scale: 0, identity: true, storeType: "numeric"),
+                        ntf03_accesoRapido = c.String(nullable: false, maxLength: 500),
+                        ntf03_descripcion = c.String(),
+                        ntf03_Asunto = c.String(),
+                        ntf03_mensajetxt = c.String(),
+                        ntf03_mensajehtml = c.String(),
+                        ntf03_estado = c.Int(),
+                        ntf03_fechacreacion = c.DateTime(),
+                        ntf03_ultimaactualizacion = c.DateTime(),
                     })
-                .PrimaryKey(t => t.con04_id)
-                .ForeignKey("gen01_estados", t => t.con04_estado)
-                .Index(t => t.con04_estado);
+                .PrimaryKey(t => t.ntf03_id)
+                .ForeignKey("gen01_estados", t => t.ntf03_estado)
+                .Index(t => t.ntf03_estado);
             
             CreateTable(
                 "con05_EstadoMensaje",
@@ -45,11 +45,11 @@ namespace mksolucion.Migrations
         public override void Down()
         {
             DropForeignKey("con05_EstadoMensaje", "con05_estado", "gen01_estados");
-            DropForeignKey("con04_mensajepredef", "con04_estado", "gen01_estados");
+            DropForeignKey("ntf03_mensajepredef", "ntf03_estado", "gen01_estados");
             DropIndex("con05_EstadoMensaje", new[] { "con05_estado" });
-            DropIndex("con04_mensajepredef", new[] { "con04_estado" });
+            DropIndex("ntf03_mensajepredef", new[] { "ntf03_estado" });
             DropTable("con05_EstadoMensaje");
-            DropTable("con04_mensajepredef");
+            DropTable("ntf03_mensajepredef");
         }
     }
 }

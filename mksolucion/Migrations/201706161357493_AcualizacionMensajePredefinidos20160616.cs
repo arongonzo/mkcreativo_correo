@@ -7,19 +7,19 @@ namespace mksolucion.Migrations
     {
         public override void Up()
         {
-            DropColumn("con04_mensajepredef", "con04_mesnajetxt");
-            DropColumn("con04_mensajepredef", "con04_mesnajehtml");
-            AddColumn("con04_mensajepredef", "con04_mensajetxt", c => c.String());
-            AddColumn("con04_mensajepredef", "con04_mensajehtml", c => c.String());
+            DropColumn("ntf03_mensajepredef", "ntf03_mesnajetxt");
+            DropColumn("ntf03_mensajepredef", "ntf03_mesnajehtml");
+            AddColumn("ntf03_mensajepredef", "ntf03_mensajetxt", c => c.String());
+            AddColumn("ntf03_mensajepredef", "ntf03_mensajehtml", c => c.String());
             
         }
         
         public override void Down()
         {
-            DropColumn("con04_mensajepredef", "con04_mensajehtml");
-            DropColumn("con04_mensajepredef", "con04_mensajetxt");
-            AddColumn("con04_mensajepredef", "con04_mesnajehtml", c => c.String());
-            AddColumn("con04_mensajepredef", "con04_mesnajetxt", c => c.String());
+            DropColumn("ntf03_mensajepredef", "ntf03_mensajehtml");
+            DropColumn("ntf03_mensajepredef", "ntf03_mensajetxt");
+            AddColumn("ntf03_mensajepredef", "ntf03_mesnajehtml", c => c.String());
+            AddColumn("ntf03_mensajepredef", "ntf03_mesnajetxt", c => c.String());
             
         }
     }

@@ -12,6 +12,7 @@
         public ntf02_tiponotificacioncorreo()
         {
             ntf01_notificaciones = new HashSet<ntf01_notificaciones>();
+            ntf03_mensajepredef = new HashSet<ntf03_mensajepredef>();
         }
 
         [ScaffoldColumn(false)]
@@ -48,5 +49,8 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ntf01_notificaciones> ntf01_notificaciones { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ntf03_mensajepredef> ntf03_mensajepredef { get; set; }
     }
 }

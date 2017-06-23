@@ -10,20 +10,22 @@
 </p>
 
 
-@(Html.Kendo().Grid<mksolucion.Models._con04_mensajepredef>()
+@(Html.Kendo().Grid<mksolucion.Models._ntf03_mensajepredef>()
       .Name("grid")
       .Columns(columns =>
       {
           columns.Template(c =>
-                Html.ActionLink("Editar", "Edit", new { Id = c.con04_id })).ClientTemplate(Html.ActionLink(" ", "Edit", new { Id = "con04_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_edit.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("con04_id", "#=con04_id#")).Width(24);
+                Html.ActionLink("Editar", "Edit", new { Id = c.ntf03_id })).ClientTemplate(Html.ActionLink(" ", "Edit", new { Id = "ntf03_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_edit.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("ntf03_id", "#=ntf03_id#")).Width(24);
           columns.Template(c =>
-                Html.ActionLink("Eliminar", "Delete", new { Id = c.con04_id })).ClientTemplate(Html.ActionLink(" ", "Delete", new { Id = "con04_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_delete.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("con04_id", "#=con04_id#")).Width(24);
+                Html.ActionLink("Eliminar", "Delete", new { Id = c.ntf03_id })).ClientTemplate(Html.ActionLink(" ", "Delete", new { Id = "ntf03_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_delete.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("ntf03_id", "#=ntf03_id#")).Width(24);
           columns.Template(c =>
-                Html.ActionLink("Detalle", "Details", new { Id = c.con04_id })).ClientTemplate(Html.ActionLink(" ", "Details", new { Id = "con04_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_detail.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("con04_id", "#=con04_id#")).Width(24);
+                Html.ActionLink("Detalle", "Details", new { Id = c.ntf03_id })).ClientTemplate(Html.ActionLink(" ", "Details", new { Id = "ntf03_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_detail.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("ntf03_id", "#=ntf03_id#")).Width(24);
 
-        columns.Bound(c => c.con04_accesoRapido);
-        columns.Bound(c => c.con04_descripcion);
-        columns.Bound(c => c.con04_Asunto);
+          columns.Bound(c => c._TipoNotificacion.ntf02_nombre);
+        columns.Bound(c => c.ntf03_accesoRapido);
+        columns.Bound(c => c.ntf03_accesoRapido);
+        columns.Bound(c => c.ntf03_descripcion);
+        columns.Bound(c => c.ntf03_Asunto);
 
       })
       .ToolBar(toolbar => {
@@ -40,6 +42,6 @@
       .Scrollable(scrollable => scrollable.Enabled(false))
       .DataSource(dataSource => dataSource
           .Ajax()
-          .Read(read => read.Action("con04_mensajepredef_Read", "MensajesPredefinidos"))
+          .Read(read => read.Action("ntf03_mensajepredef_Read", "MensajesPredefinidos"))
       )
 )

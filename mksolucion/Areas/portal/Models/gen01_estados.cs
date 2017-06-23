@@ -34,7 +34,7 @@ namespace mksolucion.Models
             con01_contacto = new HashSet<con01_contacto>();
             con02_tipocontacto = new HashSet<con02_tipocontacto>();
             con03_importancia = new HashSet<con03_importancia>();
-            con04_mensajepredef = new HashSet<con04_mensajepredef>();
+            ntf03_mensajepredef = new HashSet<ntf03_mensajepredef>();
             con05_EstadoMensaje = new HashSet<con05_EstadoMensaje>();
             
         }
@@ -112,7 +112,7 @@ namespace mksolucion.Models
         public virtual ICollection<con03_importancia> con03_importancia { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<con04_mensajepredef> con04_mensajepredef { get; set; }
+        public virtual ICollection<ntf03_mensajepredef> ntf03_mensajepredef { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<con05_EstadoMensaje> con05_EstadoMensaje { get; set; }

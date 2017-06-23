@@ -1,4 +1,4 @@
-﻿@model mksolucion.Models.con04_mensajepredef
+﻿@model mksolucion.Models.ntf03_mensajepredef
 
 @{
     ViewBag.Title = "Editar Mensajes Predefinidos de Contacto";
@@ -15,45 +15,69 @@
         <h4>Complete la informacion solicitada</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.con04_id)
-        @Html.HiddenFor(model => model.con04_estado)
+        @Html.HiddenFor(model => model.ntf03_id)
+        @Html.HiddenFor(model => model.ntf03_estado)
+
         <div class="form-group">
-            @Html.LabelFor(model => model.con04_accesoRapido, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.con04_accesoRapido, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.con04_accesoRapido, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.ntf02_id, "Tipo de Cobro", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @(Html.Kendo().DropDownList()
+                    .Name("cbxtiponotificacion")
+                    .HtmlAttributes(new { style = "width:100%", required = "required" })
+                    .OptionLabel("Seleccione Tipo de Notificación")
+                    .DataTextField("ntf02_nombre")
+                    .DataValueField("ntf02_id")
+                    .Value(Model.ntf02_id.ToString())
+                    .DataSource(source =>
+                    {
+                        source.Read(read =>
+                        {
+                            read.Action("GetTipoNotificacion", "Combos");
+                        }).ServerFiltering(true);
+                    })
+                )
+
+                @Html.ValidationMessageFor(model => model.ntf02_id, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.con04_descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ntf03_accesoRapido, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.con04_descripcion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.con04_descripcion, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ntf03_accesoRapido, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ntf03_accesoRapido, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.con04_Asunto, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ntf03_descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.con04_Asunto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.con04_Asunto, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ntf03_descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ntf03_descripcion, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.con04_mensajetxt, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ntf03_Asunto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.con04_mensajetxt, new { placeholder = "MENSAJE", rows = "3", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.con04_mensajetxt, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.ntf03_Asunto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ntf03_Asunto, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.con04_mensajehtml, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ntf03_mensajetxt, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-              @(Html.Kendo().EditorFor(model => model.con04_mensajehtml)
-                    .Name("con04_mensajehtml")
+                @Html.TextAreaFor(model => model.ntf03_mensajetxt, new { placeholder = "MENSAJE", rows = "3", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ntf03_mensajetxt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ntf03_mensajehtml, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @(Html.Kendo().EditorFor(model => model.ntf03_mensajehtml)
+                    .Name("edit_ntf03_mensajehtml")
                     .HtmlAttributes(new { style = "height:300px", aria_label = "editor", @class = "col-md-8" })
                       .Tools(tools => tools
                           .Clear()
@@ -86,7 +110,7 @@
                   )
 
 
-     .Value(System.Net.WebUtility.HtmlDecode(Model.con04_mensajehtml))
+     .Value(System.Net.WebUtility.HtmlDecode(Model.ntf03_mensajehtml))
             )
             </div>
         </div>

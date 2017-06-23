@@ -21,7 +21,6 @@
           columns.Template(c =>
                 Html.ActionLink("Detalle", "Details", new { Id = c.crr03_id })).ClientTemplate(Html.ActionLink(" ", "Details", new { Id = "crr03_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_detail.png') no-repeat center right; display:inline-block; height: 24px; width: 24px" }).ToHtmlString().Replace("crr03_id", "#=crr03_id#")).Width(24);
 
-          
         columns.Bound(c => c.crr03_nombre);
         columns.Bound(c => c.crr03_descripcion);
       })

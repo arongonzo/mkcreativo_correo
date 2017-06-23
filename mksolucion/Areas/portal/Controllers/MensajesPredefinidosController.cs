@@ -21,23 +21,44 @@ namespace mksolucion.Areas.portal.Controllers
             return View();
         }
 
-        public ActionResult con04_mensajepredef_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult ntf03_mensajepredef_Read([DataSourceRequest]DataSourceRequest request)
         {
-            IQueryable<con04_mensajepredef> con04_mensajepredef = db.con04_mensajepredef;
-            DataSourceResult result = con04_mensajepredef.ToDataSourceResult(request, c => new _con04_mensajepredef 
-            {
-                con04_id = c.con04_id,
-                con04_accesoRapido = c.con04_accesoRapido,
-                con04_descripcion = c.con04_descripcion,
-                con04_Asunto = c.con04_Asunto,
-                con04_mensajetxt = c.con04_mensajetxt,
-                con04_mensajehtml = c.con04_mensajehtml,
-                con04_estado = c.con04_estado,
-                con04_fechacreacion = c.con04_fechacreacion,
-                con04_ultimaactualizacion = c.con04_ultimaactualizacion
-            });
+            return Json(Read().ToDataSourceResult(request));
+        }
 
-            return Json(result);
+        public IEnumerable<_ntf03_mensajepredef> Read()
+        {
+            return GetAll();
+        }
+
+        public IList<_ntf03_mensajepredef> GetAll()
+        {
+            IList<_ntf03_mensajepredef> result = new List<_ntf03_mensajepredef>();
+
+            var dbDatos = db.ntf03_mensajepredef.AsQueryable();
+            dbDatos = dbDatos.Where(p => p.ntf03_estado == 1);
+            dbDatos = dbDatos.Where(p => p.ntf02_tiponotificacioncorreo.ntf02_estado == 1);
+            
+            result = dbDatos.Select(c => new _ntf03_mensajepredef
+            {
+                ntf03_id = (decimal)c.ntf03_id,
+                ntf02_id = (decimal)c.ntf02_id,
+                ntf03_accesoRapido = c.ntf03_accesoRapido,
+                ntf03_descripcion = c.ntf03_descripcion,
+                ntf03_Asunto = c.ntf03_Asunto,
+                ntf03_mensajetxt = c.ntf03_mensajetxt,
+                ntf03_mensajehtml = c.ntf03_mensajehtml,
+                ntf03_estado = c.ntf03_estado,
+                ntf03_fechacreacion = c.ntf03_fechacreacion,
+                ntf03_ultimaactualizacion = c.ntf03_ultimaactualizacion,
+                _TipoNotificacion = new _ntf02_tiponotificacioncorreo()
+                {
+                    ntf02_id = (decimal)c.ntf02_tiponotificacioncorreo.ntf02_id,
+                    ntf02_nombre = c.ntf02_tiponotificacioncorreo.ntf02_nombre,
+                    ntf02_estado = c.ntf02_tiponotificacioncorreo.ntf02_estado,
+                }
+            }).ToList();
+            return result;
         }
 
         [HttpPost]
@@ -70,12 +91,12 @@ namespace mksolucion.Areas.portal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            con04_mensajepredef con04_mensajepredef = db.con04_mensajepredef.Find(id);
-            if (con04_mensajepredef == null)
+            ntf03_mensajepredef ntf03_mensajepredef = db.ntf03_mensajepredef.Find(id);
+            if (ntf03_mensajepredef == null)
             {
                 return HttpNotFound();
             }
-            return View(con04_mensajepredef);
+            return View(ntf03_mensajepredef);
         }
 
         [Authorization(UserRoles.Admin)]
@@ -91,22 +112,36 @@ namespace mksolucion.Areas.portal.Controllers
         [Authorization(UserRoles.Admin)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "con04_accesoRapido,con04_descripcion,con04_Asunto, con04_mensajetxt, con04_mensajehtml")] con04_mensajepredef con04_mensajepredef)
+        public ActionResult Create(FormCollection values)
         {
+
             if (ModelState.IsValid)
             {
 
-                con04_mensajepredef.con04_estado = 1;
-                con04_mensajepredef.con04_fechacreacion = DateTime.Now;
-                con04_mensajepredef.con04_ultimaactualizacion = DateTime.Now;
+                ntf03_mensajepredef ntf03_mensajepredef = new ntf03_mensajepredef();
+                
+                ntf03_mensajepredef.ntf03_accesoRapido = values["ntf03_accesoRapido"];
+                ntf03_mensajepredef.ntf03_descripcion = values["ntf03_descripcion"];
+                ntf03_mensajepredef.ntf03_Asunto = values["ntf03_Asunto"];
 
-                db.con04_mensajepredef.Add(con04_mensajepredef);
+                ntf03_mensajepredef.ntf03_Asunto = values["ntf03_Asunto"];
+
+                ntf03_mensajepredef.ntf02_id = Convert.ToDecimal(values["cbxtiponotificacion"].ToString());
+
+                ntf03_mensajepredef.ntf03_mensajehtml = values["edit_ntf03_mensajehtml"];
+                ntf03_mensajepredef.ntf03_mensajetxt = values["ntf03_mensajetxt"];
+
+                ntf03_mensajepredef.ntf03_estado = 1;
+                ntf03_mensajepredef.ntf03_fechacreacion = DateTime.Now;
+                ntf03_mensajepredef.ntf03_ultimaactualizacion = DateTime.Now;
+
+                db.ntf03_mensajepredef.Add(ntf03_mensajepredef);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
 
-            return View(con04_mensajepredef);
+            return View(values);
         }
 
         // GET: configuracion/tipoplan/Edit/5
@@ -117,12 +152,12 @@ namespace mksolucion.Areas.portal.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            con04_mensajepredef con04_mensajepredef = db.con04_mensajepredef.Find(id);
-            if (con04_mensajepredef == null)
+            ntf03_mensajepredef ntf03_mensajepredef = db.ntf03_mensajepredef.Find(id);
+            if (ntf03_mensajepredef == null)
             {
                 return HttpNotFound();
             }
-            return View(con04_mensajepredef);
+            return View(ntf03_mensajepredef);
         }
 
         // POST: configuracion/tipoplan/Edit/5
@@ -136,18 +171,19 @@ namespace mksolucion.Areas.portal.Controllers
             if (ModelState.IsValid)
             {
 
-                con04_mensajepredef con04_mensajepredef = db.con04_mensajepredef.Find(int.Parse(values["con04_id"]));
+                ntf03_mensajepredef ntf03_mensajepredef = db.ntf03_mensajepredef.Find(int.Parse(values["ntf03_id"]));
 
 
-                con04_mensajepredef.con04_accesoRapido = values["con04_accesoRapido"];
-                con04_mensajepredef.con04_descripcion = values["con04_descripcion"];
-                con04_mensajepredef.con04_Asunto = values["con04_Asunto"];
-                con04_mensajepredef.con04_mensajehtml = values["con04_mensajehtml"];
-                con04_mensajepredef.con04_mensajetxt = values["con04_mensajetxt"];
-                con04_mensajepredef.con04_estado = Int32.Parse(values["con04_estado"]);
-                con04_mensajepredef.con04_ultimaactualizacion = DateTime.Now;
+                ntf03_mensajepredef.ntf03_accesoRapido = values["ntf03_accesoRapido"];
+                ntf03_mensajepredef.ntf03_descripcion = values["ntf03_descripcion"];
+                ntf03_mensajepredef.ntf03_Asunto = values["ntf03_Asunto"];
+                ntf03_mensajepredef.ntf02_id = Convert.ToDecimal(values["cbxtiponotificacion"].ToString());
+                ntf03_mensajepredef.ntf03_mensajehtml = values["edit_ntf03_mensajehtml"];
+                ntf03_mensajepredef.ntf03_mensajetxt = values["ntf03_mensajetxt"];
+                ntf03_mensajepredef.ntf03_estado = Int32.Parse(values["ntf03_estado"]);
+                ntf03_mensajepredef.ntf03_ultimaactualizacion = DateTime.Now;
 
-                db.Entry(con04_mensajepredef).State = EntityState.Modified;
+                db.Entry(ntf03_mensajepredef).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -163,12 +199,12 @@ namespace mksolucion.Areas.portal.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            con04_mensajepredef con04_mensajepredef = db.con04_mensajepredef.Find(id);
-            if (con04_mensajepredef == null)
+            ntf03_mensajepredef ntf03_mensajepredef = db.ntf03_mensajepredef.Find(id);
+            if (ntf03_mensajepredef == null)
             {
                 return HttpNotFound();
             }
-            return View(con04_mensajepredef);
+            return View(ntf03_mensajepredef);
         }
 
         // POST: configuracion/tipoplan/Delete/5
@@ -178,10 +214,10 @@ namespace mksolucion.Areas.portal.Controllers
         public ActionResult DeleteConfirmed(decimal id)
         {
 
-            var con04_mensajepredef = new con04_mensajepredef { con04_id = id };
-            db.con04_mensajepredef.Attach(con04_mensajepredef);
-            con04_mensajepredef.con04_estado = 2;
-            db.Entry(con04_mensajepredef).Property(x => x.con04_estado).IsModified = true;
+            var ntf03_mensajepredef = new ntf03_mensajepredef { ntf03_id = id };
+            db.ntf03_mensajepredef.Attach(ntf03_mensajepredef);
+            ntf03_mensajepredef.ntf03_estado = 2;
+            db.Entry(ntf03_mensajepredef).Property(x => x.ntf03_estado).IsModified = true;
 
             db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
