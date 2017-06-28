@@ -36,6 +36,9 @@ namespace mksolucion.Models
             con03_importancia = new HashSet<con03_importancia>();
             ntf03_mensajepredef = new HashSet<ntf03_mensajepredef>();
             con05_EstadoMensaje = new HashSet<con05_EstadoMensaje>();
+
+            ins01_inscripcion = new HashSet<ins01_inscripcion>();
+            
             
         }
         
@@ -126,6 +129,10 @@ namespace mksolucion.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pln02_tipoplan> pln02_tipoplan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ins01_inscripcion> ins01_inscripcion { get; set; }
+        
                 
 
     }

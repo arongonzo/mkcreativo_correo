@@ -237,6 +237,7 @@
     <Compile Include="Areas\portal\Models\con01_contacto.cs" />
     <Compile Include="Areas\portal\Models\con02_tipocontacto.cs" />
     <Compile Include="Areas\portal\Models\con03_importancia.cs" />
+    <Compile Include="Areas\portal\Models\ins01_inscripcion.cs" />
     <Compile Include="Areas\portal\Models\ntf03_mensajepredef.cs" />
     <Compile Include="Areas\portal\Models\con05_EstadoMensaje.cs" />
     <Compile Include="Areas\portal\Models\coninf01_pasocominfo.cs" />
@@ -417,6 +418,10 @@
     <Compile Include="Migrations\201706222118304_actualizacionMensajeRapidos20170622.cs" />
     <Compile Include="Migrations\201706222118304_actualizacionMensajeRapidos20170622.Designer.cs">
       <DependentUpon>201706222118304_actualizacionMensajeRapidos20170622.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706272022554_actualizarInscripcion20160627.cs" />
+    <Compile Include="Migrations\201706272022554_actualizarInscripcion20160627.Designer.cs">
+      <DependentUpon>201706272022554_actualizarInscripcion20160627.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -744,6 +749,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706222118304_actualizacionMensajeRapidos20170622.resx">
       <DependentUpon>201706222118304_actualizacionMensajeRapidos20170622.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706272022554_actualizarInscripcion20160627.resx">
+      <DependentUpon>201706272022554_actualizarInscripcion20160627.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

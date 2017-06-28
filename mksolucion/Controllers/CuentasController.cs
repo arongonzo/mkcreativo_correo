@@ -259,35 +259,24 @@ namespace mksolucion.Controllers
                          new { userId = user.Id, code = code }, 
                          protocol: Request.Url.Scheme);
 
-                     var message = new MailMessage()
-                     {
-                         Subject = "Bienvenido a MailCreativo",
-                         IsBodyHtml = true,
-                     };
+                    String[] mensaje = new String[]{ model.Email, callbackUrl};
 
-                    message.To.Add(model.Email);
-                    
-                    string textplain = "Para confirmar la cuenta, haga clic " + callbackUrl ;
-                    string html = string.Format("<table border='0' cellspacing='0' cellpadding='0' align='left' width='100%' style='width:100.0%;border-collapse:collapse;margin-left:-2.25pt;margin-right:-2.25pt;padding:0px 0px 0px 0px'><tr><td valign='top' style='padding:0px 0px 30.0px 0px' id='bodyContent'><h1 align='center' style='text-align:center;line-height:31.5pt;'>&nbsp; </h1><h1 align='center' style='text-align:center;line-height:31.5pt;'><span style='font-size:20px;font-family: Helvetica Neue;color:#626262;text-decoration:none;'>Bienvenido, {0}</span> </h1></td></tr><tr><td valign='top' style='padding:0px 0px 3.75px 0px'><div align='center'><table border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;border-collapse:collapse;padding-alt:0px 0px 0px 0px'><tr><td style='padding:0px 0px 0px 0px'><div align='center'><table border='0' cellspacing='0' cellpadding='0' width='200' style='width:150.0pt;border-collapse:collapse;padding:0px 0px 0px 0px'><tr><td valign='top' style='background:#52BAD5;padding:15.0px 15.0px 15.0px 15.0px'><p align='center' style='text-align:center'> <span style='font-family:Times New Roman'> <a href='{1}' ='_blank' style='border-radius:3px;display:inline-block'> <b> <span style='font-family:Helvetica Neue; color:white;letter-spacing:.25pt;background:#52BAD5'>Activar Cuenta</span></b></a> </td></tr></table></div></td></tr></table></div></td></tr><tr><td valign='top' style='padding:0px 0px 30.0px 0px'><p align='center' style='margin:0px;margin-bottom:.0001pt;text-align:center;line-height:31.5pt;'> <span style='font-size:10.5pt;font-family:Helvetica Neue;color:#929292'>(Solo para confirmar que eres tu)</span></p></td></tr></table>", model.Email, callbackUrl);
+                    var respuestamail = mkemail.Base_Mail(user.Id, model.Email, model.Email, "", mensaje, 4, 2, "bienvenidoInvitado");
 
-                    decimal dcm_tiponotificacion = 0;
+                    String[] mensajeadmin = new String[] { "{0}", model.Email, DateTime.Now.ToShortDateString() };
+                    var respuestaadmin = mkemail.Base_Mail_Admin("", mensajeadmin, 1, 2, "creacioncuentainvitadoadministrador");
 
-                    
-                    var query = from tiponotificacion in db.ntf02_tiponotificacioncorreo
-                                where tiponotificacion.ntf02_nombre  == "notificación"
-                                select new
-                                {
-                                    llaveNotificacion = tiponotificacion.ntf02_id
-                                };
 
-                    if (query.Count() > 0)
-                    {
-                        var datos = query.ToList();
-                        foreach (var Row in datos)
-                        {
-                            dcm_tiponotificacion = (decimal)Row.llaveNotificacion;
-                        }
-                    }
+                    ins01_inscripcion ins01_inscripcion = new Models.ins01_inscripcion();
+
+                    ins01_inscripcion.UserId = user.Id;
+                    ins01_inscripcion.ins01_nombreusuario = model.Email;
+                    ins01_inscripcion.ins01_claveacceso = model.Password;
+                    ins01_inscripcion.ins01_estado = 1;
+                    ins01_inscripcion.ins01_fechacreacion = DateTime.Now;
+
+                    db.ins01_inscripcion.Add(ins01_inscripcion);
+                    db.SaveChanges();
 
                     /*
                     var mail = mkemail.Base_Mail_Cliente(message, html, textplain, user.Id, dcm_tiponotificacion);
@@ -324,19 +313,49 @@ namespace mksolucion.Controllers
         {
 
             ModelMK db = new ModelMK();
+            string Email = string.Empty;
+            string Clave = string.Empty; 
+
             if (userId == null || code == null)
             {
                 return View("Error");
             }
+
             var result = await UserManager.ConfirmEmailAsync(userId, code);
 
             if (result.Succeeded)
             {
+                var query = from usr in db.AspNetUsers
+                            join ins in db.ins01_inscripcion on usr.Id equals ins.UserId
+                            where usr.Id == userId
+
+                            select new
+                            {
+                                UserId = usr.Id,
+                                Email = ins.ins01_nombreusuario,
+                                Clave = ins.ins01_claveacceso
+                            };
+
+                if (query.Count() > 0)
+                {
+                    var datos = query.ToList();
+                    foreach (var Row in datos)
+                    {
+                        Email = Row.Email.ToString();
+                        Clave = Row.Clave.ToString();
+                    }
+                }
+
+                string[] mensaje = new string[] { Email, Email, Clave, "http://www.mipnet.cl" };
+                var respuestamail = mkemail.Base_Mail(userId, Email, Email,"", mensaje, 4, 2, "activacioncuentausuario");
+
+                string[] mensajeadmin = new string[] { "{0}", Email, DateTime.Now.ToShortDateString()};
+                var respuestamailadmin = mkemail.Base_Mail_Admin("", mensaje, 1, 2, "activacioncuentausuarioadmin");
                 
                 return View("ConfirmEmail");
 
             }
-            else 
+            else
             {
                 var dato = result;
             }

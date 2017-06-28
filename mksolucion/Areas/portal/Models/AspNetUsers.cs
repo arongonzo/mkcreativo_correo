@@ -18,6 +18,7 @@ namespace mksolucion.Models
             ntf01_notificaciones = new HashSet<ntf01_notificaciones>();
             usr02_estadocompletado = new HashSet<usr02_estadocompletado>();
             usr01_infopersonal = new HashSet<usr01_infopersonal>();
+            usr01_infopersonal = new HashSet<usr01_infopersonal>();
         }
 
         public string Id { get; set; }
@@ -67,7 +68,9 @@ namespace mksolucion.Models
         
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<usr01_infopersonal> usr01_infopersonal { get; set; }
-        
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ins01_inscripcion> ins01_inscripcion { get; set; }
 
         
     }

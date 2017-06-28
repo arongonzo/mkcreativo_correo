@@ -141,3 +141,4 @@ D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mk
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\bin\es\Microsoft.AspNet.Identity.EntityFramework.resources.dll
 D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+D:\samuelgonzalez\PROYECTOS\proyectomkcreativo\proyectoenviocorreo\mksolucion\mksolucion\obj\Debug\mksolucion.Migrations.actualizarInscripcion20160627.resources

@@ -62,7 +62,12 @@ namespace mksolucion.Models
         public virtual DbSet<coninf01_pasocominfo> coninf01_pasocominfo { get; set; }
         public virtual DbSet<usr02_estadocompletado> usr02_estadocompletado { get; set; }
         public virtual DbSet<usr01_infopersonal> usr01_infopersonal { get; set; }
+        public virtual DbSet<ins01_inscripcion> ins01_inscripcion { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+
+        
+        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
@@ -91,6 +96,12 @@ namespace mksolucion.Models
 
             modelBuilder.Entity<AspNetUsers>()
                 .HasMany(e => e.usr01_infopersonal)
+                .WithRequired(e => e.AspNetUsers)
+                .HasForeignKey(e => e.UserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AspNetUsers>()
+                .HasMany(e => e.ins01_inscripcion)
                 .WithRequired(e => e.AspNetUsers)
                 .HasForeignKey(e => e.UserId)
                 .WillCascadeOnDelete(false);
@@ -265,6 +276,10 @@ namespace mksolucion.Models
                 .WithOptional(e => e.gen01_estados)
                 .HasForeignKey(e => e.con05_estado);
 
+             modelBuilder.Entity<gen01_estados>()
+                 .HasMany(e => e.ins01_inscripcion)
+                 .WithOptional(e => e.gen01_estados)
+                 .HasForeignKey(e => e.ins01_estado);
 
             modelBuilder.Entity<ntf02_tiponotificacioncorreo>()
                 .HasMany(e => e.ntf01_notificaciones)
@@ -440,7 +455,9 @@ namespace mksolucion.Models
                 .Property(e => e.cnt02_id)
                 .HasPrecision(18, 0);
 
-            
+            modelBuilder.Entity<ins01_inscripcion>()
+                .Property(e => e.ins01_id)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<cnt02_tipocuenta>()
                 .Property(e => e.cnt02_id)
