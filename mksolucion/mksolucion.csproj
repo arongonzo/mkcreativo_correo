@@ -127,6 +127,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -256,6 +257,7 @@
     <Compile Include="Areas\portal\ViewModels\_cam02_tipocampana.cs" />
     <Compile Include="Areas\portal\ViewModels\_cnt01_cuenta.cs" />
     <Compile Include="Areas\portal\ViewModels\_cnt02_tipocuenta.cs" />
+    <Compile Include="Areas\portal\ViewModels\_con01_contacto.cs" />
     <Compile Include="Areas\portal\ViewModels\_con02_tipocontacto.cs" />
     <Compile Include="Areas\portal\ViewModels\_con03_importancia.cs" />
     <Compile Include="Areas\portal\ViewModels\_ntf03_mensajepredef.cs" />
@@ -309,6 +311,7 @@
     <Compile Include="Areas\portal\Models\serv01_servicios.cs" />
     <Compile Include="context\serv02_contacto.cs" />
     <Compile Include="context\sysdiagrams.cs" />
+    <Compile Include="Areas\portal\Models\v_ServicioUsuario.cs" />
     <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -422,6 +425,22 @@
     <Compile Include="Migrations\201706272022554_actualizarInscripcion20160627.cs" />
     <Compile Include="Migrations\201706272022554_actualizarInscripcion20160627.Designer.cs">
       <DependentUpon>201706272022554_actualizarInscripcion20160627.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707031454540_actualizacion_vista_serviciousuario_20170703.cs" />
+    <Compile Include="Migrations\201707031454540_actualizacion_vista_serviciousuario_20170703.Designer.cs">
+      <DependentUpon>201707031454540_actualizacion_vista_serviciousuario_20170703.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707031554578_actualizacionusuariocontacto_20170703.cs" />
+    <Compile Include="Migrations\201707031554578_actualizacionusuariocontacto_20170703.Designer.cs">
+      <DependentUpon>201707031554578_actualizacionusuariocontacto_20170703.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707031556041_actualizacionusuariocontacto_201707031.cs" />
+    <Compile Include="Migrations\201707031556041_actualizacionusuariocontacto_201707031.Designer.cs">
+      <DependentUpon>201707031556041_actualizacionusuariocontacto_201707031.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707031621058_actualizacionusuariocontacto_201707032.cs" />
+    <Compile Include="Migrations\201707031621058_actualizacionusuariocontacto_201707032.Designer.cs">
+      <DependentUpon>201707031621058_actualizacionusuariocontacto_201707032.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -596,6 +615,8 @@
     <Content Include="Areas\portal\Views\MensajesPredefinidos\Create.cshtml" />
     <Content Include="Areas\portal\Views\MensajesPredefinidos\Edit.cshtml" />
     <Content Include="Areas\portal\Views\MensajesPredefinidos\Delete.cshtml" />
+    <Content Include="Areas\portal\Views\Soporte\nuevo_soporte.cshtml" />
+    <Content Include="Areas\portal\Views\Soporte\ContactFinish.cshtml" />
     <None Include="Properties\PublishProfiles\mailcreativo.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -753,6 +774,21 @@
     <EmbeddedResource Include="Migrations\201706272022554_actualizarInscripcion20160627.resx">
       <DependentUpon>201706272022554_actualizarInscripcion20160627.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707031454540_actualizacion_vista_serviciousuario_20170703.resx">
+      <DependentUpon>201707031454540_actualizacion_vista_serviciousuario_20170703.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707031554578_actualizacionusuariocontacto_20170703.resx">
+      <DependentUpon>201707031554578_actualizacionusuariocontacto_20170703.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707031556041_actualizacionusuariocontacto_201707031.resx">
+      <DependentUpon>201707031556041_actualizacionusuariocontacto_201707031.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707031621058_actualizacionusuariocontacto_201707032.resx">
+      <DependentUpon>201707031621058_actualizacionusuariocontacto_201707032.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

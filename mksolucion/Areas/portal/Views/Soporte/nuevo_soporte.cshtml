@@ -1,0 +1,141 @@
+﻿@model mksolucion.Models.con01_contacto
+@{
+    ViewBag.Title = "Usuarios";
+    Layout = Session["layout"].ToString();
+}
+@section header
+{
+    <link href="@Url.Content("~/Content/forms.css")" rel="stylesheet" type="text/css" />
+
+}
+<section class="mbr-section article" id="msg-box3-1" style="padding-top: 30px; padding-bottom: 30px; min-height:400px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-xs-center">
+                <h3 class="mbr-section-title">Contacto</h3>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("nuevo_soporte", "soporte", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-whole" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                       
+
+            <h3>@ViewBag.Message</h3>
+            <div class="row whole-container">
+                <div class="col-md-6 whole-form-input-wrapper">
+                    @Html.TextBox("con01_nombre", (string)@ViewBag.nombre, new { placeholder = "NOMBRE", @readonly = "readonly" })
+                </div>
+                <div class="col-md-6 whole-form-input-wrapper">
+                    @Html.TextBox("con01_email", (string)@ViewBag.email, new { placeholder = "DIRECCIÓN EMAIL", type = "email", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-12 whole-form-input-wrapper">
+                    @Html.TextBox("con01_asunto","", new { placeholder = "ASUNTO" })
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-4 whole-form-input-wrapper">
+                    <div class="btn-group bootstrap-select _admin form-select" style="width: 100%;">
+
+                        @(Html.Kendo().DropDownList()
+                                .Name("cbxtipoSoporte")
+                                .HtmlAttributes(new { style = "width:100%", required = "required" })
+                                .OptionLabel("Seleccione Tipo de Soporte")
+                                .DataTextField("con02_nombre")
+                                .DataValueField("con02_id")
+                                .Value((string)@ViewBag.llave_tipocontacto)
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetTipoContacto", "combos");
+                                    }).ServerFiltering(true);
+                                })
+                        )
+
+                    </div>
+                </div>
+                <div class="col-md-4 whole-form-input-wrapper">
+                    <div class="btn-group bootstrap-select _admin form-select" style="width: 100%;">
+
+                        @(Html.Kendo().DropDownList()
+                            .Name("cbxservicio")
+                            .HtmlAttributes(new { style = "width:100%", required = "required" })
+                            .OptionLabel("Seleccione Servicio")
+                            .DataTextField("ser01_nombre")
+                            .DataValueField("ser01_id")
+                            .Value((string)@ViewBag.llave_tipocontacto)
+                            .DataSource(source =>
+                            {
+                                source.Read(read =>
+                                {
+                                    read.Action("GetServicioCliente", "combos");
+                                }).ServerFiltering(true);
+                            })
+                        )
+
+                    </div>
+                </div>
+                <div class="col-md-4 whole-form-input-wrapper">
+                    <div class="btn-group bootstrap-select _admin form-select" style="width: 100%;">
+
+                            @(Html.Kendo().DropDownList()
+                                .Name("cbximportancia")
+                                .HtmlAttributes(new { style = "width:100%", required = "required" })
+                                .OptionLabel("Seleccione Importancia")
+                                .DataTextField("con03_nombre")
+                                .DataValueField("con03_id")
+                                .Value((string)@ViewBag.llave_importancia)
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetImportancia", "combos");
+                                    }).ServerFiltering(true);
+                                })
+                            )
+
+                    </div>
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-12">
+                    @Html.TextArea("con01_mensaje","", new { placeholder = "MENSAJE", rows = "10" })
+                </div>
+            </div>
+            <div class="row whole-container">
+                <div class="col-md-12 file-input-container no-inner-space">
+                    <div class="col-md-2 v-center">
+                        <label class="label">ADJUNTO</label>
+                    </div>
+
+                    <div class="col-md-10 v-center">
+                        <label for="file" class="js-styled-file-wrapper file-input-wrapper no-inner-space" style="padding-top:10px">
+                            <div class="label label-primary xs v-center col-md-3">
+                                Seleccionar archivo
+                                <input type="file" name="attachments[]" id="file" onchange="document.getElementById('FileName').value = this.value;" class="js-styled-file">
+
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" readonly id="FileName" />
+                            </div>
+                        </label>
+                        <small>(Extensiones de archivo permitidas: .jpg, .gif, .jpeg, .png)</small>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="actions" style="text-align:center">
+                <input type="submit" value="Enviar" class="btn btn-primary btn-md">
+            </div>
+
+        }
+
+    </div>
+</section>
+

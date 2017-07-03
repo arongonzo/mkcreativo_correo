@@ -7,6 +7,12 @@
     using System.Data.Entity.Spatial;
     public class con05_EstadoMensaje
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public con05_EstadoMensaje()
+        {
+            con01_contacto = new HashSet<con01_contacto>();
+        }
+
         [Display(Name = "Estado Mensaje")]
         [ScaffoldColumn(false)]
         [Key]
@@ -39,5 +45,8 @@
         public DateTime? con05_ultimaactualizacion { get; set; }
 
         public virtual gen01_estados gen01_estados { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<con01_contacto> con01_contacto { get; set; }
     }
 }

@@ -15,6 +15,9 @@ namespace mksolucion.Models
         }
 
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+
+        #region tablas
+
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
@@ -65,12 +68,21 @@ namespace mksolucion.Models
         public virtual DbSet<ins01_inscripcion> ins01_inscripcion { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
 
-        
-        
+        #endregion
+        #region vistas
+
+        public virtual DbSet<v_ServicioUsuario> v_ServicioUsuario { get; set; }
+
+        #endregion
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+
+            #region tablas
 
             modelBuilder.Entity<AspNetUsers>()
                 .HasMany(e => e.AspNetUserClaims)
@@ -315,6 +327,12 @@ namespace mksolucion.Models
                 .HasMany(e => e.con01_contacto)
                 .WithRequired(e => e.con02_tipocontacto)
                 .HasForeignKey(e => e.con02_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<con05_EstadoMensaje>()
+                .HasMany(e => e.con01_contacto)
+                .WithRequired(e => e.con05_EstadoMensaje)
+                .HasForeignKey(e => e.con05_id)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<serv01_servicios>()
@@ -595,6 +613,36 @@ namespace mksolucion.Models
             modelBuilder.Entity<serv02_contacto>()
                 .Property(e => e.ser01_id)
                 .HasPrecision(18, 0);
+
+            #endregion
+            #region vistas
+
+            modelBuilder.Entity<v_ServicioUsuario>()
+                .Property(e => e.ser01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<v_ServicioUsuario>()
+                .Property(e => e.pnl01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<v_ServicioUsuario>()
+                .Property(e => e.pln02_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<v_ServicioUsuario>()
+                .Property(e => e.cnt01_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<v_ServicioUsuario>()
+                .Property(e => e.pln03_id)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<v_ServicioUsuario>()
+                .Property(e => e.cnt02_id)
+                .HasPrecision(18, 0);
+
+            #endregion
+
         }
      
     }

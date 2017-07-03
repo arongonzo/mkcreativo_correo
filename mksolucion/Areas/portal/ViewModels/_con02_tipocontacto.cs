@@ -5,11 +5,11 @@ namespace mksolucion.Models
 {
     public class _con02_tipocontacto
     {
-        [Display(Name = "Tipo Soporte")]
+        [Display(Name = "Departamento")]
         [Key]
         public decimal con02_id { get; set; }
 
-        [Display(Name = "Tipo Soporte")]
+        [Display(Name = "Departamento")]
         public string con02_nombre { get; set; }
 
         [Display(Name = "Descripción")]

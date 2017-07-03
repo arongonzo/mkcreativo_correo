@@ -6,6 +6,7 @@
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 
+
     <link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.common-bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://kendo.cdn.telerik.com/2016.3.1028/styles/kendo.dataviz.bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -18,11 +19,14 @@
     <script src="https://kendo.cdn.telerik.com/2016.3.1028/js/kendo.aspnetmvc.min.js"></script>
 
     <script src="../../Scripts/kendo.modernizr.custom.js"></script>
+   
+    @RenderSection("header", required: false)
 
 </head>
 <body>
     <header>
-        <div class="mbr-table">
+
+    <div class="mbr-table">
             <nav id='cssmenu' class="navigation-left float-left">
                 <div class="logo" style=" display:block; width:210px; padding:3px 30px 3px 30px"><a href="index.html"><img src="~/Content/assets/images/logomailcreativo.jpg" /></a></div>
                 <div id="head-mobile"></div>
@@ -34,99 +38,104 @@
                     <li><a href='#'>Plantillas</a></li>
                     <li><a href='#'>Listas</a></li>
                     <li><a href='#'>Reportes</a></li>
+
+
                     <li>
-                        @Html.ActionLink("Configuración", "Index", "Configuraciones", new { area = "" }, new { @class = "nav-link link dropdown-toggle", data_toggle = "dropdown-submenu", aria_expanded = "true" })
-                        <ul>
-                            <li>
-                                @Html.ActionLink("Campaña", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>
-                                        @Html.ActionLink("Tipos De campaña", "Index", "TipoCampana", new { area = "portal" }, new { @class = "dropdown-item" })
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("configuracion adicional", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Clientes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Cuentas Clientes", "Index", "CuentaCliente", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Tipos de Cuenta", "Index", "tipocuenta", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Servicio Cliente", "Index", "ServicioCliente", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Correos", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Listas de Correo", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Clasificaciones de Correo", "Index", "clasificacioncorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Area o Segmento", "Index", "areasegmentocorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Intereses", "Index", "intereses", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Organizaciones", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Estados de correo", "Index", "estadocorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Listas de correo", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Clasificación Listas de Correo", "Index", "ClasificacionListaCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("reportes de listas", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Planes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Planes", "Index", "planes", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Tipos de Planes", "Index", "tipoplanes", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Tipos de Cobro", "Index", "tipocobro", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Tipos de servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Usuarios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Usuarios", "Index", "usuarios", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Roles", "Index", "roles", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Usuario Roles", "Index", "UsuarioRoles", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Notificaciones", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Tipos de Notificación de Correo", "Index", "TipoNotificacionCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Reporte Notificación de Correo", "Index", "ReportenotificacionesCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Mensajes Predefinidos", "Index", "MensajesPredefinidos", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Soporte", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("reporte soporte", "reporteSoporte", "soporte", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Tipo Soporte", "Index", "TipoSoporte", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Importancia Mail", "Index", "ImportanciaMail", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    
-                                    <li>@Html.ActionLink("Estado Mensajes", "Index", "EstadoMensaje", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                            <li>
-                                @Html.ActionLink("Sistema", "Index", "sistema", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
-                                <ul>
-                                    <li>@Html.ActionLink("Estados de Activacón", "Index", "EstadosActivacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                    <li>@Html.ActionLink("Pasos Completar información", "Index", "pasoscompletarinformacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        @Html.ActionLink("Soporte", "Index", "soporte", new { area = "portal" }, new { @class = "dropdown-item" })
                     </li>
-                    
-                    @Html.Partial("_LoginPartial")
-                </ul>
+                    <li>
+                                @Html.ActionLink("Configuración", "Index", "Configuraciones", new { area = "" }, new { @class = "nav-link link dropdown-toggle", data_toggle = "dropdown-submenu", aria_expanded = "true" })
+                                <ul>
+                                    <li>
+                                        @Html.ActionLink("Campaña", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>
+                                                @Html.ActionLink("Tipos De campaña", "Index", "TipoCampana", new { area = "portal" }, new { @class = "dropdown-item" })
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("configuracion adicional", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Clientes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Cuentas Clientes", "Index", "CuentaCliente", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Tipos de Cuenta", "Index", "tipocuenta", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Servicio Cliente", "Index", "ServicioCliente", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Correos", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Listas de Correo", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Clasificaciones de Correo", "Index", "clasificacioncorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Area o Segmento", "Index", "areasegmentocorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Intereses", "Index", "intereses", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Organizaciones", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Estados de correo", "Index", "estadocorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Listas de correo", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Clasificación Listas de Correo", "Index", "ClasificacionListaCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("reportes de listas", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Planes", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Planes", "Index", "planes", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Tipos de Planes", "Index", "tipoplanes", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Tipos de Cobro", "Index", "tipocobro", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Tipos de servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Servicios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Usuarios", "Index", "Configuraciones", new { area = "" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Usuarios", "Index", "usuarios", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Roles", "Index", "roles", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Usuario Roles", "Index", "UsuarioRoles", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Notificaciones", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Tipos de Notificación de Correo", "Index", "TipoNotificacionCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Reporte Notificación de Correo", "Index", "ReportenotificacionesCorreo", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Mensajes Predefinidos", "Index", "MensajesPredefinidos", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Soporte", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("reporte soporte", "reporteSoporte", "soporte", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Tipo Soporte", "Index", "TipoSoporte", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Importancia Mail", "Index", "ImportanciaMail", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+
+                                            <li>@Html.ActionLink("Estado Mensajes", "Index", "EstadoMensaje", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Sistema", "Index", "sistema", new { area = "portal" }, new { @class = "dropdown-item dropdown-toggle", data_toggle = "dropdown-submenu" })
+                                        <ul>
+                                            <li>@Html.ActionLink("Estados de Activacón", "Index", "EstadosActivacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                            <li>@Html.ActionLink("Pasos Completar información", "Index", "pasoscompletarinformacion", new { area = "portal" }, new { @class = "dropdown-item" })</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            @Html.Partial("_LoginPartial")
+                        </ul>
 
 </nav>
         </div>
@@ -182,41 +191,45 @@
 
     <script type="text/javascript">
 
-        var sessionTimeoutWarning = @Session.Timeout - 1;
+    var sessionTimeoutWarning = @Session.Timeout - 1;
 
-        $(document).ready(function () {
-            SessionExpireAlert(@Session.Timeout * 1000 * 60);
 
-            $("#close").click( function (e) {
-                $("#window").data("kendoWindow").close();
-            });
 
+    $(document).ready(function () {
+
+        SessionExpireAlert(@Session.Timeout * 1000 * 60);
+
+        $("#close").click( function (e) {
+            $("#window").data("kendoWindow").close();
         });
 
+    });
 
-        function SessionExpireAlert(timeout) {
 
-            var seconds = timeout / 1000;
+    function SessionExpireAlert(timeout) {
+
+        var seconds = timeout / 1000;
         
-            document.getElementsByName("secondsIdle").innerHTML = seconds;
-            document.getElementsByName("seconds").innerHTML = seconds;
+        /*document.getElementsByName("secondsIdle").innerHTML = seconds;*/
+        document.getElementsByName("seconds").innerHTML = seconds;
 
-            setInterval(function () {
-                seconds--;
-                document.getElementById("seconds").innerHTML = seconds;
-                document.getElementById("secondsIdle").innerHTML = seconds;
-            }, 1000);
+        setInterval(function () {
+            seconds--;
+            document.getElementById("seconds").innerHTML = seconds;
+            /*document.getElementById("secondsIdle").innerHTML = seconds;*/
+            
+        }, 1000);
 
-            setTimeout(function () {
-                $("#window").data("kendoWindow").center();
-                $("#window").data("kendoWindow").open();
-            }, timeout - (60 * 1000));
+        setTimeout(function () {
+            $("#window").data("kendoWindow").center();
+            $("#window").data("kendoWindow").open();
+        }, timeout - (60 * 1000));
 
-            setTimeout(function () {
-                window.location = "http://localhost:13800/";
-            }, timeout);
+        setTimeout(function () {
+            window.location = "http://localhost:13800/";
+        }, timeout);
 
-        };
+    };
 
     function ResetSession() {
         //Redirect to refresh Session.
@@ -227,6 +240,79 @@
         var radwindow = $find('<%=modalPopup.ClientID %>');
         radwindow.close();
     }
+
+
+    $(document).ready(function () {
+        $("#responsive-panel").kendoResponsivePanel({
+            breakpoint: 768,
+            autoClose: false,
+            orientation: "top"
+        });
+    });
+    function onclick(e) {
+        $("#responsive-panel").getKendoResponsivePanel().toggle();
+    }
+
+
+
+    (function ($) {
+        $.fn.menumaker = function (options) {
+            var cssmenu = $(this), settings = $.extend({
+                format: "dropdown",
+                sticky: false
+            }, options);
+            return this.each(function () {
+                $(this).find(".button").on('click', function () {
+                    $(this).toggleClass('menu-opened');
+                    var mainmenu = $(this).next('ul');
+                    if (mainmenu.hasClass('open')) {
+                        mainmenu.slideToggle().removeClass('open');
+                    }
+                    else {
+                        mainmenu.slideToggle().addClass('open');
+                        if (settings.format === "dropdown") {
+                            mainmenu.find('ul').show();
+                        }
+                    }
+                });
+                cssmenu.find('li ul').parent().addClass('has-sub');
+                multiTg = function () {
+                    cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
+                    cssmenu.find('.submenu-button').on('click', function () {
+                        $(this).toggleClass('submenu-opened');
+                        if ($(this).siblings('ul').hasClass('open')) {
+                            $(this).siblings('ul').removeClass('open').slideToggle();
+                        }
+                        else {
+                            $(this).siblings('ul').addClass('open').slideToggle();
+                        }
+                    });
+                };
+                if (settings.format === 'multitoggle') multiTg();
+                else cssmenu.addClass('dropdown');
+                if (settings.sticky === true) cssmenu.css('position', 'fixed');
+                resizeFix = function () {
+                    var mediasize = 700;
+                    if ($(window).width() > mediasize) {
+                        cssmenu.find('ul').show();
+                    }
+                    if ($(window).width() <= mediasize) {
+                        cssmenu.find('ul').hide().removeClass('open');
+                    }
+                };
+                resizeFix();
+                return $(window).on('resize', resizeFix);
+            });
+        };
+    })(jQuery);
+
+    (function ($) {
+        $(document).ready(function () {
+            $("#cssmenu").menumaker({
+                format: "multitoggle"
+            });
+        });
+    })(jQuery);
 
 </script>
 

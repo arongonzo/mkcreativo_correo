@@ -9,6 +9,7 @@ body {
     color: #424242;
     margin: 0;
     padding: 0;
+    font-family:'Roboto', sans-serif;
 }
 
 a {
@@ -57,9 +58,10 @@ mark {
 
 h1, h2, h3,
 h4, h5, h6 {
-    color: #000;
+    color: #626262;
     margin-bottom: 0;
     padding-bottom: 0;
+    
 }
 
 h1 {
@@ -68,6 +70,7 @@ h1 {
 
 h2 {
     font-size: 1.75em;
+
 }
 
 h3 {
@@ -428,7 +431,7 @@ input, textarea {
     background: #fff;
     color: #333;
     font-size: 1.2em;
-    margin: 5px 0 6px 0;
+    margin: 1px 0 1px 0;
     padding: 5px;
     width: 300px;
 }
@@ -537,7 +540,7 @@ table {
 }
 
 th {
-    font-size: 1.2em;
+    font-size: 11px;
     text-align: left;
     border: none 0px;
     padding-left: 0;
@@ -779,42 +782,55 @@ header{position:relative;width:100%;background:#fff; display:table;    border-bo
 nav{}
 
 
+#cssmenu{font-family: 'Roboto', sans-serif; text-transform:uppercase;     color: rgba(0,255,0,0.54);    fill: rgba(0,0,255,0.54);    width:100%;}
 
-#cssmenu,#cssmenu ul,#cssmenu ul li,#cssmenu ul li a,#cssmenu #head-mobile{border:0;list-style:none;line-height:1;display:block;position:relative;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;    margin-bottom: 0px;}
+#cssmenu,#cssmenu ul,#cssmenu ul li,#cssmenu ul li a,#cssmenu #head-mobile{    border:0;    list-style:none;    line-height:1;    display:block;    position:relative;    -webkit-box-sizing:border-box;    -moz-box-sizing:border-box;    box-sizing:border-box;        margin-bottom: 0px;    }
 #cssmenu:after,#cssmenu > ul:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0}
 #cssmenu #head-mobile{display:none}
-#cssmenu{font-family:sans-serif; width:100%;}
+
 #cssmenu > ul > li{float:left; }
 
-#cssmenu > ul > li > a{padding:21px;font-size:12px;letter-spacing:1px;text-decoration:none;color:#484848;font-weight:700;}
-#cssmenu > ul > li:hover > a,#cssmenu ul li.active a{color:#484848}
+#cssmenu > ul > li > a{    padding:21px;    font-size:12px;    letter-spacing:1px;    text-decoration:none;    font-weight:700;    color: rgba(0,0,0,0.54);    fill: rgba(0,0,0,0.54);}
+#cssmenu > ul > li:hover > a,#cssmenu ul li.active a{color:#424242; background:#fff;    }
 
-#cssmenu > ul > li:hover,#cssmenu ul li.active:hover,#cssmenu ul li.active,#cssmenu ul li.has-sub.active:hover{background:#eee!important;-webkit-transition:background .3s ease;-ms-transition:background .3s ease;transition:background .3s ease;}
-#cssmenu > ul > li.has-sub > a{padding-right:20px}
-#cssmenu > ul > li.has-sub > a:after{position:absolute;top:22px;right:11px;width:8px;height:2px;display:block;background:#e5e5e5;content:''}
+#cssmenu > ul > li:hover,#cssmenu ul li.active:hover,#cssmenu ul li.active,#cssmenu ul li.has-sub.active:hover{    
+    background:#fff!important;    
+    border-bottom:2px solid #e10e14;    
+    -webkit-transition:background .3s ease;    
+    -ms-transition:background .3s ease;    
+    transition:background .3s ease;}
+#cssmenu > ul > li.has-sub > a{padding-right:20px;}
+#cssmenu > ul > li.has-sub > a:after{position:absolute;top:22px;right:11px;width:8px;height:2px;display:block;background:#f1f1f1;content:''}
 
 
-#cssmenu > ul > li.has-sub > a:before{position:absolute;top:19px;right:14px;display:block;width:2px;height:8px;background:#e5e5e5;content:'';-webkit-transition:all .25s ease;-ms-transition:all .25s ease;transition:all .25s ease}
+#cssmenu > ul > li.has-sub > a:before{position:absolute;top:19px;right:14px;display:block;width:2px;height:8px;background:#f1f1f1;content:'';-webkit-transition:all .25s ease;-ms-transition:all .25s ease;transition:all .25s ease}
 #cssmenu > ul > li.has-sub:hover > a:before{top:23px;height:0}
 
 #cssmenu ul ul{position:absolute;left:-9999px}
-#cssmenu ul ul li{height:0;-webkit-transition:all .25s ease;-ms-transition:all .25s ease;background:#333;transition:all .25s ease}
-#cssmenu ul ul li:hover{}
+
+
+#cssmenu ul ul li{height:0;-webkit-transition:all .25s ease;-ms-transition:all .25s ease;background:#f1f1f1;transition:all .25s ease}
+#cssmenu ul ul li:hover{background:#e10e14 !important;}
+
 #cssmenu li:hover > ul{left:auto;     z-index: 9999;-webkit-padding-start: 5px;}
 #cssmenu li:hover > ul > li{height:35px}
+
 #cssmenu ul ul ul{margin-left:100%;top:0}
 
-#cssmenu ul ul li a{border-bottom:1px solid rgba(150,150,150,0.15);padding:11px 15px;width:170px;font-size:12px;text-decoration:none;color:#ddd;font-weight:400;}
-#cssmenu ul ul li:last-child > a,#cssmenu ul ul li.last-item > a{border-bottom:0}
-#cssmenu ul ul li:hover > a,#cssmenu ul ul li a:hover{color:#fff}
+#cssmenu ul ul li a{border-left:1px solid #eee;background:#f9f9f9; padding:11px 17px;width:170px;font-size:12px;text-decoration:none;color:#424242;font-weight:400;}
 
-#cssmenu ul ul li.has-sub > a:after{position:absolute;top:16px;right:11px;width:8px;height:2px;display:block;background:#ddd;content:''}
-#cssmenu ul ul li.has-sub > a:before{position:absolute;top:13px;right:14px;display:block;width:2px;height:8px;background:#ddd;content:'';-webkit-transition:all .25s ease;-ms-transition:all .25s ease;transition:all .25s ease}
+#cssmenu ul ul li:last-child > a,#cssmenu ul ul li.last-item > a{border-bottom:1px}
+#cssmenu ul ul li:hover > a,#cssmenu ul ul li a:hover{color:#424242; background:#fff!important;  border-bottom:1px solid #e10e14; padding-bottom:10px;  }
+
+#cssmenu ul ul li.has-sub > a:after{position:absolute;top:16px;right:11px;width:8px;height:2px;display:block;background:#fff;content:''}
+#cssmenu ul ul li.has-sub > a:before{position:absolute;top:13px;right:14px;display:block;width:2px;height:8px;background:#fff;content:'';-webkit-transition:all .25s ease;-ms-transition:all .25s ease;transition:all .25s ease}
+
+
 #cssmenu ul ul > li.has-sub:hover > a:before{top:17px;height:0}
-#cssmenu ul ul li.has-sub:hover,#cssmenu ul li.has-sub ul li.has-sub ul li:hover{background:#e5e5e5;}
+#cssmenu ul ul li.has-sub:hover,#cssmenu ul li.has-sub ul li.has-sub ul li:hover{background:#fff; color:#424242}
 
-#cssmenu ul ul ul li.active a{border-left:1px solid #333}
-#cssmenu > ul > li.has-sub > ul > li.active > a,#cssmenu > ul ul > li.has-sub > ul > li.active> a{border-top:1px solid #333}
+#cssmenu ul ul ul li.active a{border-left:1px solid #e10e14}
+#cssmenu > ul > li.has-sub > ul > li.active > a,#cssmenu > ul ul > li.has-sub > ul > li.active> a{border-top:1px solid #e10e14}
 
 @media screen and (max-width:700px){
 .logo{position:absolute;top:0;left: 0;width:100%;height:46px;text-align:center;padding:10px 0 0 0 ;float:none}

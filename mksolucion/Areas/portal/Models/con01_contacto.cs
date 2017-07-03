@@ -15,6 +15,10 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal con01_id { get; set; }
 
+        public string UserId { get; set; }
+
+        public decimal? con01_id_padre { get; set; }
+
         [Display(Name = "nombre")]
         [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
@@ -42,6 +46,10 @@
         [Column(TypeName = "numeric")]
         public decimal? ser01_id { get; set; }
 
+        [Display(Name = "Estado")]
+        [Column(TypeName = "numeric")]
+        public decimal? con05_id { get; set; }
+
         [Display(Name = "Mensaje")]
         public string con01_mensaje { get; set; }
 
@@ -66,6 +74,8 @@
 
         public virtual serv01_servicios serv01_servicios { get; set; }
         public virtual con02_tipocontacto con02_tipocontacto { get; set; }
+
+        public virtual con05_EstadoMensaje con05_EstadoMensaje { get; set; }
 
         public virtual con03_importancia con03_importancia { get; set; }
 

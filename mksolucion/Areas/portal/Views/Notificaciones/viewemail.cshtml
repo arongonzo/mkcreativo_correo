@@ -11,7 +11,7 @@
     <hr />
         @Html.DisplayFor(model => model.ntf01_asunto)
         <br />
-            @{ WriteLiteral(Model.ntf01_contenido);}
+            @{ WriteLiteral(HttpUtility.HtmlDecode(Model.ntf01_contenido));}
     <hr />    
 </div>
 <p>

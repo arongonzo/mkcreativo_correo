@@ -109,7 +109,7 @@ namespace mksolucion.Funtion.Mail
 
 
             string sbx_Contenido_final_html = string.Format(body, "<img alt=\"Mail Creativo\" src=\"cid:{0}\" width=\"150\" height=\"50\" border=\"0\" />", HttpUtility.HtmlDecode(stx_html));
-            string sbx_Contenido = string.Format(body, "<img alt='Mail Creativo' src='http://localhost:13800/Content/assets/images/logomailcreativo.png' width='150' height='50' border='0' />", stx_html);
+            string sbx_Contenido = HttpUtility.HtmlDecode(stx_html);
 
             String Server_ruta = System.Web.HttpContext.Current.Server.MapPath("~");
             String top = System.Web.HttpContext.Current.Server.MapPath("~") + "Content\\assets\\images\\logomailcreativo.png";
