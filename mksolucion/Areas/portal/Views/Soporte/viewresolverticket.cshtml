@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "Usuarios";
+    Layout = Session["layout"].ToString();
+}
+@section header
+{
+    <link href="@Url.Content("~/Content/forms.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="container">
+    <div class="row" style="margin:auto">
+        <div class="col-md-12" style="padding:40px 0;">
+            <h1>Ver Ticket</h1>
+        </div>
+    </div>
+    <div class="row" style="margin:auto">
+        <div class="col-md-12" style="padding:40px 0;">
+            @ViewBag.asunto
+        </div>
+    </div>
+
+
+    <div class="panel panel-default">
+        @using (Html.BeginForm("viewticket", "soporte", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-whole" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            <div class="panel-body panel-separated">
+                <div class="row">
+                    <div class="col-md-3 text-center lh13">
+                        <div class="font-blue small">Última actualización</div>
+                        <div class="font-green font16">@ViewBag.ultilaactualizacion</div>
+                    </div>
+                    <div class="col-md-3 text-center lh13">
+                        <div class="font-blue small">Departamento</div>
+                        <div class="font-green font16">@ViewBag.departamento</div>
+                    </div>
+                    <div class="col-md-3 text-center lh13">
+                        <div class="font-blue small">Prioridad</div>
+                        <div class="font-green font16">@ViewBag.prioridad</div>
+                    </div>
+                    <div class="col-md-3 text-center lh13">
+                        <div class="font-blue small">Estado</div>
+                        <div class="font-green font16">@ViewBag.estadomensaje</div>
+                    </div>
+                </div>
+            </div>
+
+
+            @hlp_FowardEmail.FowardEmail(ViewBag.llave);
+
+            <div class="panel-heading small panel-middle">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span class="font-blue">
+                            <span class="font-strong">@ViewBag.nombre</span>
+                        </span>
+                    </div><div class="col-md-6 text-right"><span class="font-blue"><span class="font-strong">@ViewBag.fecha</span></span></div>
+                </div>
+            </div><div class="panel-body small panel-middle">
+                <div>@Html.Raw(System.Net.WebUtility.HtmlDecode(ViewBag.mensaje))</div>
+            </div>
+
+
+
+            <div class="actions" style="text-align:center">
+                <input type="button" id="btnResponder" value="Responder" class="btn btn-primary btn-md">
+            </div>
+
+
+
+
+
+            @Html.Hidden("cbxtipoSoporte", (string)@ViewBag.tipoSoporteresponder)
+            @Html.Hidden("cbximportancia", (string)@ViewBag.importanciaresponder)
+            @Html.Hidden("cbxservicio", (string)@ViewBag.servicioresponder)
+            @Html.Hidden("con01_asunto", (string)@ViewBag.asuntoresponder)
+
+            <div id="pnlfoward" style="display:none">
+                <div class="row whole-container">
+                    <div class="col-md-6 whole-form-input-wrapper">
+                        @Html.TextBox("con01_nombre", (string)@ViewBag.nombreresponder, new { placeholder = "NOMBRE", @readonly = "readonly" })
+                    </div>
+                    <div class="col-md-6 whole-form-input-wrapper">
+                        @Html.TextBox("con01_email", (string)@ViewBag.emailresponder, new { placeholder = "DIRECCIÓN EMAIL", type = "email", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="row whole-container">
+                    <div class="col-md-12">
+                        @(Html.Kendo().Editor()
+                    .Name("edit_con01_mensaje")
+                  .HtmlAttributes(new { style = "height:300px", aria_label = "editor", placeholder = "MENSAJE" })
+                      .Resizable(resizable => resizable.Content(true).Toolbar(true))
+                      .Tools(tools => tools
+                          .Clear()
+                          .Bold().Italic().Underline().Strikethrough()
+                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                          .InsertUnorderedList().InsertOrderedList()
+                          .Outdent().Indent()
+                          .CreateLink().Unlink()
+                          .SubScript()
+                          .SuperScript()
+                          .Formatting()
+                          .CleanFormatting()
+                          .FontName()
+                          .FontSize()
+                          )
+
+
+                        )
+                    </div>
+                </div>
+                <div class="row whole-container">
+                    <div class="col-md-12 file-input-container no-inner-space">
+                        <div class="col-md-2 v-center">
+                            <label class="label">ADJUNTO</label>
+                        </div>
+
+                        <div class="col-md-10 v-center">
+                            <label for="file" class="js-styled-file-wrapper file-input-wrapper no-inner-space" style="padding-top:10px">
+                                <div class="label label-primary xs v-center col-md-3">
+                                    Seleccionar archivo
+
+
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="text" readonly id="FileName" />
+                                </div>
+                            </label>
+                            <small>(Extensiones de archivo permitidas: .jpg, .gif, .jpeg, .png)</small>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="actions" style="text-align:center">
+                    <input type="button" id="wi_submit" value="Enviar" class="btn btn-primary btn-md">
+                </div>
+
+            </div>
+        }
+    </div>
+
+</div>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+
+        function DisplayFoward() {
+
+            $("#pnlfoward").show();
+            $("#btnResponder").hide();
+
+        }
+
+        function Submit() {
+
+                $("form").submit();
+
+        }
+
+        $(function () {
+
+            $("#btnResponder").click(function () { DisplayFoward(); });
+            $("#wi_submit").click(function () { Submit(); });
+            $("#pnlfoward").hide();
+
+        });
+
+    </script>
+}
+
+
+
+

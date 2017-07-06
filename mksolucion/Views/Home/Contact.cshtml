@@ -86,7 +86,30 @@
             </div>
             <div class="row whole-container">
                 <div class="col-md-12">
-                    @Html.TextAreaFor(model => model.con01_mensaje, new { placeholder = "MENSAJE", rows="10"})
+
+                    @(Html.Kendo().EditorFor(model => model.con01_mensaje)
+                    .Name("edit_con01_mensaje")
+                  .HtmlAttributes(new { style = "height:300px", aria_label = "editor", placeholder = "MENSAJE" })
+                      .Resizable(resizable => resizable.Content(true).Toolbar(true))
+                      .Tools(tools => tools
+                          .Clear()
+                          .Bold().Italic().Underline().Strikethrough()
+                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                          .InsertUnorderedList().InsertOrderedList()
+                          .Outdent().Indent()
+                          .CreateLink().Unlink()
+                          .SubScript()
+                          .SuperScript()
+                          .Formatting()
+                          .CleanFormatting()
+                          .FontName()
+                          .FontSize()
+                          )
+                          
+                
+                    )
+
+
                 </div>
             </div>
             <div class="row whole-container">

@@ -89,7 +89,7 @@ namespace mksolucion.Areas.portal.Controllers
                 con01_contacto.con02_id = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
                 con01_contacto.con03_id = Convert.ToDecimal(values["cbximportancia"].ToString());
                 con01_contacto.ser01_id = Convert.ToDecimal(values["cbxservicio"].ToString());
-                con01_contacto.con01_mensaje = values["con01_mensaje"].ToString();
+                con01_contacto.con01_mensaje = values["edit_con01_mensaje"].ToString();
                 con01_contacto.UserId = Llave_usuario;
                 con01_contacto.con05_id= 1;
                 con01_contacto.con01_estado = 1;
@@ -98,6 +98,11 @@ namespace mksolucion.Areas.portal.Controllers
 
                 db.con01_contacto.Add(con01_contacto);
                 db.SaveChanges();
+
+                con01_contacto.con01_asunto = "[Ticket ID: "+ con01_contacto.con01_id +" ] " + values["con01_asunto"].ToString();
+                db.Entry(con01_contacto).State = EntityState.Modified;
+                db.SaveChanges();
+
                 decimal llave_contacto = con01_contacto.con01_id;
 
                 if (Request.Files.Count > 0)
@@ -130,6 +135,136 @@ namespace mksolucion.Areas.portal.Controllers
         }
 
 
+        public ActionResult viewticket(decimal id)
+        {
+
+            string userid = Session["UserId"].ToString();
+
+            var query = from con01 in db.con01_contacto join
+                         con02 in db.con02_tipocontacto on con01.con02_id equals con02.con02_id join
+                         con03 in db.con03_importancia on con01.con03_id equals con03.con03_id join
+                         con05 in db.con05_EstadoMensaje on con01.con05_id equals con05.con05_id
+                        where (con05.con05_estado == 1) && (con02.con02_estado == 1) && (con03.con03_estado == 1)
+                        && (con01.con01_id == id)
+                        select new
+                        {
+                            asunto = con01.con01_asunto,
+                            Mensaje = con01.con01_mensaje,
+                            ultimaactualizacion = con01.con01_ultimaactualizacion,
+                            departamento = con02.con02_nombre,
+                            importancia = con03.con03_nombre,
+                            estado = con05.con05_nombre,
+                            nombre = con01.con01_nombre,
+                            fecha = con01.con01_fechacreacion,
+                            id_tipoSoporte = con01.con02_id,
+                            id_importancia = con01.con03_id,
+                            id_servicio = con01.ser01_id,
+                            email = con01.con01_email
+                        };
+            
+            if (query.Count() > 0)
+            {
+                var datos = query.ToList().Distinct();
+                foreach (var Row in datos)
+                {
+                    ViewBag.asunto = Row.asunto.ToString();
+                    ViewBag.ultilaactualizacion = Row.ultimaactualizacion.ToString();
+                    ViewBag.departamento = Row.departamento.ToString();
+                    ViewBag.prioridad = Row.importancia.ToString();
+                    ViewBag.estadomensaje = Row.estado.ToString();
+                    ViewBag.nombre =  Row.nombre.ToString();
+                    ViewBag.fecha = Row.fecha.ToString();
+                    ViewBag.mensaje = Row.Mensaje.ToString();
+                    ViewBag.llave = id;
+
+                    ViewBag.tipoSoporteresponder = Row.id_tipoSoporte.ToString();
+                    ViewBag.importanciaresponder = Row.id_importancia.ToString();
+                    ViewBag.servicioresponder = Row.id_servicio.ToString();
+                    ViewBag.asuntoresponder= Row.asunto.ToString();
+                    ViewBag.nombreresponder= Row.nombre.ToString();
+                    ViewBag.emailresponder= Row.email.ToString();
+
+                }
+            }
+
+            return View();
+        }
+
+        // POST: portal/pln02_tipoplan/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult viewticket(FormCollection values)
+        {
+
+            var path = string.Empty;
+            string Llave_usuario = Session["UserId"].ToString();
+            try{
+
+                if (ModelState.IsValid)
+                {
+
+                    con01_contacto con01_contacto = new con01_contacto();
+
+                    con01_contacto.con01_nombre = values["con01_nombre"].ToString();
+                    con01_contacto.con01_email = values["con01_email"].ToString();
+                    con01_contacto.con01_asunto = "RE: " + values["con01_asunto"].ToString();
+                    con01_contacto.con02_id = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
+                    con01_contacto.con03_id = Convert.ToDecimal(values["cbximportancia"].ToString());
+                    con01_contacto.ser01_id = Convert.ToDecimal(values["cbxservicio"].ToString());
+                    con01_contacto.con01_mensaje = values["edit_con01_mensaje"].ToString();
+                    con01_contacto.con01_id_padre = Convert.ToDecimal(values["hdd_llavepadre"].ToString());
+                    con01_contacto.UserId = Llave_usuario;
+                    con01_contacto.con05_id = 1;
+                    con01_contacto.con01_estado = 1;
+                    con01_contacto.con01_fechacreacion = DateTime.Now;
+                    con01_contacto.con01_ultimaactualizacion = DateTime.Now;
+
+                    db.con01_contacto.Add(con01_contacto);
+                    db.SaveChanges();
+
+                    decimal llave_contacto = con01_contacto.con01_id;   
+
+                    
+                                       
+                    
+
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            var fileext = Path.GetExtension(file.FileName);
+                            path = Path.Combine(Server.MapPath("~/Images/"), llave_contacto.ToString() + fileext.ToString());
+                            file.SaveAs(path);
+                        }
+                    }
+
+                    mkemail.Base_Mail_Ticket(Llave_usuario, llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, "ContactoInvitado");
+                    mkemail.Base_Mail_Ticket_administradores("", llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, "ContactoinvitadoAdministrador");
+
+                    return RedirectToAction("ContactFinish");
+                }
+            } 
+            catch (Exception e)
+            {
+
+            }
+            return View(values);
+        }
+
+
+
+        [ChildActionOnly]
+        public ActionResult partialviewticket(decimal id) {
+            return View();
+        }
+
+
         public ActionResult con01_contacto_Read([DataSourceRequest]DataSourceRequest request)
         {
             return Json(Read().ToDataSourceResult(request));
@@ -150,6 +285,7 @@ namespace mksolucion.Areas.portal.Controllers
             var dbContacto = db.con01_contacto.AsQueryable();
             dbContacto = dbContacto.Where(p => p.con01_estado == 1);
             dbContacto = dbContacto.Where(p => p.UserId == userid);
+            dbContacto = dbContacto.Where(p => p.con01_id_padre == null);
 
             result = dbContacto.Select(c => new _con01_contacto
             {
@@ -183,6 +319,125 @@ namespace mksolucion.Areas.portal.Controllers
 
             }).ToList();
             return result;
+        }
+
+
+        // GET: portal/Soporte
+        public ActionResult resolverticket()
+        {
+            return View();
+        }
+
+        public ActionResult con01_contactoadmin_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            return Json(Readadmin().ToDataSourceResult(request));
+        }
+
+        public IEnumerable<_con01_contacto> Readadmin()
+        {
+            return GetAlladmin();
+        }
+
+        public IList<_con01_contacto> GetAlladmin()
+        {
+
+            IList<_con01_contacto> result = new List<_con01_contacto>();
+
+            var dbContacto = db.con01_contacto.AsQueryable();
+            dbContacto = dbContacto.Where(p => p.con01_estado == 1);
+            dbContacto = dbContacto.Where(p => p.con01_id_padre == null);
+
+            result = dbContacto.Select(c => new _con01_contacto
+            {
+                con01_id = (decimal)c.con01_id,
+                con01_nombre = c.con01_nombre,
+                con01_email = c.con01_email,
+                con01_asunto = c.con01_asunto,
+                con01_estado = c.con01_estado,
+                con01_mensaje = c.con01_mensaje,
+                con01_fechacreacion = c.con01_fechacreacion,
+                con01_ultimaactualizacion = c.con01_ultimaactualizacion,
+
+                _TipoContacto = new _con02_tipocontacto()
+                {
+                    con02_id = (decimal)c.con02_tipocontacto.con02_id,
+                    con02_nombre = c.con02_tipocontacto.con02_nombre,
+                    con02_estado = c.con02_tipocontacto.con02_estado
+                }
+                ,
+                _Importancia = new _con03_importancia()
+                {
+                    con03_id = (decimal)c.con03_importancia.con03_id,
+                    con03_nombre = c.con03_importancia.con03_nombre
+                }
+                ,
+                _EstadoMensaje = new _con05_EstadoMensaje()
+                {
+                    con05_id = (decimal)c.con05_EstadoMensaje.con05_id,
+                    con05_nombre = c.con05_EstadoMensaje.con05_nombre
+                }
+
+            }).ToList();
+            return result;
+        }
+
+        // GET: portal/Soporte
+        public ActionResult viewresolverticket(decimal id)
+        {
+
+            string userid = Session["UserId"].ToString();
+
+            var query = from con01 in db.con01_contacto
+                        join
+                            con02 in db.con02_tipocontacto on con01.con02_id equals con02.con02_id
+                        join
+                            con03 in db.con03_importancia on con01.con03_id equals con03.con03_id
+                        join
+                            con05 in db.con05_EstadoMensaje on con01.con05_id equals con05.con05_id
+                        where (con05.con05_estado == 1) && (con02.con02_estado == 1) && (con03.con03_estado == 1)
+                        && (con01.con01_id == id)
+                        select new
+                        {
+                            asunto = con01.con01_asunto,
+                            Mensaje = con01.con01_mensaje,
+                            ultimaactualizacion = con01.con01_ultimaactualizacion,
+                            departamento = con02.con02_nombre,
+                            importancia = con03.con03_nombre,
+                            estado = con05.con05_nombre,
+                            nombre = con01.con01_nombre,
+                            fecha = con01.con01_fechacreacion,
+                            id_tipoSoporte = con01.con02_id,
+                            id_importancia = con01.con03_id,
+                            id_servicio = con01.ser01_id,
+                            email = con01.con01_email
+                        };
+
+            if (query.Count() > 0)
+            {
+                var datos = query.ToList().Distinct();
+                foreach (var Row in datos)
+                {
+                    ViewBag.asunto = Row.asunto.ToString();
+                    ViewBag.ultilaactualizacion = Row.ultimaactualizacion.ToString();
+                    ViewBag.departamento = Row.departamento.ToString();
+                    ViewBag.prioridad = Row.importancia.ToString();
+                    ViewBag.estadomensaje = Row.estado.ToString();
+                    ViewBag.nombre = Row.nombre.ToString();
+                    ViewBag.fecha = Row.fecha.ToString();
+                    ViewBag.mensaje = Row.Mensaje.ToString();
+                    ViewBag.llave = id;
+
+                    ViewBag.tipoSoporteresponder = Row.id_tipoSoporte.ToString();
+                    ViewBag.importanciaresponder = Row.id_importancia.ToString();
+                    ViewBag.servicioresponder = Row.id_servicio.ToString();
+                    ViewBag.asuntoresponder = Row.asunto.ToString();
+                    ViewBag.nombreresponder = Row.nombre.ToString();
+                    ViewBag.emailresponder = Row.email.ToString();
+
+                }
+            }
+
+            return View();
         }
 
     }

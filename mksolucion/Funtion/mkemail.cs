@@ -99,7 +99,7 @@ namespace mksolucion.Funtion.Mail
                 }
             }
 
-            stx_asunto = String.Format(stx_asunto, NumeroTicket, asunto);
+            stx_asunto = String.Format(stx_asunto, asunto);
             stx_html = String.Format(stx_html, Nombre, asunto, stx_importancia, "Activo");
 
 
@@ -226,7 +226,7 @@ namespace mksolucion.Funtion.Mail
                }
            }
 
-           stx_asunto = String.Format(stx_asunto, NumeroTicket);
+           stx_asunto = String.Format(stx_asunto, asunto);
 
 
             string body = bodymail();

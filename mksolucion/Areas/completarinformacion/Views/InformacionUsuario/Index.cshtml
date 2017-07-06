@@ -30,7 +30,7 @@
 }
 
 
-<div class="container" style="padding-top:60px">
+<div class="container" style="padding-top:60px; min-height:350px;">
     <div class="row">
         <div class="col-lg-12" style="text-align:center; padding:3px 30px 3px 30px">
             <img src="~/Content/assets/images/logomailcreativo.jpg" />
@@ -87,7 +87,7 @@
                         <div class="wizard-step" style="padding: 40px 0 40px 0">
                             <div class="col-lg-12" style="text-align:center; padding-bottom:30px; ">
                                 <h1>AGREGA UNA DIRECCION</h1>
-                                <p>Cuentanos sobre tu empresa para generar un perfil</p>
+                                <p>Agrega un dirección para genrar un perfil de tu cuenta</p>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.direccion1, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -134,7 +134,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <p>Quieres recibir e-mail semanales con promociones y eventos especiales @Html.CheckBox("Quieres recibir e-mail semanales con promociones y eventos especiales", true) </p>
+                                    <p>@Html.CheckBox("Quieres recibir e-mail semanales con promociones y eventos especiales", false) Quieres recibir e-mail semanales con promociones y eventos especiales  </p>
                                 </div>
                             </div>
                         </div>
@@ -143,6 +143,7 @@
                             <div id="field-summary"></div>
                             <div id="validation-summary">
                                 <span class="message-error">Por favor corriga los siguientes errores</span>
+                                <br />
                                 @Html.ValidationSummary(true)
                             </div>
                         </div>

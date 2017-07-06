@@ -383,6 +383,11 @@ namespace mksolucion.Models
                .Property(e => e.con03_id)
                .HasPrecision(18, 0);
 
+            modelBuilder.Entity<con01_contacto>()
+               .Property(e => e.con01_id_padre)
+               .HasPrecision(18, 0);
+            
+
             
 
             modelBuilder.Entity<con05_EstadoMensaje>()

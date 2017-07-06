@@ -39,12 +39,12 @@ namespace mksolucion.Models
         [Display(Name = "Estado")]
         public int? con01_estado { get; set; }
 
-        [ScaffoldColumn(false)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha creación")]
         public DateTime? con01_fechacreacion { get; set; }
 
         [Display(Name = "Fecha Actualización")]
-        [ScaffoldColumn(false)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime? con01_ultimaactualizacion { get; set; }
 
         public virtual serv01_servicios serv01_servicios { get; set; }

@@ -64,7 +64,7 @@ namespace mksolucion.Areas.completarinformacion.Controllers
                     var queryCliente = from usr in db.AspNetUsers
                                        join cntusr in db.cnt03_cuenta_usuario on usr.Id equals cntusr.UserId
                                        join cnt in db.cnt01_cuenta on cntusr.cnt01_id equals cnt.cnt01_id
-
+                                       where usr.Id == llave_usario
                                        select new
                                        {
                                            cnt01_id = cnt.cnt01_id

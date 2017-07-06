@@ -36,7 +36,7 @@
               .Name("grid")
               .Columns(columns =>
               {
-                  columns.Template(c => Html.ActionLink("Ver ticket", "viewticket", new { Id = c.con01_id })).ClientTemplate(Html.ActionLink("Ver Ticket", "viewticket", new { Id = "con01_id" }, new { target = "_blank", @style = "background:url('../../Content/assets/Images/btn/btn_edit.png') no-repeat center left; display:inline-block; height: 24px; width:130px; padding-left:25px" }).ToHtmlString().Replace("con01_id", "#=con01_id#")).Width(150);
+                  columns.Template(c => Html.ActionLink("Ver ticket", "viewticket", new { Id = c.con01_id })).ClientTemplate(Html.ActionLink("Ver Ticket", "viewticket", new { Id = "con01_id" }, new {  @style = "background:url('../../Content/assets/Images/btn/btn_edit.png') no-repeat center left; display:inline-block; height: 24px; width:130px; padding-left:25px" }).ToHtmlString().Replace("con01_id", "#=con01_id#")).Width(150);
                   columns.Bound(c => c.con01_fechacreacion).Width(150);
                   columns.Bound(c => c._TipoContacto.con02_nombre); 
                   columns.Bound(c => c.con01_asunto);

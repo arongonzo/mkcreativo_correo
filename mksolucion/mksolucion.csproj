@@ -322,6 +322,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\hlp_ContestarCorreo.cs" />
     <Compile Include="Migrations\201704211418296_Primeraconfiguracion.cs" />
     <Compile Include="Migrations\201704211418296_Primeraconfiguracion.Designer.cs">
       <DependentUpon>201704211418296_Primeraconfiguracion.cs</DependentUpon>
@@ -441,6 +442,10 @@
     <Compile Include="Migrations\201707031621058_actualizacionusuariocontacto_201707032.cs" />
     <Compile Include="Migrations\201707031621058_actualizacionusuariocontacto_201707032.Designer.cs">
       <DependentUpon>201707031621058_actualizacionusuariocontacto_201707032.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707052008024_actualizacion_presicion_idpadrecontacrto.cs" />
+    <Compile Include="Migrations\201707052008024_actualizacion_presicion_idpadrecontacrto.Designer.cs">
+      <DependentUpon>201707052008024_actualizacion_presicion_idpadrecontacrto.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -617,6 +622,10 @@
     <Content Include="Areas\portal\Views\MensajesPredefinidos\Delete.cshtml" />
     <Content Include="Areas\portal\Views\Soporte\nuevo_soporte.cshtml" />
     <Content Include="Areas\portal\Views\Soporte\ContactFinish.cshtml" />
+    <Content Include="Areas\portal\Views\Soporte\viewticket.cshtml" />
+    <Content Include="Views\Shared\_partialviewticket.cshtml" />
+    <Content Include="Areas\portal\Views\Soporte\resolverticket.cshtml" />
+    <Content Include="Areas\portal\Views\Soporte\viewresolverticket.cshtml" />
     <None Include="Properties\PublishProfiles\mailcreativo.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -785,6 +794,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707031621058_actualizacionusuariocontacto_201707032.resx">
       <DependentUpon>201707031621058_actualizacionusuariocontacto_201707032.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707052008024_actualizacion_presicion_idpadrecontacrto.resx">
+      <DependentUpon>201707052008024_actualizacion_presicion_idpadrecontacrto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

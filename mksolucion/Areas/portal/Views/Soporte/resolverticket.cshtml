@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "contacto Administradores";
+    Layout = Session["layout"].ToString();
+}
+<div class="container">
+    <div class="row" style="margin:auto">
+        <div class="col-md-12" style="padding:40px 0;">
+            <h1>VER TICKET / complemto de administardores</h1>
+        </div>
+        <div class="col-md-12" style="padding:0px 0;">
+
+            @(Html.Kendo().Grid<mksolucion.Models._con01_contacto>()
+              .Name("grid")
+              .Columns(columns =>
+              {
+                  columns.Template(c => Html.ActionLink("Ver ticket", "viewresolverticket", new { Id = c.con01_id })).ClientTemplate(Html.ActionLink("Ver Ticket", "viewresolverticket", new { Id = "con01_id" }, new { @style = "background:url('../../Content/assets/Images/btn/btn_edit.png') no-repeat center left; display:inline-block; height: 24px; width:6 0px; padding-left:25px" }).ToHtmlString().Replace("con01_id", "#=con01_id#")).Width(150);
+                  columns.Bound(c => c.con01_fechacreacion).Width(60);
+                  columns.Bound(c => c.con01_nombre);
+                  columns.Bound(c => c.con01_email);
+                  columns.Bound(c => c._TipoContacto.con02_nombre);
+                  columns.Bound(c => c.con01_asunto);
+                  columns.Bound(c => c._EstadoMensaje.con05_nombre);
+                  columns.Bound(c => c.con01_ultimaactualizacion);
+
+              })
+              .ColumnMenu()
+              .Pageable()
+              .Navigatable()
+              .Sortable(sortable =>
+              {
+                  sortable.SortMode(GridSortMode.MultipleColumn);
+              })
+              .Filterable()
+              .Scrollable(scrollable => scrollable.Enabled(false))
+              .DataSource(dataSource => dataSource
+                  .Ajax()
+                          .Read(read => read.Action("con01_contactoadmin_Read", "Soporte"))
+              )
+            )
+
+        </div>
+    </div>
+</div>
+

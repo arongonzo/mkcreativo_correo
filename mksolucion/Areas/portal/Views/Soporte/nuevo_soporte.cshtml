@@ -104,7 +104,27 @@
             </div>
             <div class="row whole-container">
                 <div class="col-md-12">
-                    @Html.TextArea("con01_mensaje","", new { placeholder = "MENSAJE", rows = "10" })
+                   @(Html.Kendo().EditorFor(model => model.con01_mensaje)
+                    .Name("edit_con01_mensaje")
+                  .HtmlAttributes(new { style = "height:300px", aria_label = "editor", placeholder = "MENSAJE" })
+                      .Resizable(resizable => resizable.Content(true).Toolbar(true))
+                      .Tools(tools => tools
+                          .Clear()
+                          .Bold().Italic().Underline().Strikethrough()
+                          .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                          .InsertUnorderedList().InsertOrderedList()
+                          .Outdent().Indent()
+                          .CreateLink().Unlink()
+                          .SubScript()
+                          .SuperScript()
+                          .Formatting()
+                          .CleanFormatting()
+                          .FontName()
+                          .FontSize()
+                          )
+
+
+                )
                 </div>
             </div>
             <div class="row whole-container">
@@ -117,7 +137,7 @@
                         <label for="file" class="js-styled-file-wrapper file-input-wrapper no-inner-space" style="padding-top:10px">
                             <div class="label label-primary xs v-center col-md-3">
                                 Seleccionar archivo
-                                <input type="file" name="attachments[]" id="file" onchange="document.getElementById('FileName').value = this.value;" class="js-styled-file">
+                                
 
                             </div>
                             <div class="col-md-7">
