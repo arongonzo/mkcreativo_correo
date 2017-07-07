@@ -50,8 +50,8 @@ namespace Helpers.Helpers
                     {
 
                         result = "<div class=\"panel-heading small panel-middle\"><div class=\"row\"><div class=\"col-md-6\"><span class=\"font-blue\"><span class=\"font-strong\">" + Row.nombre.ToString() + "</span>" +
-                        "</span></div><div class=\"col-md-6 text-right\"><span class=\"font-blue\"><span class=\"font-strong\">"+ Row.fecha.ToString() + "</span></span></div></div></div><div class=\"panel-body small panel-middle\">" +
-                        "<div>"+System.Net.WebUtility.HtmlDecode(Row.Mensaje.ToString())+"</div></div>" + result ;
+                        "</span></div><div class=\"col-md-6 text-right\"><span class=\"font-blue\"><span class=\"font-strong\">" + Row.fecha.ToString() + "</span></span></div></div></div><div class=\"panel-body small panel-middle\">" +
+                        "<div>" + System.Net.WebUtility.HtmlDecode(Row.Mensaje.ToString()) + "</div></div>" + result; 
 
                         if (Row.padre.ToString() != "")
                         {

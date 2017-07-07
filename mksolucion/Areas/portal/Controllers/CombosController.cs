@@ -45,6 +45,13 @@ namespace mksolucion.Areas.portal.Controllers
             return Json(Tipo.Select(p => new { con03_id = p.con03_id, con03_nombre = p.con03_nombre }), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult GetEstadoCorreo()
+        {
+            var Tipo = db.con05_EstadoMensaje.AsQueryable();
+            Tipo = Tipo.Where(p => p.con05_estado== 1);
+            return Json(Tipo.Select(p => new { con05_id = p.con05_id, con05_nombre = p.con05_nombre }), JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult GetServicioCliente()
         {
 

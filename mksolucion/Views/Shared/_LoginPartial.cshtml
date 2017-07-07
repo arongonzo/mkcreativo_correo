@@ -16,9 +16,6 @@
         @Html.ActionLink("Hola " + @Session["nmbrusr"].ToString() + "!", "Index", "portalcliente", routeValues: null, htmlAttributes: new { title = "Portal Clientes", @class = "nav-link link dropdown-toggle", data_toggle = "dropdown-submenu", aria_expanded = "true" })
         <ul>
             <li>
-                @Html.ActionLink("Soporte", "Index", "soporte", new { area = "portal" }, new { @class = "dropdown-item" })
-            </li>
-            <li>
                 @Html.ActionLink("Notificaciones", "Index", "notificaciones", new { area = "portal" }, new { @class = "dropdown-item" })
             </li>
             <li>

@@ -29,6 +29,15 @@
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
         public string con01_email { get; set; }
 
+        [Display(Name = "Nombre Destinatario")]
+        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
+        public string con01_destinatario { get; set; }
+
+        [Display(Name = "Email destinatario")]
+        [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]
+        public string con01_emaildestinatario { get; set; }
+
+
         [Display(Name = "Asunto")]
         [Required(ErrorMessage = "Debe ingresar un valor para {0}")]
         [StringLength(500, ErrorMessage = "El registro {0} debe estar entre {2} y {1} caracteres", MinimumLength = 3)]

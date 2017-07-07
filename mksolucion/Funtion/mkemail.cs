@@ -153,6 +153,113 @@ namespace mksolucion.Funtion.Mail
             return Respuesta;
         }
 
+        public static string Base_Mail_Ticket_Resolver(string llave_usuario, string NumeroTicket, string Nombre, string mail, string asunto, string Mensaje, string archivo, decimal TipoSoporte, decimal tipoImportancia, decimal llave_padre)
+        {
+
+            string stx_To = String.Empty;
+            string feedback = String.Empty;
+            string Respuesta = "Error en el Envio del correo electronico";
+            string stx_tipocontacto = string.Empty;
+            string stx_Destinatariocorreo = string.Empty;
+
+            string stx_importancia = string.Empty;
+
+            string stx_asunto = string.Empty;
+            string stx_html = string.Empty;
+            string stx_txt = string.Empty;
+
+            var querytc = from tc in db.con02_tipocontacto
+                          where tc.con02_id == TipoSoporte
+
+                          select new
+                          {
+                              nombre = tc.con02_nombre,
+                              destinatariocorreo = tc.con02_usuariocredencial
+
+                          };
+
+            if (querytc.Count() > 0)
+            {
+                var datos = querytc.ToList();
+                foreach (var Row in datos)
+                {
+                    stx_tipocontacto = Row.nombre.ToString();
+                    stx_Destinatariocorreo = Row.destinatariocorreo.ToString();
+                }
+            }
+
+            var queryimp = from tc in db.con03_importancia
+                           where tc.con03_id == tipoImportancia
+
+                           select new
+                           {
+                               nombre = tc.con03_nombre
+                           };
+
+            if (queryimp.Count() > 0)
+            {
+                var datos = queryimp.ToList();
+                foreach (var Row in datos)
+                {
+                    stx_importancia = Row.nombre.ToString();
+                }
+            }
+
+            stx_asunto = asunto;
+            stx_html = Mensaje;
+            
+            string body = bodymail();
+            var builder = new BodyBuilder();
+
+            string sbx_Contenido_final_html = string.Format(body, "<img alt=\"Mail Creativo\" src=\"cid:{0}\" width=\"150\" height=\"50\" border=\"0\" />", HttpUtility.HtmlDecode(stx_html));
+            string sbx_Contenido = HttpUtility.HtmlDecode(stx_html);
+
+            string mailsAdjuntos = EmailPadres(llave_padre);
+            sbx_Contenido_final_html = sbx_Contenido_final_html  + mailsAdjuntos;
+
+            String Server_ruta = System.Web.HttpContext.Current.Server.MapPath("~");
+            String top = System.Web.HttpContext.Current.Server.MapPath("~") + "Content\\assets\\images\\logomailcreativo.png";
+
+
+            var image = builder.LinkedResources.Add(top);
+            image.ContentId = MimeUtils.GenerateMessageId();
+            builder.HtmlBody = string.Format(sbx_Contenido_final_html, image.ContentId);
+
+            var mimeMessage = new MimeMessage();
+            mimeMessage.To.Add(new MailboxAddress(Nombre, mail));
+            mimeMessage.Subject = stx_asunto;
+            mimeMessage.Body = builder.ToMessageBody();
+
+
+            int respuestaenvio = SendMail(mimeMessage, TipoSoporte);
+
+            if (respuestaenvio == 1)
+            {
+                Respuesta = "Envio realizado con Exito";
+
+
+                if (!String.IsNullOrEmpty(llave_usuario))
+                {
+                    ntf01_notificaciones ntf01_notificaciones = new Models.ntf01_notificaciones();
+
+                    ntf01_notificaciones.ntf02_fechaenvio = DateTime.Now;
+                    ntf01_notificaciones.ntf01_asunto = stx_asunto;
+                    ntf01_notificaciones.ntf01_contenido = HttpUtility.HtmlEncode(sbx_Contenido);
+                    ntf01_notificaciones.ntf01_destinatario = mail;
+                    ntf01_notificaciones.ntf01_remitente = stx_Destinatariocorreo;
+                    ntf01_notificaciones.UserId = llave_usuario;
+                    ntf01_notificaciones.ntf02_id = 2;
+                    ntf01_notificaciones.ntf01_estado = (int)respuestaenvio;
+
+                    db.ntf01_notificaciones.Add(ntf01_notificaciones);
+                    db.SaveChanges();
+                }
+
+            }
+
+            return Respuesta;
+        }
+
         public static string Base_Mail_Ticket_administradores(string llave_usuario,string NumeroTicket, string Nombre, string mail, string asunto, string Mensaje, string archivo, decimal TipoSoporte, decimal tipoImportancia, string AccesoRapido)
         {
 
@@ -313,6 +420,68 @@ namespace mksolucion.Funtion.Mail
             return body;
         }
 
+        public static String EmailPadres(decimal IDticket)
+        {
+            var result = "";
+            try
+            {
+
+                int id = Convert.ToInt32(IDticket);
+
+                string base_emailpadres = "<p>-------- Mensaje original --------<br>De: {0} &lt;<a href=\"mailto:{1}\">{2}</a>&gt; <br>Fecha: {3} <br>A: '{4}' &lt;<a href=\"mailto:{5}\">{6}</a>&gt; <br>Asunto: {7} </p>";
+
+                ModelMK db = new ModelMK();
+
+                var query = from con01 in db.con01_contacto
+                            join con02 in db.con02_tipocontacto on con01.con02_id equals con02.con02_id
+                            join con03 in db.con03_importancia on con01.con03_id equals con03.con03_id
+                            join con05 in db.con05_EstadoMensaje on con01.con05_id equals con05.con05_id
+                            where (con05.con05_estado == 1) && (con02.con02_estado == 1) && (con03.con03_estado == 1)
+                            && (con01.con01_id == IDticket)
+                            select new
+                            {
+                                id = con01.con01_id,
+                                asunto = con01.con01_asunto,
+                                Mensaje = con01.con01_mensaje,
+                                ultimaactualizacion = con01.con01_ultimaactualizacion,
+                                departamento = con02.con02_nombre,
+                                importancia = con03.con03_nombre,
+                                estado = con05.con05_nombre,
+                                nombre = con01.con01_nombre,
+                                fecha = con01.con01_fechacreacion,
+                                padre = con01.con01_id_padre,
+                                email = con01.con01_email,
+                                nombredestinatario = con01.con01_destinatario,
+                                emaildestinatario = con01.con01_emaildestinatario
+
+                            };
+
+                if (query.Count() > 0)
+                {
+                    var datos = query.ToList().Distinct();
+                    foreach (var Row in datos)
+                    {
+
+                        result = string.Format(base_emailpadres, Row.nombre.ToString(), Row.email.ToString(), Row.email.ToString(), Row.fecha.ToString(), Row.nombredestinatario.ToString(), Row.emaildestinatario.ToString(), Row.emaildestinatario.ToString(), Row.asunto.ToString()) 
+                            + "<div class=\"panel-heading small panel-middle\"><div class=\"row\"><div class=\"col-md-6\"><span class=\"font-blue\"><span class=\"font-strong\">" + Row.nombre.ToString() + "</span>" +
+                        "</span></div><div class=\"col-md-6 text-right\"><span class=\"font-blue\"><span class=\"font-strong\">" + Row.fecha.ToString() + "</span></span></div></div></div><div class=\"panel-body small panel-middle\">" +
+                        "<div>" + System.Net.WebUtility.HtmlDecode(Row.Mensaje.ToString()) + "</div></div>";
+
+                        if (Row.padre.ToString() != "")
+                        {
+                            result = result + EmailPadres(Convert.ToDecimal(Row.padre.ToString()));
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            return result;
+        }
 
         public static string Base_Mail(string llave_usuario,string Nombre_usuario, string Email, string asunto, string[] Mensaje, decimal TipoSoporte, decimal tipoImportancia, string AccesoRapido)
         {

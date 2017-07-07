@@ -16,6 +16,7 @@ using GooglereCAPTCHa.Models;
 using System.IO;
 using System.Web.Mail;
 using mksolucion.Funtion.Mail;
+using System.Linq;
 
 namespace mksolucion.Controllers
 {
@@ -126,6 +127,33 @@ namespace mksolucion.Controllers
                     db.SaveChanges();
                     decimal llave_contacto = con01_contacto.con01_id;
 
+                    string stx_tipocontacto = "";
+                    string stx_Destinatariocorreo = "";
+                    decimal id_tiposoporte = Int32.Parse(values["con02_id"]);
+
+                    var querytc = from tc in db.con02_tipocontacto
+                                  where tc.con02_id == id_tiposoporte
+
+                                  select new
+                                  {
+                                      nombre = tc.con02_nombre,
+                                      destinatariocorreo = tc.con02_usuariocredencial
+
+                                  };
+
+                    if (querytc.Count() > 0)
+                    {
+                        var datos = querytc.ToList();
+                        foreach (var Row in datos)
+                        {
+                            stx_tipocontacto = Row.nombre.ToString();
+                            stx_Destinatariocorreo = Row.destinatariocorreo.ToString();
+                        }
+                    }
+
+                    con01_contacto.con01_destinatario = stx_tipocontacto;
+                    con01_contacto.con01_emaildestinatario = stx_Destinatariocorreo;
+
                     con01_contacto.con01_asunto = "[Ticket ID: "+llave_contacto+" ] " + values["con01_asunto"].ToString();
                     db.Entry(con01_contacto).State = EntityState.Modified;
                     db.SaveChanges();
@@ -142,6 +170,10 @@ namespace mksolucion.Controllers
                             file.SaveAs(path);
                         }
                     }
+
+
+
+
 
                     mkemail.Base_Mail_Ticket("", llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, "ContactoInvitado");
                     mkemail.Base_Mail_Ticket_administradores("", llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, "ContactoinvitadoAdministrador");

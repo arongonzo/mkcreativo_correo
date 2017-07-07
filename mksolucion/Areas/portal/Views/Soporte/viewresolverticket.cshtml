@@ -9,23 +9,21 @@
 
 <div class="container">
     <div class="row" style="margin:auto">
-        <div class="col-md-12" style="padding:40px 0;">
-            <h1>Ver Ticket</h1>
+        <div class="col-md-12" style="padding:20px 0;">
+            <h1>Resolver Ticket</h1>
         </div>
     </div>
     <div class="row" style="margin:auto">
-        <div class="col-md-12" style="padding:40px 0;">
+        <div class="col-md-12" style="padding:10px 0;">
             @ViewBag.asunto
         </div>
     </div>
 
 
     <div class="panel panel-default">
-        @using (Html.BeginForm("viewticket", "soporte", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-whole" }))
-        {
+        @using (Html.BeginForm("viewresolverticket", "soporte", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-whole" }))
+            {
             @Html.AntiForgeryToken()
-
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
             <div class="panel-body panel-separated">
                 <div class="row">
@@ -59,32 +57,63 @@
                         </span>
                     </div><div class="col-md-6 text-right"><span class="font-blue"><span class="font-strong">@ViewBag.fecha</span></span></div>
                 </div>
-            </div><div class="panel-body small panel-middle">
+            </div>
+            
+            <div class="panel-body small panel-middle">
                 <div>@Html.Raw(System.Net.WebUtility.HtmlDecode(ViewBag.mensaje))</div>
             </div>
 
-
-
-            <div class="actions" style="text-align:center">
+            <div class="actions" style="text-align:center; padding:20px;">
                 <input type="button" id="btnResponder" value="Responder" class="btn btn-primary btn-md">
             </div>
+        
+            <div id="pnlfoward" style="display:none" class="form-whole">
 
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
+                @Html.Hidden("hddllaveusuario", (string)@ViewBag.llavedestinatario)
+                @Html.Hidden("cbximportancia", (string)@ViewBag.importanciaresponder)
+                @Html.Hidden("cbxservicio", (string)@ViewBag.servicioresponder)
+                @Html.Hidden("con01_asunto", (string)@ViewBag.asuntoresponder)
+                @Html.Hidden("con01_email", (string)@ViewBag.email)
+                @Html.Hidden("nombre", (string)@ViewBag.nombre)
+                @Html.Hidden("id_contacto", (string)@ViewBag.idcontacto)
 
-
-
-            @Html.Hidden("cbxtipoSoporte", (string)@ViewBag.tipoSoporteresponder)
-            @Html.Hidden("cbximportancia", (string)@ViewBag.importanciaresponder)
-            @Html.Hidden("cbxservicio", (string)@ViewBag.servicioresponder)
-            @Html.Hidden("con01_asunto", (string)@ViewBag.asuntoresponder)
-
-            <div id="pnlfoward" style="display:none">
                 <div class="row whole-container">
-                    <div class="col-md-6 whole-form-input-wrapper">
+                    <div class="col-md-4 whole-form-input-wrapper">
                         @Html.TextBox("con01_nombre", (string)@ViewBag.nombreresponder, new { placeholder = "NOMBRE", @readonly = "readonly" })
                     </div>
-                    <div class="col-md-6 whole-form-input-wrapper">
-                        @Html.TextBox("con01_email", (string)@ViewBag.emailresponder, new { placeholder = "DIRECCIÓN EMAIL", type = "email", @readonly = "readonly" })
+                    <div class="col-md-4 whole-form-input-wrapper">
+                        @(Html.Kendo().DropDownList()
+                                .Name("cbxtipoSoporte")
+                .HtmlAttributes(new { style = "width:100%; height:30px", required = "required" })
+                                .OptionLabel("Seleccione Tipo de Soporte")
+                                .DataTextField("con02_nombre")
+                                .DataValueField("con02_id")
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetTipoContacto", "combos");
+                                    }).ServerFiltering(true);
+                                })
+                        )
+                    </div>
+                    <div class="col-md-4 whole-form-input-wrapper">
+                        @(Html.Kendo().DropDownList()
+                                .Name("cbxEstadoCorreo")
+                        .HtmlAttributes(new { style = "width:100%; height:30px;", required = "required" })
+                                .OptionLabel("Seleccione Quien envia el Correo")
+                                .DataTextField("con05_nombre")
+                                .DataValueField("con05_id")
+                                .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("GetEstadoCorreo", "combos");
+                                    }).ServerFiltering(true);
+                                })
+                        )
                     </div>
                 </div>
                 <div class="row whole-container">
@@ -139,7 +168,7 @@
                     <input type="button" id="wi_submit" value="Enviar" class="btn btn-primary btn-md">
                 </div>
 
-            </div>
+        </div>
         }
     </div>
 

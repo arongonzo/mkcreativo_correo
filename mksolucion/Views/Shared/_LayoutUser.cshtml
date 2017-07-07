@@ -17,6 +17,7 @@
 
 	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 
+    @RenderSection("header", required: false)
 
 </head>
 <body>
@@ -33,6 +34,9 @@
                         <li><a href='#'>Campañas</a></li>
                         <li><a href='#'>Plantillas</a></li>
                         <li><a href='#'>Listas</a></li>
+                        <li>
+                            @Html.ActionLink("Soporte", "Index", "soporte", new { area = "portal" }, new { @class = "dropdown-item" })
+                        </li>
                         @Html.Partial("_LoginPartial")
                     </ul>
                    
@@ -67,8 +71,87 @@
                     <p class="text-muted">Copyright © 2002-2015 Telerik. All rights reserved.</p>
                 </div>
             </footer>
+    @RenderSection("scripts", required: false)
+
+    @(Html.Kendo().Window()
+    .Name("window")
+    .Title("TU SESIÓN EXPIRÓ")
+    .Content(
+    @<text>
+        <div class="timeout">
+            <div class="header">
+                Session Caducada!
+            </div>
+            <div class="body">
+                Tu session expirara en &nbsp;<span id="seconds"></span>&nbsp;Segundos.<br />
+                Quieres reiniciarla?
+            </div>
+            <div class="footer" align="right">
+                @Html.ActionLink("Cerrar sesión", "Index", "Admin", new { Area = "portal" }, new { @class = "timeoutbutton" })
+
+                <a id="timeout-keep-signin-btn" class="timeoutbutton" onclick="ResetSession()">Mantener Sesion</a>
+            </div>
+        </div>
+    </text>)
+    .Draggable()
+    .Resizable()
+    .Height(250)
+    .Width(400)
+    .Visible(false)
+    )
 
             <script>
+
+                var sessionTimeoutWarning = @Session.Timeout - 1;
+
+
+
+                $(document).ready(function () {
+
+                    SessionExpireAlert(@Session.Timeout * 1000 * 60);
+
+                    $("#close").click( function (e) {
+                        $("#window").data("kendoWindow").close();
+                    });
+
+                });
+
+
+                function SessionExpireAlert(timeout) {
+
+                    var seconds = timeout / 1000;
+        
+                    /*document.getElementsByName("secondsIdle").innerHTML = seconds;*/
+                    document.getElementsByName("seconds").innerHTML = seconds;
+
+                    setInterval(function () {
+                        seconds--;
+                        document.getElementById("seconds").innerHTML = seconds;
+                        /*document.getElementById("secondsIdle").innerHTML = seconds;*/
+            
+                    }, 1000);
+
+                    setTimeout(function () {
+                        $("#window").data("kendoWindow").center();
+                        $("#window").data("kendoWindow").open();
+                    }, timeout - (60 * 1000));
+
+                    setTimeout(function () {
+                        window.location = "http://localhost:13800/";
+                    }, timeout);
+
+                };
+
+                function ResetSession() {
+                    //Redirect to refresh Session.
+                    window.location = window.location.href;
+                }
+
+                function CloseWindows() {
+                    var radwindow = $find('<%=modalPopup.ClientID %>');
+                    radwindow.close();
+                }
+
                 $(document).ready(function () {
                     $("#responsive-panel").kendoResponsivePanel({
                         breakpoint: 768,

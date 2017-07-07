@@ -17,6 +17,12 @@ namespace mksolucion.Models
         [Display(Name = "Direccion email")]
         public string con01_email { get; set; }
 
+        [Display(Name = "Nombre Destinatario")]
+        public string con01_destinatario { get; set; }
+
+        [Display(Name = "Email destinatario")]
+        public string con01_emaildestinatario { get; set; }
+
         [Display(Name = "Asunto")]
         public string con01_asunto { get; set; }
 

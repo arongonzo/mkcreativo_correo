@@ -83,7 +83,7 @@ namespace mksolucion.Areas.portal.Controllers
 
                 con01_contacto con01_contacto = new con01_contacto();
 
-                con01_contacto.con01_nombre = values["con01_nombre"].ToString();
+                con01_contacto.con01_nombre = values["con01_nombre"].ToString() +" / Cliente";
                 con01_contacto.con01_email = values["con01_email"].ToString();
                 con01_contacto.con01_asunto = values["con01_asunto"].ToString();
                 con01_contacto.con02_id = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
@@ -98,12 +98,40 @@ namespace mksolucion.Areas.portal.Controllers
 
                 db.con01_contacto.Add(con01_contacto);
                 db.SaveChanges();
+decimal llave_contacto = con01_contacto.con01_id;
+
+                string stx_tipocontacto = "";
+                string stx_Destinatariocorreo = "";
+                decimal id_tiposoporte = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
+
+                var querytc = from tc in db.con02_tipocontacto
+                              where tc.con02_id == id_tiposoporte
+
+                              select new
+                              {
+                                  nombre = tc.con02_nombre,
+                                  destinatariocorreo = tc.con02_usuariocredencial
+
+                              };
+
+                if (querytc.Count() > 0)
+                {
+                    var datos = querytc.ToList();
+                    foreach (var Row in datos)
+                    {
+                        stx_tipocontacto = Row.nombre.ToString();
+                        stx_Destinatariocorreo = Row.destinatariocorreo.ToString();
+                    }
+                }
+
+                con01_contacto.con01_destinatario = stx_tipocontacto;
+                con01_contacto.con01_emaildestinatario = stx_Destinatariocorreo;
 
                 con01_contacto.con01_asunto = "[Ticket ID: "+ con01_contacto.con01_id +" ] " + values["con01_asunto"].ToString();
                 db.Entry(con01_contacto).State = EntityState.Modified;
                 db.SaveChanges();
 
-                decimal llave_contacto = con01_contacto.con01_id;
+                
 
                 if (Request.Files.Count > 0)
                 {
@@ -133,6 +161,9 @@ namespace mksolucion.Areas.portal.Controllers
         {
             return View();
         }
+
+
+        
 
 
         public ActionResult viewticket(decimal id)
@@ -206,9 +237,35 @@ namespace mksolucion.Areas.portal.Controllers
                 if (ModelState.IsValid)
                 {
 
+                    string stx_tipocontacto = "";
+                    string stx_Destinatariocorreo = "";
+                    decimal id_tiposoporte = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
+
+                    var querytc = from tc in db.con02_tipocontacto
+                                  where tc.con02_id == id_tiposoporte
+
+                                  select new
+                                  {
+                                      nombre = tc.con02_nombre,
+                                      destinatariocorreo = tc.con02_usuariocredencial
+
+                                  };
+
+                    if (querytc.Count() > 0)
+                    {
+                        var datos = querytc.ToList();
+                        foreach (var Row in datos)
+                        {
+                            stx_tipocontacto = Row.nombre.ToString();
+                            stx_Destinatariocorreo = Row.destinatariocorreo.ToString();
+                        }
+                    }
+
+                    
+
                     con01_contacto con01_contacto = new con01_contacto();
 
-                    con01_contacto.con01_nombre = values["con01_nombre"].ToString();
+                    con01_contacto.con01_nombre = values["con01_nombre"].ToString() +" / Cliente";
                     con01_contacto.con01_email = values["con01_email"].ToString();
                     con01_contacto.con01_asunto = "RE: " + values["con01_asunto"].ToString();
                     con01_contacto.con02_id = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
@@ -220,16 +277,13 @@ namespace mksolucion.Areas.portal.Controllers
                     con01_contacto.con05_id = 1;
                     con01_contacto.con01_estado = 1;
                     con01_contacto.con01_fechacreacion = DateTime.Now;
-                    con01_contacto.con01_ultimaactualizacion = DateTime.Now;
+                    con01_contacto.con01_destinatario = stx_tipocontacto;
+                    con01_contacto.con01_emaildestinatario = stx_Destinatariocorreo;
 
                     db.con01_contacto.Add(con01_contacto);
                     db.SaveChanges();
 
                     decimal llave_contacto = con01_contacto.con01_id;   
-
-                    
-                                       
-                    
 
                     if (Request.Files.Count > 0)
                     {
@@ -244,7 +298,7 @@ namespace mksolucion.Areas.portal.Controllers
                         }
                     }
 
-                    mkemail.Base_Mail_Ticket(Llave_usuario, llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, "ContactoInvitado");
+                    mkemail.Base_Mail_Ticket_Resolver(Llave_usuario, llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, (decimal)con01_contacto.con01_id_padre);
                     mkemail.Base_Mail_Ticket_administradores("", llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, "ContactoinvitadoAdministrador");
 
                     return RedirectToAction("ContactFinish");
@@ -259,10 +313,7 @@ namespace mksolucion.Areas.portal.Controllers
 
 
 
-        [ChildActionOnly]
-        public ActionResult partialviewticket(decimal id) {
-            return View();
-        }
+       
 
 
         public ActionResult con01_contacto_Read([DataSourceRequest]DataSourceRequest request)
@@ -388,12 +439,9 @@ namespace mksolucion.Areas.portal.Controllers
             string userid = Session["UserId"].ToString();
 
             var query = from con01 in db.con01_contacto
-                        join
-                            con02 in db.con02_tipocontacto on con01.con02_id equals con02.con02_id
-                        join
-                            con03 in db.con03_importancia on con01.con03_id equals con03.con03_id
-                        join
-                            con05 in db.con05_EstadoMensaje on con01.con05_id equals con05.con05_id
+                        join con02 in db.con02_tipocontacto on con01.con02_id equals con02.con02_id
+                        join con03 in db.con03_importancia on con01.con03_id equals con03.con03_id
+                        join con05 in db.con05_EstadoMensaje on con01.con05_id equals con05.con05_id
                         where (con05.con05_estado == 1) && (con02.con02_estado == 1) && (con03.con03_estado == 1)
                         && (con01.con01_id == id)
                         select new
@@ -409,7 +457,8 @@ namespace mksolucion.Areas.portal.Controllers
                             id_tipoSoporte = con01.con02_id,
                             id_importancia = con01.con03_id,
                             id_servicio = con01.ser01_id,
-                            email = con01.con01_email
+                            email = con01.con01_email,
+                            id_usuario = con01.UserId
                         };
 
             if (query.Count() > 0)
@@ -426,13 +475,16 @@ namespace mksolucion.Areas.portal.Controllers
                     ViewBag.fecha = Row.fecha.ToString();
                     ViewBag.mensaje = Row.Mensaje.ToString();
                     ViewBag.llave = id;
+                    ViewBag.llavedestinatario = Row.id_usuario.ToString();
+                    ViewBag.email = Row.email.ToString();
 
-                    ViewBag.tipoSoporteresponder = Row.id_tipoSoporte.ToString();
                     ViewBag.importanciaresponder = Row.id_importancia.ToString();
                     ViewBag.servicioresponder = Row.id_servicio.ToString();
                     ViewBag.asuntoresponder = Row.asunto.ToString();
-                    ViewBag.nombreresponder = Row.nombre.ToString();
-                    ViewBag.emailresponder = Row.email.ToString();
+                    ViewBag.nombreresponder = Session["nmbrusr"].ToString();
+                    ViewBag.idcontacto = id.ToString();
+
+
 
                 }
             }
@@ -440,5 +492,105 @@ namespace mksolucion.Areas.portal.Controllers
             return View();
         }
 
+
+        // POST: portal/pln02_tipoplan/Create
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult viewresolverticket(FormCollection values)
+        {
+
+            var path = string.Empty;
+            string Llave_usuario = Session["UserId"].ToString();
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+
+
+                    string stx_tipocontacto = "";
+                    string stx_Destinatariocorreo = "";
+                    decimal id_tiposoporte = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
+                    var querytc = from tc in db.con02_tipocontacto
+                                  where tc.con02_id == id_tiposoporte
+
+                                  select new
+                                  {
+                                      nombre = tc.con02_nombre,
+                                      destinatariocorreo = tc.con02_usuariocredencial
+
+                                  };
+
+                    if (querytc.Count() > 0)
+                    {
+                        var datos = querytc.ToList();
+                        foreach (var Row in datos)
+                        {
+                            stx_tipocontacto = Row.nombre.ToString();
+                            stx_Destinatariocorreo = Row.destinatariocorreo.ToString();
+                        }
+                    }
+
+                    decimal id_contacto = Convert.ToDecimal(values["id_contacto"].ToString());
+
+                    con01_contacto con01_contacto = new con01_contacto();
+
+                    con01_contacto.con01_nombre = values["con01_nombre"].ToString() + " / MailCreativo";
+                    con01_contacto.con01_email = stx_Destinatariocorreo;
+                    con01_contacto.con01_asunto = "RE: " + values["con01_asunto"].ToString();
+                    con01_contacto.con02_id = Convert.ToDecimal(values["cbxtipoSoporte"].ToString());
+                    con01_contacto.con03_id = Convert.ToDecimal(values["cbximportancia"].ToString());
+                    con01_contacto.ser01_id = Convert.ToDecimal(values["cbxservicio"].ToString());
+                    con01_contacto.con01_mensaje = values["edit_con01_mensaje"].ToString();
+                    con01_contacto.con01_id_padre = Convert.ToDecimal(values["hdd_llavepadre"].ToString());
+                    con01_contacto.UserId = values["hddllaveusuario"].ToString();
+                    con01_contacto.con05_id = Convert.ToDecimal(values["cbxEstadoCorreo"].ToString());
+                    con01_contacto.con01_estado = 1;
+                    con01_contacto.con01_fechacreacion = DateTime.Now;
+                    con01_contacto.con01_ultimaactualizacion = DateTime.Now;
+                    con01_contacto.con01_destinatario = values["nombre"].ToString();
+                    con01_contacto.con01_emaildestinatario = values["con01_email"].ToString();
+
+
+                    db.con01_contacto.Add(con01_contacto);
+                    db.SaveChanges();
+
+                    decimal llave_contacto = con01_contacto.con01_id;
+
+                    if (Request.Files.Count > 0)
+                    {
+                        var file = Request.Files[0];
+
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            var fileext = Path.GetExtension(file.FileName);
+                            path = Path.Combine(Server.MapPath("~/Images/"), llave_contacto.ToString() + fileext.ToString());
+                            file.SaveAs(path);
+                        }
+                    }
+
+                    mkemail.Base_Mail_Ticket_Resolver(Llave_usuario, llave_contacto.ToString(), con01_contacto.con01_destinatario, con01_contacto.con01_emaildestinatario, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, (decimal)con01_contacto.con01_id_padre);
+                    mkemail.Base_Mail_Ticket_administradores("", llave_contacto.ToString(), con01_contacto.con01_nombre, con01_contacto.con01_email, con01_contacto.con01_asunto, con01_contacto.con01_mensaje, path, (decimal)con01_contacto.con02_id, (decimal)con01_contacto.con03_id, "ContactoinvitadoAdministrador");
+
+                    con01_contacto contacto = db.con01_contacto.Find(id_contacto);
+                    contacto.con05_id = Convert.ToDecimal(values["cbxEstadoCorreo"].ToString());
+                    contacto.con01_ultimaactualizacion = DateTime.Now;
+
+                    db.Entry(contacto).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("ContactFinish");
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return View(values);
+        }
     }
 }
